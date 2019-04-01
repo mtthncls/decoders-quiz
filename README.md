@@ -5,3 +5,4 @@ Developers:
 
 Jérémy Figueiredo
 Axel CHANDELIER
+Matthieu NICOLAS
