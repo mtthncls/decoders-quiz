@@ -1,10 +1,9 @@
-# reims-0219-decodeur-quizz
-Le Quizz des décodeurs 
+# Le Quizz des décodeurs
 
-Developers:
+## Developers:
 
-Jérémy FIGUEIREDO
-<br/>Sébastien JOLLY
-<br/>Axel CHANDELIER
-<br/>Matthieu NICOLAS
-<br/>Grégoire SURAY
+Jérémy FIGUEIREDO  
+Sébastien JOLLY  
+Axel CHANDELIER  
+Matthieu NICOLAS  
+Grégoire SURAY
