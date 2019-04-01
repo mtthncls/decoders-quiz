@@ -3,8 +3,8 @@ Le Quizz des décodeurs
 
 Developers:
 
-Jérémy Figueiredo
-Sébastien Jolly
-Axel CHANDELIER
-Matthieu NICOLAS
-Grégoire SURAY
+Jérémy FIGUEIREDO
+<br/>Sébastien JOLLY
+<br/>Axel CHANDELIER
+<br/>Matthieu NICOLAS
+<br/>Grégoire SURAY
