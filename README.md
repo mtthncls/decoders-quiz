@@ -4,3 +4,4 @@ Le Quizz des décodeurs
 Developers:
 
 Jérémy Figueiredo
+Sébastien Jolly
