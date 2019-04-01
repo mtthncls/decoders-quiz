@@ -7,3 +7,4 @@ Jérémy Figueiredo
 Sébastien Jolly
 Axel CHANDELIER
 Matthieu NICOLAS
+Grégoire SURAY
