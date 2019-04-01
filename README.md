@@ -6,3 +6,4 @@ Developers:
 Jérémy Figueiredo
 Sébastien Jolly
 Axel CHANDELIER
+Matthieu NICOLAS
