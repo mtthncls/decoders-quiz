@@ -31,3 +31,11 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Article button choices */
+
+.ButtonSize{
+  height: 13vh;
+  width: 28vw
+}
