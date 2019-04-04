@@ -1,0 +1,39 @@
+.appHeader {
+    background-color: #0062CC;
+    min-height: 30vh;
+    font-size:1.3rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 1em;
+    margin-top: 1rem;
+  }
+  
+  .questionHeader{
+    font-size: 1.8rem;
+    color: white;
+  }
+  .btn-outline-primary{
+    width: 100%;
+    min-height: 15vh;
+    max-height: 20vh;
+    margin-bottom: 1rem;
+    font-size: 1.5rem !important;
+    border-radius: 10px !important;
+  }
+  
+  .btn-outline-primary:hover {
+  background-color: red !important;
+  }
+  
+  .test:hover {
+    background-color: green !important;
+  }
+  
+  
