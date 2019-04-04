@@ -1,6 +1,6 @@
 # Le Quizz des décodeurs
 
-## Developers:
+## JS Developers:
 
 * Jérémy FIGUEIREDO    
 * Sébastien JOLLY    
