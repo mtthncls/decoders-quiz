@@ -1,48 +1,20 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
+/* Description from News API */
 .newscontent
 {
   margin-top: 50px;
 }
 
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
 /* Article button choices */
 
 .ButtonSize{
   height: 13vh;
-  width: 28vw
+  width: 58%;
+}
+
+.ButtonSize:hover{
+  transform: scale(1.1,1.1);
+  transition: all 0.2s ease-in;
 }
