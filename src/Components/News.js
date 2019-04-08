@@ -6,7 +6,6 @@ class News extends Component {
         return (
         <Container>
            <Row>
-
                <Col><img src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiuICYTNUKTm2ZMtmQ3ULgd5to4zch5vNWcY7RCE4HPCRJ7c5v2Q" alt="news"/></Col>
            </Row>
            <Row>
