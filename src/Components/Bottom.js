@@ -25,7 +25,6 @@ class ArticleChoice extends Component {
      }
 
     render() { 
-        console.log(this.state.transferArticle)
         return ( 
             <article>
                 <Container>
