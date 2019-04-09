@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
+import { throws } from 'assert';
+import { generateKeyPair } from 'crypto';
 
 const questions = {
     category: "Sports",
@@ -24,7 +26,7 @@ export default class Questions extends React.Component {
                     <p className="questionHeader">{questions.question}</p>
                 </header>
                 <Row>
-                    <Col><Button outline color="primary" className="test">{questions.correct_answer}</Button></Col>
+                    <Col><Button outline color="primary">{questions.correct_answer}</Button></Col>
                     <Col><Button outline color="primary">{questions.incorrect_answers[0]}</Button></Col>
                 </Row>
                 <Row>
