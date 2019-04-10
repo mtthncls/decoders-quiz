@@ -12,9 +12,10 @@
 .ButtonSize{
   height: 13vh;
   width: 58%;
+  transition: all 0.8s ease;
 }
 
 .ButtonSize:hover{
-  transform: scale(1.1,1.1);
-  transition: all 0.2s ease-in;
+  transform: scale(1.1);
+  transition: all 0.8s ease;
 }
