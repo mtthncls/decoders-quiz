@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import News from "./Components/News";
-import ArticleChoice from './Components/Bottom'
-import Memorize from './Components/MemorizeChoice';
+import RenderApiInfos from "./Components/RenderApiInfos";
+import ArticleChoice from './Components/ArticleChoice'
 
 class App extends Component {
   constructor(){
     super()
       this.state = { 
-        articleInformations : {
+        articleInformationsFromNewsApi : {
             source: {
             id: null,
             name: "Newsbtc.com"
@@ -21,26 +20,23 @@ class App extends Component {
             publishedAt: "2019-04-08T14:00:30Z",
             content: "Bitcoin is once again entering the psyche of an average American, at least according to the ongoing internet statistics. Data collected from Google Trends shows that internet searches for the keyword ‘bitcoin’ surged between March 31 and April 6 in the US. T… [+2945 chars]"
             },
-        transferArticle : ""
+        transferArticle : []
  }
  this.memorizeArticle = this.memorizeArticle.bind(this)
 }
 
  memorizeArticle(){
-     this.setState({ transferArticle : this.state.articleInformations.urlToImage });
+     this.setState({ transferArticle : this.state.articleInformationsFromNewsApi});
+     console.log(this.transferArticle)
  }
 
   render() {
     return (
       <div className="App">
       {/* News doit afficher les données reçues de l'API news */}
-       <News/>
-
+       <RenderApiInfos apiInfos={this.state.articleInformationsFromNewsApi}/>
       {/* La props transfert la méthode afin de remonter l'information de l'enfant jusqu'ici */}
        <ArticleChoice articleToMemorize={this.memorizeArticle}/>
-
-      {/* Memorize est le composant qui va servir à memoriser l'informations et remonter le tout jusqu'ici */}
-       <Memorize transfer={this.state.transferArticle}/>
       </div>
     );
   }
