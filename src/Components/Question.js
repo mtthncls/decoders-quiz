@@ -4,16 +4,17 @@ import { Container, Row, Col } from 'reactstrap';
 import { throws } from 'assert';
 import { generateKeyPair } from 'crypto';
 
-const questions = {
+
+const test = {
     category: "Sports",
     question: "Which French F1 pilot has won 4 World Championships ?",
-    correct_answer: "Alain \"Le Professeur\" Prost",
-    incorrect_answers: [
-        "Oliver \"Le Chat Noir\" Panis",
-        "Jean \"d'Avignon\" Alesi",
-        "Henri \"Pesca\" Pescarolo"
+    answers: [
+    {text: "Alain \"Le Professeur\" Prost", correct : true},
+    {text: "Oliver \"Le Chat Noir\" Panis", correct : false},
+    {text: "Jean \"d'Avignon\" Alesi", correct : false}, 
+    {text: "Henri \"Pesca\" Pescarolo", correct : false}
     ]
-}
+}   
 
 
 export default class Questions extends React.Component {
@@ -22,16 +23,16 @@ export default class Questions extends React.Component {
             <Container>
                 <header className="appHeader">
                     <p>Question #1 in</p>
-                    <p className="categoryHeader">{questions.category}</p>
-                    <p className="questionHeader">{questions.question}</p>
+                    <p className="categoryHeader">{test.category}</p>
+                    <p className="questionHeader">{test.question}</p>
                 </header>
                 <Row>
-                    <Col><Button outline color="primary">{questions.correct_answer}</Button></Col>
-                    <Col><Button outline color="primary">{questions.incorrect_answers[0]}</Button></Col>
+                    <Col><Button outline color="primary">{test.answers[0].text}</Button></Col>
+                    <Col><Button outline color="primary">{test.answers[1].text}</Button></Col>
                 </Row>
                 <Row>
-                    <Col><Button outline color="primary">{questions.incorrect_answers[1]}</Button></Col>
-                    <Col><Button outline color="primary">{questions.incorrect_answers[2]}</Button></Col>
+                    <Col><Button outline color="primary">{test.answers[2].text}</Button></Col>
+                    <Col><Button outline color="primary">{test.answers[3].text}</Button></Col>
                 </Row>
             </Container>
 
