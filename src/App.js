@@ -26,8 +26,8 @@ class App extends Component {
 }
 
  memorizeArticle(){
-     this.setState({ transferArticle : this.state.articleInformationsFromNewsApi});
-     console.log(this.transferArticle)
+     this.setState((prevState) => ({ transferArticle : this.state.transferArticle.length === 0 ? [this.state.articleInformationsFromNewsApi] : [prevState, this.state.articleInformationsFromNewsApi] }))
+     console.log(this.state.transferArticle)
  }
 
   render() {
