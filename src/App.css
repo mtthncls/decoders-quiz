@@ -36,4 +36,7 @@
     background-color: green !important;
   }
   
-  
+  .loadText{
+    margin-left: 30%;
+    font-size: 3rem;
+  }

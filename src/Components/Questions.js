@@ -6,7 +6,7 @@ const Questions = ({ questions }) => {
         return (
             <Container>
                 <header className="appHeader">
-                    <p>Question #1 in</p>
+                    <p>Question # in</p>
                     <p className="categoryHeader">{questions.category}</p>
                     <p className="questionHeader">{questions.question}</p>
                 </header>
@@ -21,5 +21,9 @@ const Questions = ({ questions }) => {
             </Container>
         );
     }
+
+
+
+
 
 export default Questions;
