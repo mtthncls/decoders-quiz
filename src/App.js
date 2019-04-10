@@ -33,8 +33,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      {/* News doit afficher les données reçues de l'API news */}
        <News/>
-       <ArticleChoice test={this.memorizeArticle}/>
+
+      {/* La props transfert la méthode afin de remonter l'information de l'enfant jusqu'ici */}
+       <ArticleChoice articleToMemorize={this.memorizeArticle}/>
+
+      {/* Memorize est le composant qui va servir à memoriser l'informations et remonter le tout jusqu'ici */}
        <Memorize transfer={this.state.transferArticle}/>
       </div>
     );

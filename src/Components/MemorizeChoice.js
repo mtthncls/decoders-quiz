@@ -3,7 +3,7 @@ import React from 'react';
 const Memorize = ({transfer}) => {
    return (
        <div>
-        <img src={transfer}/>
+        {console.log(<img src={transfer}/>)}
        </div>
    
    )
