@@ -21,8 +21,12 @@ export default class Questions extends React.Component {
     constructor(){
         super()
         this.state = {
-           right : false             
+           answered : false, 
+           right : ""             
         };
+    }
+    handleClick = () =>{
+        this.setState({answered : true})
     }
     isCorrectAnswer = (answer) => {
         this.setState({right : answer.correct}) 
@@ -30,6 +34,7 @@ export default class Questions extends React.Component {
     
     render() {
         const truthness =  this.state.right ? 'green' : 'red';
+        
         return (
             <Container>
                 <header className="appHeader">
