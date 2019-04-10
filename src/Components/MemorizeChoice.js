@@ -1,11 +1,11 @@
 import React from 'react';
 
 const Memorize = ({transfer}) => {
-   return ([
+   return (
        <div>
         <img src={transfer}/>
        </div>
-   ]
+   
    )
 }
  
