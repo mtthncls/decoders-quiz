@@ -13,9 +13,8 @@ class App extends Component {
       this.memorizeArticle = this.memorizeArticle.bind(this)
 }
 
- /*  Cette méthode permet d'ajouter dans notre tableau les éléments récupérer de l'API
-             Elle regarde si le tableau est vide, et en crée un nouveau afin d'y ajouter les objets
-             au prochain test(appel de la méthode) */
+/*This method allow us to add elements from API in the array, it check if the array is empty,
+and create a new one to add objects at the next test (method calls) */
 
 memorizeArticle(){
   this.setState(function(prevState){ 
@@ -37,9 +36,9 @@ componentDidMount(){
   render() {
     return (
       <div className="App">
-      {/* News doit afficher les données reçues de l'API news */}
+      {/* News must display data gets from News API */}
        <RenderApiInfos apiInfos={this.state.articleInformationsFromNewsApi}/>
-      {/* La props transfert la méthode afin de remonter l'information de l'enfant jusqu'ici */}
+      {/* Props transfers the method to ride up child information up to here */}
        <ArticleChoice articleToMemorize={this.memorizeArticle}/>
       </div>
     );
