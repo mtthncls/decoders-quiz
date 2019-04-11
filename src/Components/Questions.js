@@ -13,11 +13,11 @@ const Questions = ({ questions }) => {
                 </header>
                 <Row>
                     <Col><Button outline color="primary" className="test">{questions.correct_answer}</Button></Col>
-                    <Col><Button outline color="primary">{questions.incorrect_answers}</Button></Col>
+                    <Col><Button outline color="primary">{questions.incorrect_answers[0]}</Button></Col>
                 </Row>
                 <Row>
-                    <Col><Button outline color="primary">{questions.incorrect_answers}</Button></Col>
-                    <Col><Button outline color="primary">{questions.incorrect_answers}</Button></Col>
+                    <Col><Button outline color="primary">{questions.incorrect_answers[1]}</Button></Col>
+                    <Col><Button outline color="primary">{questions.incorrect_answers[2]}</Button></Col>
                 </Row>
             </Container>
         );

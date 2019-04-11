@@ -17,7 +17,7 @@ class App extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          questions: data.results[0],
+          questions: data.results,
           isLoading: false
         });
       });
@@ -32,10 +32,10 @@ class App extends Component {
   }
 
   _displayQuestions() {
-    if (this.state.questions !== undefined) {
+    if (this.state.questions >= [0]) {
       return (
         <div>
-          <Questions questions = {this.state.questions} />
+          <Questions questions = {this.state.questions[0]} />
         </div>
       )
     }
