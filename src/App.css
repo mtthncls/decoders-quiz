@@ -2,8 +2,7 @@
   text-align: center;
 }
 /* Description from News API */
-.newscontent
-{
+.newscontent {
   margin-top: 50px;
 }
 
@@ -16,6 +15,10 @@
 }
 
 .ButtonSize:hover{
-  transform: scale(1.1);
-  transition: all 0.8s ease;
+  transform: scale(1.1,1.1);
+  transition: all 0.2s ease-in;
+}
+
+.imgSize{
+  width: 44vh;
 }
