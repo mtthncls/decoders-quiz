@@ -11,13 +11,13 @@ class App extends Component {
       isLoading: true
     };
   }
-
+  
   componentDidMount() {
     fetch("https://opentdb.com/api.php?amount=10&type=multiple")
       .then(response => response.json())
       .then(data => {
         this.setState({
-          questions: data.results,
+          questions: data.results[0],
           isLoading: false
         });
       });
@@ -35,7 +35,7 @@ class App extends Component {
     if (this.state.questions !== undefined) {
       return (
         <div>
-          <Questions questions = {this.state.questions[0]} />
+          <Questions questions = {this.state.questions} />
         </div>
       )
     }
@@ -50,17 +50,5 @@ class App extends Component {
     )
   }
 }
-
-
-/*
-  render() {
-      return (
-    <div> 
-      {/*si state question est vide, afficher loading, sinon afficher question}
-      {this.setState.questions = [] ? "Loading" : <Questions questions = {this.state.questions} />}
-    </div>
-    );
-  }
-}*/
 
 export default App;
