@@ -22,7 +22,8 @@ export default class Questions extends React.Component {
         super()
         this.state = {
            answered : false, 
-           right : false             
+           right : false,
+                        
         };
     }
     
