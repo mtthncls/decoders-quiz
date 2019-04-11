@@ -25,10 +25,18 @@ class App extends Component {
  this.memorizeArticle = this.memorizeArticle.bind(this)
 }
 
+         /*  Cette méthode permet d'ajouter dans notre tableau les éléments récupérer de l'API
+             Elle regarde si le tableau est vide, et en crée un nouveau afin d'y ajouter les objets
+             au prochain test(appel de la méthode) */
  memorizeArticle(){
-     this.setState((prevState) => ({ transferArticle : this.state.transferArticle.length === 0 ? [this.state.articleInformationsFromNewsApi] : [prevState, this.state.articleInformationsFromNewsApi] }))
-     console.log(this.state.transferArticle)
- }
+     this.setState(function(prevState){ 
+      console.log(prevState)
+       return {
+        transferArticle : this.state.transferArticle.length === 0 ?
+        [this.state.articleInformationsFromNewsApi] : [...prevState.transferArticle, this.state.articleInformationsFromNewsApi] 
+      }
+ });
+}
 
   render() {
     return (
