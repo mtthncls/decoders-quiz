@@ -22,7 +22,7 @@ export default class Questions extends React.Component {
         super()
         this.state = {
            answered : false, 
-           right : []              
+           right : false             
         };
     }
     
@@ -32,6 +32,7 @@ export default class Questions extends React.Component {
     
     render() {
         
+        const truthness=""
         
         return (
             <Container>
@@ -41,12 +42,12 @@ export default class Questions extends React.Component {
                     <p className="questionHeader">{test.question}</p>
                 </header>
                 <Row>
-                    <Col><Button  outline color="primary" onClick={()=> this.isCorrectAnswer(test.answers[0])}>{test.answers[0].text}</Button></Col>
-                    <Col><Button  outline color="primary" onClick={()=> this.isCorrectAnswer(test.answers[1])}>{test.answers[1].text}</Button></Col>
+                    <Col><Button className={this.state.answered ? 'success':'danger'} outline color="primary" onClick={()=> this.isCorrectAnswer(test.answers[0])}>{test.answers[0].text}</Button></Col>
+                    <Col><Button className={truthness} outline color="primary" onClick={()=> this.isCorrectAnswer(test.answers[1])}>{test.answers[1].text}</Button></Col>
                 </Row>
                 <Row>
-                    <Col><Button  outline color="primary" onClick={()=> this.isCorrectAnswer(test.answers[2])}>{test.answers[2].text}</Button></Col>
-                    <Col><Button  outline color="primary" onClick={()=> this.isCorrectAnswer(test.answers[3])}>{test.answers[3].text}</Button></Col>
+                    <Col><Button className={truthness} outline color="primary" onClick={()=> this.isCorrectAnswer(test.answers[2])}>{test.answers[2].text}</Button></Col>
+                    <Col><Button className={truthness} outline color="primary" onClick={()=> this.isCorrectAnswer(test.answers[3])}>{test.answers[3].text}</Button></Col>
                 </Row>
             </Container>
 
