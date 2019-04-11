@@ -20,7 +20,7 @@ class App extends Component {
             publishedAt: "2019-04-08T14:00:30Z",
             content: "Bitcoin is once again entering the psyche of an average American, at least according to the ongoing internet statistics. Data collected from Google Trends shows that internet searches for the keyword ‘bitcoin’ surged between March 31 and April 6 in the US. T… [+2945 chars]"
             },
-        transferArticle : []
+        transferArticleToRecapComponent : []
  }
  this.memorizeArticle = this.memorizeArticle.bind(this)
 }
@@ -32,8 +32,8 @@ class App extends Component {
      this.setState(function(prevState){ 
       console.log(prevState)
        return {
-        transferArticle : this.state.transferArticle.length === 0 ?
-        [this.state.articleInformationsFromNewsApi] : [...prevState.transferArticle, this.state.articleInformationsFromNewsApi] 
+        transferArticleToRecapComponent : this.state.transferArticleToRecapComponent.length === 0 ?
+        [this.state.articleInformationsFromNewsApi] : [...prevState.transferArticleToRecapComponent, this.state.articleInformationsFromNewsApi] 
       }
  });
 }
