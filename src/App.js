@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Questions from './Components/Questions'
+import Question from './Components/Question'
 
 
 class App extends Component {
@@ -35,7 +35,7 @@ class App extends Component {
     if (this.state.questions !== undefined) {
       return (
         <div>
-          <Questions questions = {this.state.questions} />
+          <Question questions = {this.state.questions} />
         </div>
       )
     }
