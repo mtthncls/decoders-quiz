@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
+import "./Question.css";
 
 const Questions = ({ questions }) => {
         return (
