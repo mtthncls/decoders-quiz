@@ -5,10 +5,10 @@ const Article = ({apiInfos}) => {
     return ( 
         <Container>
             <Row>
-                <Col><img src={apiInfos.urlToImage} className="imgSize" alt="news"/></Col>
+                <Col><img src={apiInfos.currentNewsArticle.urlToImage} className="imgSize" alt="news"/></Col>
             </Row>
             <Row>
-                <Col><p className="newscontent">{apiInfos.description}</p></Col>
+                <Col><p className="newscontent">{apiInfos.currentNewsArticle.description}</p></Col>
             </Row>
         </Container>
      );
