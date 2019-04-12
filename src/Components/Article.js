@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container, Row, Col } from 'reactstrap';
 
-const RenderApiInfos = ({apiInfos}) => {
+const Article = ({apiInfos}) => {
     return ( 
         <Container>
             <Row>
@@ -14,5 +14,4 @@ const RenderApiInfos = ({apiInfos}) => {
      );
     }
  
-export default RenderApiInfos;
-
+export default Article;
