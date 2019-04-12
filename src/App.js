@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import Question from './Components/Question'
+      
 import ArticleSetChoice from './Components/ArticleSetChoice';
 
 class App extends Component {
@@ -31,7 +33,8 @@ componentDidMount(){
   render() {
     return (
       <div className="App">
-       <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle}/>
+        <Question/>
+        <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle}/>
       </div>
     );
   };
