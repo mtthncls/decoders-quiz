@@ -31,7 +31,7 @@ componentDidMount(){
   render() {
     return (
       <div className="App">
-       <ArticleSetChoice data={this.state} method={this.memorizeArticle}/>
+       <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle}/>
       </div>
     );
   };

@@ -2,13 +2,13 @@ import React from 'react';
 import Article from './Article';
 import ArticleChoice from './ArticleChoice';
 
-const ArticleSetChoice = ({data, method}) => {
+const ArticleSetChoice = ({currentArticle, addCurrentArticle}) => {
     return (
         <article>
             {/* News must display data gets from News API */}
-            <Article apiInfos={data}/>
+            <Article currentArticle={currentArticle}/>
             {/* Props transfers the method to ride up child information up to here */}
-            <ArticleChoice method={method} />
+            <ArticleChoice addCurrentArticle={addCurrentArticle} />
         </article>
     )
 }
