@@ -13,7 +13,7 @@ export default class Question extends React.Component {
            answerStatus : false, //is the answer true or false ?
            buttonClicked : "",   //which button has been clicked ?
            question : {
-            category: "Sports",
+            category: "Currency",
             question: "What was the maximum value the Bitcoin reached ?",
             answers: this.randomizeAnswersDisplay([
             {text: "19 500 $", correct : true},
