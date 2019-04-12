@@ -7,12 +7,26 @@ import "./Question.css";
 const test = {
     category: "Sports",
     question: "Which French F1 pilot has won 4 World Championships ?",
-    answers: [
+    answers: shuffle([
     {text: "Alain \"Le Professeur\" Prost", correct : true},
     {text: "Oliver \"Le Chat Noir\" Panis", correct : false},
     {text: "Jean \"d'Avignon\" Alesi", correct : false}, 
     {text: "Henri \"Pesca\" Pescarolo", correct : false}
-    ]
+    ])
+}
+console.log(test.answers)
+function shuffle(array){
+    let currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (0 !== currentIndex){
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        temporaryValue = array[currentIndex];
+        array[currentIndex]= array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return array
 }
  
 
@@ -42,6 +56,7 @@ export default class Question extends React.Component {
         return  ""
 
     }
+    
 
     render() {                                 
            
