@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'reactstrap';
 import "./Question.css";
 
 //Template object for global question data from API
-const test = {
+const question = {
     category: "Sports",
     question: "Which French F1 pilot has won 4 World Championships ?",
     answers: shuffle([
@@ -14,7 +14,7 @@ const test = {
     {text: "Henri \"Pesca\" Pescarolo", correct : false}
     ])
 }
-console.log(test.answers)
+//to randomize the order of apperance of the answers on screen
 function shuffle(array){
     let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -65,16 +65,16 @@ export default class Question extends React.Component {
             <Container>
                 <header className="appHeader">
                     <p>Question #1 in</p>
-                    <p className="categoryHeader">{test.category}</p>
-                    <p className="questionHeader">{test.question}</p>
+                    <p className="categoryHeader">{question.category}</p>
+                    <p className="questionHeader">{question.question}</p>
                 </header>
                 <Row>
-                    <Col><Button color={this.defineButtonColor(0)} outline onClick={()=> this.isCorrectAnswer(test.answers[0], 0)}>{test.answers[0].text}</Button></Col>
-                    <Col><Button color={this.defineButtonColor(1)} outline onClick={()=> this.isCorrectAnswer(test.answers[1], 1)}>{test.answers[1].text}</Button></Col>
+                    <Col><Button color={this.defineButtonColor(0)} outline onClick={()=> this.isCorrectAnswer(question.answers[0], 0)}>{question.answers[0].text}</Button></Col>
+                    <Col><Button color={this.defineButtonColor(1)} outline onClick={()=> this.isCorrectAnswer(question.answers[1], 1)}>{question.answers[1].text}</Button></Col>
                 </Row>
                 <Row>
-                    <Col><Button color={this.defineButtonColor(2)} outline onClick={()=> this.isCorrectAnswer(test.answers[2], 2)}>{test.answers[2].text}</Button></Col>
-                    <Col><Button color={this.defineButtonColor(3)} outline onClick={()=> this.isCorrectAnswer(test.answers[3], 3)}>{test.answers[3].text}</Button></Col>
+                    <Col><Button color={this.defineButtonColor(2)} outline onClick={()=> this.isCorrectAnswer(question.answers[2], 2)}>{question.answers[2].text}</Button></Col>
+                    <Col><Button color={this.defineButtonColor(3)} outline onClick={()=> this.isCorrectAnswer(question.answers[3], 3)}>{question.answers[3].text}</Button></Col>
                 </Row>
             </Container>
 
