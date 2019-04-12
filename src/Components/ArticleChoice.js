@@ -18,3 +18,4 @@ const ArticleChoice = ({articleToMemorize}) => {
         }
  
 export default ArticleChoice;
+

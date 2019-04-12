@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import RenderApiInfos from "./Components/RenderApiInfos";
+import Article from "./Components/Article";
 import ArticleChoice from './Components/ArticleChoice'
 
 class App extends Component {
@@ -36,7 +36,7 @@ componentDidMount(){
     return (
       <div className="App">
       {/* News must display data gets from News API */}
-       <RenderApiInfos apiInfos={this.state.currentNewsArticle}/>
+       <Article apiInfos={this.state.currentNewsArticle}/>
       {/* Props transfers the method to ride up child information up to here */}
        <ArticleChoice articleToMemorize={this.memorizeArticle}/>
       </div>
@@ -45,3 +45,4 @@ componentDidMount(){
 }
 
 export default App;
+
