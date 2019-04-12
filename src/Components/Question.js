@@ -17,7 +17,7 @@ export default class Question extends React.Component {
             question: "What was the maximum value the Bitcoin reached ?",
             answers: this.randomizeAnswersDisplay([
             {text: "19 500 $", correct : true},
-            {text: "176 567 $", correct : false},
+            {text: "176 467 $", correct : false},
             {text: "9099 $", correct : false}, 
             {text: "1290 $", correct : false}
             ]),
