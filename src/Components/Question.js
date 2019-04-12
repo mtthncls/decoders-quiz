@@ -7,6 +7,7 @@ const Question = ({ questions }) => {
     // array using the shuffle function
     const array = shuffle([questions.correct_answer, questions.incorrect_answers[0], questions.incorrect_answers[1], questions.incorrect_answers[2]])
         return (
+                       
             <Container>
                 <header className="appHeader">
                     <p>Question</p>
