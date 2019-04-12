@@ -34,3 +34,28 @@
     font-size: 3rem;
   }
   
+  
+.App {
+  text-align: center;
+}
+/* Description from News API */
+.newscontent {
+  margin-top: 50px;
+}
+
+/* Article button choices */
+
+.ButtonSize{
+  height: 13vh;
+  width: 58%;
+  transition: all 0.8s ease;
+}
+
+.ButtonSize:hover{
+  transform: scale(1.1,1.1);
+  transition: all 0.2s ease-in;
+}
+
+.imgSize{
+  width: 44vh;
+}
