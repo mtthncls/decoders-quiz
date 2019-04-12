@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Questions from './Components/Questions'
+import Question from './Components/Question'
 
 
 class App extends Component {
@@ -12,6 +12,7 @@ class App extends Component {
     };
   }
   
+  // method for API call
   componentDidMount() {
     fetch("https://opentdb.com/api.php?amount=10&type=multiple")
       .then(response => response.json())
@@ -23,6 +24,7 @@ class App extends Component {
       });
   }
 
+  // method for display the loading message
   _displayLoading() {
     if (this.state.isLoading) {
       return (
@@ -31,11 +33,12 @@ class App extends Component {
     }
   }
 
+  // method for display the question component 
   _displayQuestions() {
     if (this.state.questions >= [0]) {
       return (
         <div>
-          <Questions questions = {this.state.questions[0]} />
+          <Question questions = {this.state.questions[0]} />
         </div>
       )
     }
