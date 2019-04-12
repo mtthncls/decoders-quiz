@@ -14,12 +14,12 @@ export default class Question extends React.Component {
            buttonClicked : "",   //which button has been clicked ?
            question : {
             category: "Sports",
-            question: "Which French F1 pilot has won 4 World Championships ?",
+            question: "What was the maximum value the Bitcoin reached ?",
             answers: this.randomizeAnswersDisplay([
-            {text: "Alain \"Le Professeur\" Prost", correct : true},
-            {text: "Oliver \"Le Chat Noir\" Panis", correct : false},
-            {text: "Jean \"d'Avignon\" Alesi", correct : false}, 
-            {text: "Henri \"Pesca\" Pescarolo", correct : false}
+            {text: "19 500 $", correct : true},
+            {text: "176 567 $", correct : false},
+            {text: "9099 $", correct : false}, 
+            {text: "1290 $", correct : false}
             ]),
             }        
         };
