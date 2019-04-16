@@ -10,8 +10,8 @@ class App extends Component {
     this.state = {
       currentNewsArticle: {}, //ArticleSetChoice component
       preferredNewsArticles: [], //ArticleSetChoice component
-      answered: false, //Question component : has one button been clicked or not ?
-      answerStatus: false, //Question component : is the answer true or false ?
+      isQuestionAnswered: false, //Question component : has one button been clicked or not ?
+      isAnswerCorrect: false, //Question component : is the answer true or false ?
       buttonClicked: "",   //Question component : which button has been clicked ?
       isButtonDisabled: false, //Question component : button clickable or not
       question: {
@@ -29,35 +29,35 @@ class App extends Component {
   };
 
   //determine if the answer of clicked button is correct or incorrect and modify state accordingly
-  isCorrectAnswer = (answer, buttonIndex) => {
-    this.setState({ answerStatus: answer.correct, answered: true, buttonClicked: buttonIndex, isButtonDisabled: true })
+  setAnswerStatus = (answer, buttonIndex) => {
+    this.setState({ isAnswerCorrect: answer.correct, isQuestionAnswered: true, buttonClicked: buttonIndex, isButtonDisabled: true })
   }
 
   //change color of clicked button according to correctness of the answer and the button clicked
   defineButtonColor = (buttonIndex) => {
-    if (!this.state.answered) {
+    if (!this.state.isQuestionAnswered) {
       return "secondary"
     }
     else if (this.state.buttonClicked === buttonIndex
-      && this.state.answered
-      && this.state.answerStatus) {
+      && this.state.isQuestionAnswered
+      && this.state.isAnswerCorrect) {
       return "success";
     }
     else if (this.state.buttonClicked === buttonIndex
-      && this.state.answered
-      && !this.state.answerStatus) {
+      && this.state.isQuestionAnswered
+      && !this.state.isAnswerCorrect) {
       return "danger";
     }
     else if (
       this.state.buttonClicked !== buttonIndex
-      && this.state.answered
-      && !this.state.answerStatus
+      && this.state.isQuestionAnswered
+      && !this.state.isAnswerCorrect
       && this.state.question.answers[buttonIndex].correct) {
       return "success"
     }
     else if (
       this.state.buttonClicked !== buttonIndex
-      && this.state.answered
+      && this.state.isQuestionAnswered
       && !this.state.question.answers[buttonIndex].correct) {
       return "secondary"
     }
@@ -104,7 +104,7 @@ and create a new one to add objects at the next test (method calls) */
   render() {
     return (
       <div className="App">
-        <Question questionState={this.state} isCorrectAnswer={this.isCorrectAnswer} defineButtonColor={this.defineButtonColor} />
+        <Question questionState={this.state} setAnswerStatus={this.setAnswerStatus} defineButtonColor={this.defineButtonColor} />
         <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle} />
       </div>
     );
