@@ -85,6 +85,7 @@ export default class Question extends React.Component {
                     <Col><Button color={this.defineButtonColor(2)} outline onClick={() => this.isCorrectAnswer(this.state.question.answers[2], 2)} disabled={this.state.isButtonDisabled}>{this.state.question.answers[2].text}</Button></Col>
                     <Col><Button color={this.defineButtonColor(3)} outline onClick={() => this.isCorrectAnswer(this.state.question.answers[3], 3)} disabled={this.state.isButtonDisabled}>{this.state.question.answers[3].text}</Button></Col>
                 </Row>
+                {this.state.isButtonDisabled && <Button>Next</Button>}
             </Container>
 
         );
