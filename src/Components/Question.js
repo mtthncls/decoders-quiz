@@ -6,58 +6,70 @@ import "./Question.css";
 //Template object for global question data from API
 
 export default class Question extends React.Component {
-    constructor(){
+    constructor() {
         super()
         this.state = {
-           answered : false, //has one button been clicked or not ?
-           answerStatus : false, //is the answer true or false ?
-           buttonClicked : "",   //which button has been clicked ?
-           question : {
-            category: "Currency",
-            question: "What was the maximum value the Bitcoin reached ?",
-            answers: this.randomizeAnswersDisplay([
-            {text: "19 500 $", correct : true},
-            {text: "176 467 $", correct : false},
-            {text: "9099 $", correct : false}, 
-            {text: "1290 $", correct : false}
-            ]),
-            }        
+            answered: false, //has one button been clicked or not ?
+            answerStatus: false, //is the answer true or false ?
+            buttonClicked: "",   //which button has been clicked ?
+            question: {
+                category: "Currency",
+                question: "What was the maximum value the Bitcoin reached ?",
+                answers: this.randomizeAnswersDisplay([
+                    { text: "19 500 $", correct: true },
+                    { text: "176 467 $", correct: false },
+                    { text: "9099 $", correct: false },
+                    { text: "1290 $", correct: false }
+                ]),
+            }
         };
     }
     //determine if the answer of clicked button is correct or incorrect and modify state accordingly
     isCorrectAnswer = (answer, buttonIndex) => {
-        this.setState({answerStatus : answer.correct, answered : true, buttonClicked : buttonIndex })     
+        this.setState({ answerStatus: answer.correct, answered: true, buttonClicked: buttonIndex })
     }
-    
+
     //change color of clicked button according to correctness of the answer in the button
-   defineButtonColor = (buttonIndex) => {
-        if(this.state.buttonClicked ===  buttonIndex && this.state.answered === true && this.state.answerStatus === true){
-            return "success";   
+    defineButtonColor = (buttonIndex) => {
+        if (this.state.buttonClicked === buttonIndex
+            && this.state.answered
+            && this.state.answerStatus) {
+            return "success";
         }
-        else if (this.state.buttonClicked === buttonIndex && this.state.answered === true && this.state.answerStatus === false){
+        else if (this.state.buttonClicked === buttonIndex
+            && this.state.answered
+            && !this.state.answerStatus) {
             return "danger";
         }
-        return  ""
+        else if (
+            this.state.buttonClicked !== buttonIndex
+            && this.state.answered
+            && !this.state.answerStatus
+            && this.state.question.answers[buttonIndex].correct) {
+            return "success"
+        }
+
+        return ""
     }
     //to randomize the order of apperance of the answers on screen
     randomizeAnswersDisplay = (array) => {
-    let currentIndex = array.length, temporaryValue, randomIndex;
+        let currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (0 !== currentIndex){
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
 
-        temporaryValue = array[currentIndex];
-        array[currentIndex]= array[randomIndex];
-        array[randomIndex] = temporaryValue;
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+        return array
     }
-    return array
-}  
 
-    render() {                                 
-           
+    render() {
+
         return (
-                       
+
             <Container>
                 <header className="appHeader">
                     <p>Question #1 in</p>
@@ -65,12 +77,12 @@ export default class Question extends React.Component {
                     <p className="questionHeader">{this.state.question.question}</p>
                 </header>
                 <Row>
-                    <Col><Button color={this.defineButtonColor(0)} outline onClick={()=> this.isCorrectAnswer(this.state.question.answers[0], 0)}>{this.state.question.answers[0].text}</Button></Col>
-                    <Col><Button color={this.defineButtonColor(1)} outline onClick={()=> this.isCorrectAnswer(this.state.question.answers[1], 1)}>{this.state.question.answers[1].text}</Button></Col>
+                    <Col><Button color={this.defineButtonColor(0)} outline onClick={() => this.isCorrectAnswer(this.state.question.answers[0], 0)}>{this.state.question.answers[0].text}</Button></Col>
+                    <Col><Button color={this.defineButtonColor(1)} outline onClick={() => this.isCorrectAnswer(this.state.question.answers[1], 1)}>{this.state.question.answers[1].text}</Button></Col>
                 </Row>
                 <Row>
-                    <Col><Button color={this.defineButtonColor(2)} outline onClick={()=> this.isCorrectAnswer(this.state.question.answers[2], 2)}>{this.state.question.answers[2].text}</Button></Col>
-                    <Col><Button color={this.defineButtonColor(3)} outline onClick={()=> this.isCorrectAnswer(this.state.question.answers[3], 3)}>{this.state.question.answers[3].text}</Button></Col>
+                    <Col><Button color={this.defineButtonColor(2)} outline onClick={() => this.isCorrectAnswer(this.state.question.answers[2], 2)}>{this.state.question.answers[2].text}</Button></Col>
+                    <Col><Button color={this.defineButtonColor(3)} outline onClick={() => this.isCorrectAnswer(this.state.question.answers[3], 3)}>{this.state.question.answers[3].text}</Button></Col>
                 </Row>
             </Container>
 
