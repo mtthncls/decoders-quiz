@@ -21,8 +21,7 @@ class App extends Component {
         const apiQuestions = data.results
         //créer un tableau 
         const questions = []
-        for (let i=0 ; i < apiQuestions.length ; i++){
-          
+        for (let i=0 ; i < apiQuestions.length ; i++){         
           const question = {
             category : apiQuestions[i].category,
             question : apiQuestions[i].question,
@@ -61,6 +60,20 @@ class App extends Component {
       )
     }
   }
+  // method to randomize answers
+  randomizeAnswersDisplay = (array) => {
+    let currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (0 !== currentIndex){
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        temporaryValue = array[currentIndex];
+        array[currentIndex]= array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return array
+}
 
   render() {
     return (

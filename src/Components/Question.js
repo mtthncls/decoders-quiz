@@ -42,14 +42,7 @@ randomizeAnswersDisplay = (array) => {
     }
     return array
 }
-  
 
-/*const Question = ({ questions }) => {
-    // array using the shuffle function
-    const array = shuffle([{text: questions.correct_answer, correct: true},
-                           {text: questions.incorrect_answers[0], correct: false}, 
-                           {text: questions.incorrect_answers[1], correct: false}, 
-                           {text: questions.incorrect_answers[2], correct: false}])*/
 render() {
         return (
                        
