@@ -15,18 +15,18 @@ const Question = ({ questionState, isCorrectAnswer, defineButtonColor }) => {
             </header>
             <Row>
                 <Col><Button color={defineButtonColor(0)}
-                    outline onClick={() => isCorrectAnswer(questionState.question.answers[0], 0)}
+                     onClick={() => isCorrectAnswer(questionState.question.answers[0], 0)}
                     disabled={questionState.isButtonDisabled}>{questionState.question.answers[0].text}</Button></Col>
                 <Col><Button color={defineButtonColor(1)}
-                    outline onClick={() => isCorrectAnswer(questionState.question.answers[1], 1)}
+                     onClick={() => isCorrectAnswer(questionState.question.answers[1], 1)}
                     disabled={questionState.isButtonDisabled}>{questionState.question.answers[1].text}</Button></Col>
             </Row>
             <Row>
                 <Col><Button color={defineButtonColor(2)}
-                    outline onClick={() => isCorrectAnswer(questionState.question.answers[2], 2)}
+                     onClick={() => isCorrectAnswer(questionState.question.answers[2], 2)}
                     disabled={questionState.isButtonDisabled}>{questionState.question.answers[2].text}</Button></Col>
                 <Col><Button color={defineButtonColor(3)}
-                    outline onClick={() => isCorrectAnswer(questionState.question.answers[3], 3)}
+                     onClick={() => isCorrectAnswer(questionState.question.answers[3], 3)}
                     disabled={questionState.isButtonDisabled}>{questionState.question.answers[3].text}</Button></Col>
             </Row>
             {questionState.isButtonDisabled && <Button>Next</Button>}

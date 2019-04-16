@@ -35,7 +35,10 @@ class App extends Component {
 
   //change color of clicked button according to correctness of the answer and the button clicked
   defineButtonColor = (buttonIndex) => {
-    if (this.state.buttonClicked === buttonIndex
+    if (!this.state.answered) {
+      return "secondary"
+    }
+    else if (this.state.buttonClicked === buttonIndex
       && this.state.answered
       && this.state.answerStatus) {
       return "success";
