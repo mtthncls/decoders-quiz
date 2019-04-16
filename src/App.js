@@ -16,9 +16,24 @@ class App extends Component {
   componentDidMount() {
     fetch("https://opentdb.com/api.php?amount=10&type=multiple")
       .then(response => response.json())
-      .then(data => {
+      .then(data => { 
         //transform questions
-        const questions = data.results
+        const apiQuestions = data.results
+        //créer un tableau 
+        const questions = []
+        for (let i=0 ; i < apiQuestions.length ; i++){
+          
+          const question = {
+            category : apiQuestions[i].category,
+            question : apiQuestions[i].question,
+            answers : [{text: apiQuestions[i].correct_answer, correct: true},
+                       {text: apiQuestions[i].incorrect_answers[0], correct: false},
+                       {text: apiQuestions[i].incorrect_answers[1], correct: false},
+                       {text: apiQuestions[i].incorrect_answers[2], correct: false}
+                      ]             
+            };             
+            questions.push(question)       
+        }
         
         this.setState({
           questions: questions,
@@ -38,7 +53,7 @@ class App extends Component {
 
   // method for display the question component 
   _displayQuestions() {
-    if (this.state.questions >= [0]) {
+    if (this.state.questions.length > 0) {
       return (
         <div>
           <Question question = {this.state.questions[0]} />
