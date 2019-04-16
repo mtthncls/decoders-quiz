@@ -19,14 +19,6 @@
   font-size: 1.8rem;
   color: white;
 }
-.btn-outline-primary{
-  width: 100%;
-  min-height: 15vh;
-  max-height: 20vh;
-  margin-bottom: 1rem;
-  font-size: 1.5rem !important;
-  border-radius: 10px !important;
-}
 
 
 .loadText{
