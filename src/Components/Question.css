@@ -1,0 +1,7 @@
+/*manage answer buttons size*/
+.btn{
+    width: 100%;
+    min-height: 20vh;
+    max-height: 30vh;
+    margin-top: 1rem;
+   }

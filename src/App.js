@@ -1,60 +1,45 @@
 import React, { Component } from 'react';
 import './App.css';
 import Question from './Components/Question'
-      
+
 import ArticleSetChoice from './Components/ArticleSetChoice';
 
-
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super()
     this.state = {
-      questions: [],
-      isLoading: true
+      currentNewsArticle: {},
+      preferredNewsArticles: []
     };
-  }
-  
-  // method for API call
+    this.memorizeArticle = this.memorizeArticle.bind(this)
+  };
+
+  /*This method allow us to add elements from API in the array, it check if the array is empty,
+  and create a new one to add objects at the next test (method calls) */
+
+  memorizeArticle() {
+    this.setState(function (prevState) {
+      return {
+        preferredNewsArticles: this.state.preferredNewsArticles.length === 0 ?
+          [this.state.currentNewsArticle] : [...prevState.preferredNewsArticles, this.state.currentNewsArticle]
+      };
+    });
+  };
+
   componentDidMount() {
-    fetch("https://opentdb.com/api.php?amount=10&type=multiple")
+    fetch("https://newsapi.org/v2/everything?q=bitcoin&from=2019-03-12&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8")
       .then(response => response.json())
-      .then(data => {
-        this.setState({
-          questions: data.results,
-          isLoading: false
-        });
-      });
-  }
-
-  // method for display the loading message
-  _displayLoading() {
-    if (this.state.isLoading) {
-      return (
-        <p className="loadText">loading...</p>
-      )
-    }
-  }
-
-  // method for display the question component 
-  _displayQuestions() {
-    if (this.state.questions >= [0]) {
-      return (
-        <div>
-          <Question questions = {this.state.questions[0]} />
-        </div>
-      )
-    }
-  }
+      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles[0] }))
+  };
 
   render() {
     return (
-      <div>
-        {this._displayLoading()}
-        {this._displayQuestions()}
+      <div className="App">
+        <Question />
+        <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle} />
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 export default App;
-
