@@ -3,8 +3,6 @@ import { Button } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import "./Question.css";
 
-//Template object for global question data from API
-
 export default class Question extends React.Component {
     constructor(){
         super()
@@ -12,35 +10,36 @@ export default class Question extends React.Component {
            answered : false, //has one button been clicked or not ?
            answerStatus : false, //is the answer true or false ?
            buttonClicked : "",   //which button has been clicked ?
-           question : {
-            category: "Sports",
-            question: "Which French F1 pilot has won 4 World Championships ?",
-            answers: this.randomizeAnswersDisplay([
-            {text: "Alain \"Le Professeur\" Prost", correct : true},
-            {text: "Oliver \"Le Chat Noir\" Panis", correct : false},
-            {text: "Jean \"d'Avignon\" Alesi", correct : false}, 
-            {text: "Henri \"Pesca\" Pescarolo", correct : false}
-            ]),
-            }        
+        //    question : {
+        //     category: "Currency",
+        //     question: "What was the maximum value the Bitcoin reached ?",
+        //     answers: this.randomizeAnswersDisplay([
+        //     {text: questions.correct_answer, correct : true},
+        //     {text: questions.incorrect_answers[0], correct : false},
+        //     {text: questions.incorrect_answers[1], correct : false}, 
+        //     {text: questions.incorrect_answers[2], correct : false}
+        //     ]),
+        //     }        
         };
     }
-    //determine if the answer of clicked button is correct or incorrect and modify state accordingly
-    isCorrectAnswer = (answer, buttonIndex) => {
-        this.setState({answerStatus : answer.correct, answered : true, buttonClicked : buttonIndex })     
+
+//determine if the answer of clicked button is correct or incorrect and modify state accordingly
+isCorrectAnswer = (answer, buttonIndex) => {
+    this.setState({answerStatus : answer.correct, answered : true, buttonClicked : buttonIndex })     
+}
+
+//change color of clicked button according to correctness of the answer in the button
+defineButtonColor = (buttonIndex) => {
+    if(this.state.buttonClicked ===  buttonIndex && this.state.answered === true && this.state.answerStatus === true){
+        return "success";   
     }
-    
-    //change color of clicked button according to correctness of the answer in the button
-   defineButtonColor = (buttonIndex) => {
-        if(this.state.buttonClicked ===  buttonIndex && this.state.answered === true && this.state.answerStatus === true){
-            return "success";   
-        }
-        else if (this.state.buttonClicked === buttonIndex && this.state.answered === true && this.state.answerStatus === false){
-            return "danger";
-        }
-        return  ""
+    else if (this.state.buttonClicked === buttonIndex && this.state.answered === true && this.state.answerStatus === false){
+        return "danger";
     }
-    //to randomize the order of apperance of the answers on screen
-    randomizeAnswersDisplay = (array) => {
+    return  ""
+}
+
+randomizeAnswersDisplay = (array) => {
     let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (0 !== currentIndex){
@@ -52,28 +51,33 @@ export default class Question extends React.Component {
         array[randomIndex] = temporaryValue;
     }
     return array
-}  
+}
+  
 
-    render() {                                 
-           
+/*const Question = ({ questions }) => {
+    // array using the shuffle function
+    const array = shuffle([{text: questions.correct_answer, correct: true},
+                           {text: questions.incorrect_answers[0], correct: false}, 
+                           {text: questions.incorrect_answers[1], correct: false}, 
+                           {text: questions.incorrect_answers[2], correct: false}])*/
+render() {
         return (
                        
             <Container>
                 <header className="appHeader">
-                    <p>Question #1 in</p>
-                    <p className="categoryHeader">{this.state.question.category}</p>
-                    <p className="questionHeader">{this.state.question.question}</p>
+                    <p>Question</p>
+                    <p className="categoryHeader">{this.props.question.category}</p>
+                    <p className="questionHeader">{this.props.question.question}</p>
                 </header>
-                <Row>
-                    <Col><Button color={this.defineButtonColor(0)} outline onClick={()=> this.isCorrectAnswer(this.state.question.answers[0], 0)}>{this.state.question.answers[0].text}</Button></Col>
-                    <Col><Button color={this.defineButtonColor(1)} outline onClick={()=> this.isCorrectAnswer(this.state.question.answers[1], 1)}>{this.state.question.answers[1].text}</Button></Col>
+                {/* <Row>
+                    <Col><Button color={this.defineButtonColor(0)} outline onClick={()=> this.isCorrectAnswer(this.state.question.answers[0], 0)}>{array[0].text}</Button></Col>
+                    <Col><Button color={this.defineButtonColor(1)} outline onClick={()=> this.isCorrectAnswer(this.state.question.answers[1], 1)}>{array[1].text}</Button></Col>
                 </Row>
                 <Row>
-                    <Col><Button color={this.defineButtonColor(2)} outline onClick={()=> this.isCorrectAnswer(this.state.question.answers[2], 2)}>{this.state.question.answers[2].text}</Button></Col>
-                    <Col><Button color={this.defineButtonColor(3)} outline onClick={()=> this.isCorrectAnswer(this.state.question.answers[3], 3)}>{this.state.question.answers[3].text}</Button></Col>
-                </Row>
+                    <Col><Button color={this.defineButtonColor(2)} outline onClick={()=> this.isCorrectAnswer(this.state.question.answers[2], 2)}>{array[2].text}</Button></Col>
+                    <Col><Button color={this.defineButtonColor(3)} outline onClick={()=> this.isCorrectAnswer(this.state.question.answers[3], 3)}>{array[3].text}</Button></Col>
+                </Row> */}
             </Container>
-
         );
     }
 }
