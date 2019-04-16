@@ -27,7 +27,7 @@ memorizeArticle(){
 };
 
 componentDidMount(){
-  fetch("https://newsapi.org/v2/everything?q=trump&from=2019-03-16&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8")
+  fetch("https://newsapi.org/v2/everything?q=trup&from=2019-03-16&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8")
       .then(response => response.json())
       .then(responseInJson => this.setState({currentNewsArticle : responseInJson.articles[0]}))};
 
