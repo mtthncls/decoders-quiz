@@ -23,7 +23,7 @@ class App extends Component {
                 { text: "9099 $", correct: false },
                 { text: "1290 $", correct: false }
             ]),
-        }
+        },
     };
     this.memorizeArticle = this.memorizeArticle.bind(this)
   };
@@ -83,9 +83,14 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch("https://newsapi.org/v2/everything?q=bitcoin&from=2019-03-16&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8")
+    //Ces trois const récupèrent l'année/mois/et le jour courant
+    const year = new Date().getFullYear()
+    const month = new Date().getMonth()
+    const date = new Date().getDate()
+
+    fetch(`https://newsapi.org/v2/everything?q=bitcoin&from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
       .then(response => response.json())
-      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles[0] }))
+      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles[0] }));
   };
 
   render() {
