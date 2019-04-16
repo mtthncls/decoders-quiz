@@ -3,6 +3,7 @@ import './App.css';
 import Question from './Components/Question'
       
 import ArticleSetChoice from './Components/ArticleSetChoice';
+import ArticlesRecap from './Components/ArticlesRecap';
 
 class App extends Component {
   constructor(){
@@ -26,7 +27,7 @@ memorizeArticle(){
 };
 
 componentDidMount(){
-  fetch("https://newsapi.org/v2/everything?q=bitcoin&from=2019-03-12&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8")
+  fetch("https://newsapi.org/v2/everything?q=trump&from=2019-03-16&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8")
       .then(response => response.json())
       .then(responseInJson => this.setState({currentNewsArticle : responseInJson.articles[0]}))};
 
@@ -35,6 +36,7 @@ componentDidMount(){
       <div className="App">
         <Question/>
         <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle}/>
+        <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles}/>
       </div>
     );
   };
