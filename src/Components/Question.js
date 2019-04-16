@@ -5,7 +5,7 @@ import "./Question.css";
 
 //Template object for global question data from API
 
-const Question = ({ questionState, setAnswerStatus, defineButtonColor }) => {
+const Question = ({ questionState, setAnswerStatus, defineButtonColor, addNews }) => {
     return (
         <Container>
             <header className="appHeader">
@@ -29,7 +29,7 @@ const Question = ({ questionState, setAnswerStatus, defineButtonColor }) => {
                     onClick={() => setAnswerStatus(questionState.question.answers[3], 3)}
                     disabled={questionState.isButtonDisabled}>{questionState.question.answers[3].text}</Button></Col>
             </Row>
-            {questionState.isButtonDisabled && <Button>Next</Button>}
+            {questionState.isButtonDisabled && <Button onClick={addNews}>Next</Button>}
         </Container>
     );
 }

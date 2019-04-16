@@ -14,6 +14,7 @@ class App extends Component {
       isAnswerCorrect: false, //Question component : is the answer true or false ?
       buttonClicked: "",   //Question component : which button has been clicked ?
       isButtonDisabled: false, //Question component : button clickable or not
+      isQuestionDisplayed: true,
       question: {
         category: "Currency",
         question: "What was the maximum value the Bitcoin reached ?",
@@ -26,6 +27,8 @@ class App extends Component {
       }
     };
     this.memorizeArticle = this.memorizeArticle.bind(this)
+    this.triggerAddNewsState = this.triggerAddNewsState.bind(this)
+
   };
 
   //determine if the answer of clicked button is correct or incorrect and modify state accordingly
@@ -78,6 +81,10 @@ class App extends Component {
     return array
   }
 
+  //allows to display article selection page after clicking 'next' button
+  triggerAddNewsState = () => {
+    this.setState({ isQuestionDisplayed: false })
+  }
   /*This method allow us to add elements from API in the array, it check if the array is empty,
 and create a new one to add objects at the next test (method calls) */
 
@@ -104,8 +111,8 @@ and create a new one to add objects at the next test (method calls) */
   render() {
     return (
       <div className="App">
-        <Question questionState={this.state} setAnswerStatus={this.setAnswerStatus} defineButtonColor={this.defineButtonColor} />
-        <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle} />
+        {this.state.isQuestionDisplayed && <Question questionState={this.state} setAnswerStatus={this.setAnswerStatus} defineButtonColor={this.defineButtonColor} addNews={this.triggerAddNewsState} />}
+        {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle} />}
       </div>
     );
   };
