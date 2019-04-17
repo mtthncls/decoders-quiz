@@ -11,7 +11,7 @@ const Question = ({ question, setAnswerStatus, defineButtonColor, isButtonDisabl
             <header className="appHeader">
                 <p>Question #1 in</p>
                 <p className="categoryHeader">{question.category}</p>
-                <p className="questionHeader">{question.question}</p>
+                <p className="questionHeader">{question.question.replace(/&quot;|&#039;/g, "\'")}</p>
             </header>
             <Row>
                 <Col><Button color={defineButtonColor(0)}
