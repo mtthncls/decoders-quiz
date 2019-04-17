@@ -1,61 +1,53 @@
 .appHeader {
-    background-color: #0062CC;
-    min-height: 30vh;
-    font-size:1.3rem;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    border-radius: 10px;
-    padding: 1em;
-    margin-top: 1rem;
-  }
-  
-  .questionHeader{
-    font-size: 1.8rem;
-    color: white;
-  }
-  .btn-outline-primary{
-    width: 100%;
-    min-height: 15vh;
-    max-height: 20vh;
-    margin-bottom: 1rem;
-    font-size: 1.5rem !important;
-    border-radius: 10px !important;
-  }
- 
-  
-  .loadText{
-    margin-left: 30%;
-    font-size: 3rem;
-  }
-  
-  
-.App {
+  background-color: #0062CC;
+  min-height: 30vh;
+  font-size:1.3rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 1em;
+  margin-top: 1rem;
+}
+
+.questionHeader{
+  font-size: 1.8rem;
+  color: white;
+}
+
+
+.loadText{
+  margin-left: 30%;
+  font-size: 3rem;
+}
+
+
+.App {
+text-align: center;
 }
 /* Description from News API */
 .newscontent {
-  margin-top: 50px;
+margin-top: 50px;
 }
 
 /* Article button choices */
 
 .ButtonSize{
-  height: 13vh;
-  width: 58%;
-  transition: all 0.8s ease;
+height: 13vh;
+width: 58%;
+transition: all 0.8s ease;
 }
 
 .ButtonSize:hover{
-  transform: scale(1.1,1.1);
-  transition: all 0.2s ease-in;
+transform: scale(1.1,1.1);
+transition: all 0.2s ease-in;
 }
 
 .imgSize{
-  width: 44vh;
+width: 44vh;
 }
