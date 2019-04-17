@@ -17,19 +17,17 @@ class App extends Component {
     fetch("https://opentdb.com/api.php?amount=10&type=multiple")
       .then(response => response.json())
       .then(data => { 
-        //transform questions
         const apiQuestions = data.results
-        //créer un tableau 
         const questions = []
         for (let i=0 ; i < apiQuestions.length ; i++){         
           const question = {
             category : apiQuestions[i].category,
             question : apiQuestions[i].question,
-            answers : [{text: apiQuestions[i].correct_answer, correct: true},
+            answers : this.randomizeAnswersDisplay ([{text: apiQuestions[i].correct_answer, correct: true},
                        {text: apiQuestions[i].incorrect_answers[0], correct: false},
                        {text: apiQuestions[i].incorrect_answers[1], correct: false},
                        {text: apiQuestions[i].incorrect_answers[2], correct: false}
-                      ]             
+                      ])             
             };             
             questions.push(question)       
         }
