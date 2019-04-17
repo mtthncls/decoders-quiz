@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Question from './Components/Question'
+import { Button } from 'reactstrap';
 
 import ArticleSetChoice from './Components/ArticleSetChoice';
 
@@ -15,20 +16,12 @@ class App extends Component {
       buttonClicked: "",   //Question component : which button has been clicked ?
       isButtonDisabled: false, //Question component : button clickable or not
       isQuestionDisplayed: true,
-      question: {
-        category: "Currency",
-        question: "What was the maximum value the Bitcoin reached ?",
-        answers: this.randomizeAnswersDisplay([
-          { text: "19 500 $", correct: true },
-          { text: "176 467 $", correct: false },
-          { text: "9099 $", correct: false },
-          { text: "1290 $", correct: false }
-        ]), //Question component : elements to create the question and the answers
-      }
+      questions: [],
+      currentQuestionID: 0,
+      isLoading: true
     };
     this.memorizeArticle = this.memorizeArticle.bind(this)
     this.triggerAddNewsState = this.triggerAddNewsState.bind(this)
-
   };
 
   //determine if the answer of clicked button is correct or incorrect and modify state accordingly
@@ -38,34 +31,37 @@ class App extends Component {
 
   //change color of clicked button according to correctness of the answer and the button clicked
   defineButtonColor = (buttonIndex) => {
-    if (!this.state.isQuestionAnswered) {
-      return "secondary"
+    if (this.state.questions !== []) {
+      if (!this.state.isQuestionAnswered) {
+        return "secondary"
+      }
+      else if (this.state.buttonClicked === buttonIndex
+        && this.state.isQuestionAnswered
+        && this.state.isAnswerCorrect) {
+        return "success";
+      }
+      else if (this.state.buttonClicked === buttonIndex
+        && this.state.isQuestionAnswered
+        && !this.state.isAnswerCorrect) {
+        return "danger";
+      }
+      else if (
+        this.state.buttonClicked !== buttonIndex
+        && this.state.isQuestionAnswered
+        && !this.state.isAnswerCorrect
+        && this.state.questions[this.state.currentQuestionID].answers[buttonIndex].correct) {
+        return "success"
+      }
+      else if (
+        this.state.buttonClicked !== buttonIndex
+        && this.state.isQuestionAnswered
+        && !this.state.questions[this.state.currentQuestionID].answers[buttonIndex].correct) {
+        return "secondary"
+      }
+      return ""
     }
-    else if (this.state.buttonClicked === buttonIndex
-      && this.state.isQuestionAnswered
-      && this.state.isAnswerCorrect) {
-      return "success";
-    }
-    else if (this.state.buttonClicked === buttonIndex
-      && this.state.isQuestionAnswered
-      && !this.state.isAnswerCorrect) {
-      return "danger";
-    }
-    else if (
-      this.state.buttonClicked !== buttonIndex
-      && this.state.isQuestionAnswered
-      && !this.state.isAnswerCorrect
-      && this.state.question.answers[buttonIndex].correct) {
-      return "success"
-    }
-    else if (
-      this.state.buttonClicked !== buttonIndex
-      && this.state.isQuestionAnswered
-      && !this.state.question.answers[buttonIndex].correct) {
-      return "secondary"
-    }
-    return ""
   }
+
   //to randomize the order of apperance of the answers on screen
   randomizeAnswersDisplay = (array) => {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -84,6 +80,7 @@ class App extends Component {
   //allows to display article selection page after clicking 'next' button
   triggerAddNewsState = () => {
     this.setState({ isQuestionDisplayed: false })
+    this.setState({ isButtonDisabled: false })
   }
   /*This method allow us to add elements from API in the array, it check if the array is empty,
 and create a new one to add objects at the next test (method calls) */
@@ -96,6 +93,26 @@ and create a new one to add objects at the next test (method calls) */
       };
     });
   };
+  // method for display the loading message
+  _displayLoading() {
+    if (this.state.isLoading) {
+      return (
+        <p className="loadText">loading...</p>
+      )
+    }
+  }
+
+  // method for display the question component 
+  _displayQuestions() {
+    if (this.state.questions.length > 0) {
+      return (
+        <div>
+          <Question question={this.state.questions[this.state.currentQuestionID]} isButtonDisabled={this.state.isButtonDisabled}
+            setAnswerStatus={this.setAnswerStatus} defineButtonColor={this.defineButtonColor} />
+        </div>
+      )
+    }
+  }
 
   componentDidMount() {
     //Ces trois const récupèrent l'année/mois/et le jour courant
@@ -106,16 +123,47 @@ and create a new one to add objects at the next test (method calls) */
     fetch(`https://newsapi.org/v2/everything?q=bitcoin&from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
       .then(response => response.json())
       .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles[0] }));
+
+    // method for API call
+    fetch("https://opentdb.com/api.php?amount=10&type=multiple")
+      .then(response => response.json())
+      .then(data => {
+        const apiQuestions = data.results
+        const questions = []
+        for (let i = 0; i < apiQuestions.length; i++) {
+          const question = {
+            category: apiQuestions[i].category,
+            question: apiQuestions[i].question,
+            answers: this.randomizeAnswersDisplay([
+              { text: apiQuestions[i].correct_answer, correct: true },
+              { text: apiQuestions[i].incorrect_answers[0], correct: false },
+              { text: apiQuestions[i].incorrect_answers[1], correct: false },
+              { text: apiQuestions[i].incorrect_answers[2], correct: false }
+            ])
+          };
+          questions.push(question)
+        }
+
+        this.setState({
+          questions: questions,
+          isLoading: false
+        });
+      });
+
+
   };
 
   render() {
     return (
       <div className="App">
-        {this.state.isQuestionDisplayed && <Question questionState={this.state} setAnswerStatus={this.setAnswerStatus} defineButtonColor={this.defineButtonColor} addNews={this.triggerAddNewsState} />}
+        {this._displayLoading()}
+        {this.state.isQuestionDisplayed && this._displayQuestions()}
         {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle} />}
+
+        {this.state.isButtonDisabled && <Button onClick={this.triggerAddNewsState}>Next</Button>}
       </div>
-    );
-  };
-};
+    )
+  }
+}
 
 export default App;
