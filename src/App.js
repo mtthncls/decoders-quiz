@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
-import Question from './Components/Question'
 import { Button } from 'reactstrap';
-
+import Question from './Components/Question';
 import ArticleSetChoice from './Components/ArticleSetChoice';
+import './App.css';
+
 
 class App extends Component {
   constructor() {
@@ -18,107 +18,17 @@ class App extends Component {
       isQuestionDisplayed: true,
       questions: [],
       currentQuestionID: 0,
-      isLoading: true
+      isQuestionLoading: true
     };
-    this.memorizeArticle = this.memorizeArticle.bind(this)
-    this.triggerAddNewsState = this.triggerAddNewsState.bind(this)
+    this.memorizeArticle = this.memorizeArticle.bind(this);
+    this.triggerArticleChoiceDisplay = this.triggerArticleChoiceDisplay.bind(this);
   };
-
-  //determine if the answer of clicked button is correct or incorrect and modify state accordingly
-  setAnswerStatus = (answer, buttonIndex) => {
-    this.setState({ isAnswerCorrect: answer.correct, isQuestionAnswered: true, buttonClicked: buttonIndex, isButtonDisabled: true })
-  }
-
-  //change color of clicked button according to correctness of the answer and the button clicked
-  defineButtonColor = (buttonIndex) => {
-    if (this.state.questions !== []) {
-      if (!this.state.isQuestionAnswered) {
-        return "secondary"
-      }
-      else if (this.state.buttonClicked === buttonIndex
-        && this.state.isQuestionAnswered
-        && this.state.isAnswerCorrect) {
-        return "success";
-      }
-      else if (this.state.buttonClicked === buttonIndex
-        && this.state.isQuestionAnswered
-        && !this.state.isAnswerCorrect) {
-        return "danger";
-      }
-      else if (
-        this.state.buttonClicked !== buttonIndex
-        && this.state.isQuestionAnswered
-        && !this.state.isAnswerCorrect
-        && this.state.questions[this.state.currentQuestionID].answers[buttonIndex].correct) {
-        return "success"
-      }
-      else if (
-        this.state.buttonClicked !== buttonIndex
-        && this.state.isQuestionAnswered
-        && !this.state.questions[this.state.currentQuestionID].answers[buttonIndex].correct) {
-        return "secondary"
-      }
-      return ""
-    }
-  }
-
-  //to randomize the order of apperance of the answers on screen
-  randomizeAnswersDisplay = (array) => {
-    let currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (0 !== currentIndex) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-    return array
-  }
-
-  //allows to display article selection page after clicking 'next' button
-  triggerAddNewsState = () => {
-    this.setState({ isQuestionDisplayed: false })
-    this.setState({ isButtonDisabled: false })
-  }
-  /*This method allow us to add elements from API in the array, it check if the array is empty,
-and create a new one to add objects at the next test (method calls) */
-
-  memorizeArticle() {
-    this.setState(function (prevState) {
-      return {
-        preferredNewsArticles: this.state.preferredNewsArticles.length === 0 ?
-          [this.state.currentNewsArticle] : [...prevState.preferredNewsArticles, this.state.currentNewsArticle]
-      };
-    });
-  };
-  // method for display the loading message
-  _displayLoading() {
-    if (this.state.isLoading) {
-      return (
-        <p className="loadText">loading...</p>
-      )
-    }
-  }
-
-  // method for display the question component 
-  _displayQuestions() {
-    if (this.state.questions.length > 0) {
-      return (
-        <div>
-          <Question question={this.state.questions[this.state.currentQuestionID]} isButtonDisabled={this.state.isButtonDisabled}
-            setAnswerStatus={this.setAnswerStatus} defineButtonColor={this.defineButtonColor} />
-        </div>
-      )
-    }
-  }
 
   componentDidMount() {
-    //Ces trois const récupèrent l'année/mois/et le jour courant
-    const year = new Date().getFullYear()
-    const month = new Date().getMonth()
-    const date = new Date().getDate()
+    //These three const get the current Date, Month, and Date
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth();
+    const date = new Date().getDate();
 
     fetch(`https://newsapi.org/v2/everything?q=bitcoin&from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
       .then(response => response.json())
@@ -142,28 +52,118 @@ and create a new one to add objects at the next test (method calls) */
             ])
           };
           questions.push(question)
-        }
+        };
 
         this.setState({
           questions: questions,
-          isLoading: false
+          isQuestionLoading: false
         });
       });
-
-
   };
 
+  //to randomize the order of apperance of the answers on screen
+  randomizeAnswersDisplay = (answers) => {
+    let currentIndex = answers.length, temporaryValue, randomIndex;
+
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      temporaryValue = answers[currentIndex];
+      answers[currentIndex] = answers[randomIndex];
+      answers[randomIndex] = temporaryValue;
+    };
+    return answers
+  };
+
+  // method for display the loading message
+  displayLoading = () => {
+    if (this.state.isQuestionLoading) {
+      return (
+        <p className="loadText">loading...</p>
+      )
+    };
+  };
+
+  // method for display the question component 
+  displayQuestions = () => {
+    if (this.state.questions.length > 0) {
+      return (
+        <div>
+          <Question question={this.state.questions[this.state.currentQuestionID]} 
+                    isButtonDisabled={this.state.isButtonDisabled}
+                    setAnswerStatus={this.setAnswerStatus} 
+                    defineButtonColor={this.defineButtonColor} />
+        </div>
+      )
+    };
+  };
+
+  //determine if the answer of clicked button is correct or incorrect and modify state accordingly
+  setAnswerStatus = (answer, buttonIndex) => {
+    this.setState({ isAnswerCorrect: answer.correct, isQuestionAnswered: true, buttonClicked: buttonIndex, isButtonDisabled: true })
+  };
+
+  //change color of clicked button according to correctness of the answer and the button clicked
+  defineButtonColor = (buttonIndex) => {
+    if (this.state.questions !== []) {
+      if (!this.state.isQuestionAnswered) {
+        return "secondary";
+      }
+      else if (this.state.buttonClicked === buttonIndex
+        && this.state.isQuestionAnswered
+        && this.state.isAnswerCorrect) {
+        return "success";
+      }
+      else if (this.state.buttonClicked === buttonIndex
+        && this.state.isQuestionAnswered
+        && !this.state.isAnswerCorrect) {
+        return "danger";
+      }
+      else if (
+        this.state.buttonClicked !== buttonIndex
+        && this.state.isQuestionAnswered
+        && !this.state.isAnswerCorrect
+        && this.state.questions[this.state.currentQuestionID].answers[buttonIndex].correct) {
+        return "success";
+      }
+      else if (
+        this.state.buttonClicked !== buttonIndex
+        && this.state.isQuestionAnswered
+        && !this.state.questions[this.state.currentQuestionID].answers[buttonIndex].correct) {
+        return "secondary";
+      }
+      return "";
+    };
+  };
+
+  //allows to display article selection page after clicking 'next' button
+  triggerArticleChoiceDisplay = () => {
+    this.setState({ isQuestionDisplayed: false, isButtonDisabled: false });
+  };
+
+  /*This method allow us to add elements from API in the array, it check if the array is empty,
+  and create a new one to add objects at the next test (method calls) */
+  memorizeArticle = () => {
+    this.setState(function (prevState) {
+      return {
+        preferredNewsArticles: this.state.preferredNewsArticles.length === 0 ?
+          [this.state.currentNewsArticle] : [...prevState.preferredNewsArticles, this.state.currentNewsArticle]
+      };
+    });
+  };
+  
   render() {
     return (
       <div className="App">
-        {this._displayLoading()}
-        {this.state.isQuestionDisplayed && this._displayQuestions()}
+        {this.displayLoading()}
+        {this.state.isQuestionDisplayed && this.displayQuestions()}
         {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle} />}
 
-        {this.state.isButtonDisabled && <Button onClick={this.triggerAddNewsState}>Next</Button>}
+        {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 export default App;
