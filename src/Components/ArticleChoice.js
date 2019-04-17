@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Container, Row, Col } from 'reactstrap';
 
-const ArticleChoice = ({addCurrentArticle}) => {
+const ArticleChoice = ({memorizeArticle}) => {
         return ( 
             <article>
                 <Container>
@@ -10,7 +10,7 @@ const ArticleChoice = ({addCurrentArticle}) => {
                     </Row>
                     <Row>
                         <Col col="12" md="6" className="mt-3"> <Button className="ButtonSize" color="danger">No</Button> </Col>
-                        <Col col="12" md="6" className="mt-3"> <Button onClick={addCurrentArticle} className="ButtonSize" color="success">Yes</Button> </Col>
+                        <Col col="12" md="6" className="mt-3"> <Button onClick={memorizeArticle} className="ButtonSize" color="success">Yes</Button> </Col>
                     </Row>
                 </Container>
             </article>

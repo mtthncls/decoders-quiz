@@ -20,9 +20,7 @@ class App extends Component {
       currentQuestionID: 0,
       isQuestionLoading: true
     };
-    this.memorizeArticle = this.memorizeArticle.bind(this);
-    this.triggerArticleChoiceDisplay = this.triggerArticleChoiceDisplay.bind(this);
-  };
+    };
 
   componentDidMount() {
     //These three const get the current Date, Month, and Date
@@ -90,10 +88,10 @@ class App extends Component {
     if (this.state.questions.length > 0) {
       return (
         <div>
-          <Question question={this.state.questions[this.state.currentQuestionID]} 
-                    isButtonDisabled={this.state.isButtonDisabled}
-                    setAnswerStatus={this.setAnswerStatus} 
-                    defineButtonColor={this.defineButtonColor} />
+          <Question question={this.state.questions[this.state.currentQuestionID]}
+            isButtonDisabled={this.state.isButtonDisabled}
+            setAnswerStatus={this.setAnswerStatus}
+            defineButtonColor={this.defineButtonColor} />
         </div>
       )
     };
@@ -152,13 +150,13 @@ class App extends Component {
       };
     });
   };
-  
+
   render() {
     return (
       <div className="App">
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
-        {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle} />}
+        {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state.currentNewsArticle} memorizeArticle={this.memorizeArticle} />}
 
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
       </div>
