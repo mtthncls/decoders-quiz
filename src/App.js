@@ -169,7 +169,7 @@ class App extends Component {
         {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state.currentNewsArticle} memorizeArticle={this.memorizeArticle} />}
 
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
-        <CorrectAnswersCounter correctAnswersCounter={this.state.correctAnswersCounter} />
+        <CorrectAnswersCounter correctAnswersCounter={this.state.correctAnswersCounter} questions={this.state.questions} />
       </div>
 
     );

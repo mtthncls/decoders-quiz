@@ -1,13 +1,13 @@
 import React from 'react';
 
-const CorrectAnswersCounter = ({ correctAnswersCounter }) => {
+const CorrectAnswersCounter = ({ correctAnswersCounter, questions }) => {
 
 
 
     return (
         <div>
 
-            {correctAnswersCounter}
+            <p className="correctAnswersCounter"> You have <strong>{correctAnswersCounter}</strong> correct answers on <strong>{questions.length}</strong> questions</p>
 
         </div>
 
