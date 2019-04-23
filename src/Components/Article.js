@@ -15,3 +15,4 @@ const Article = ({currentArticle}) => {
     }
  
 export default Article;
+

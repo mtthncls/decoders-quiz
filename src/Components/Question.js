@@ -6,7 +6,7 @@ import "./Question.css";
 //Template object for global question data from API
 
 
-const replace = (string) => {
+const correctSpecialCharacters = (string) => {
     return string.replace(/&quot;|&#039;/g, "'")
     .replace(/&rdquo;|&ldquo;/g, "\"")
     .replace(/&eacute;/g, "é")
@@ -22,23 +22,23 @@ const Question = ({ currentQuestionID, question, setAnswerStatus, defineButtonCo
             <header className="appHeader">
                 <p>Question #{currentQuestionID + 1} in</p>
                 <p className="categoryHeader">{question.category}</p>
-                <p className="questionHeader">{replace(question.question)}</p>
+                <p className="questionHeader">{correctSpecialCharacters(question.question)}</p>
             </header>
             <Row>
                 <Col><Button color={defineButtonColor(0)}
                     onClick={() => setAnswerStatus(question.answers[0], 0)}
-                    disabled={isButtonDisabled}>{replace(question.answers[0].text)}</Button></Col>
+                    disabled={isButtonDisabled}>{correctSpecialCharacters(question.answers[0].text)}</Button></Col>
                 <Col><Button color={defineButtonColor(1)}
                     onClick={() => setAnswerStatus(question.answers[1], 1)}
-                    disabled={isButtonDisabled}>{replace(question.answers[1].text)}</Button></Col>
+                    disabled={isButtonDisabled}>{correctSpecialCharacters(question.answers[1].text)}</Button></Col>
             </Row>
             <Row>
                 <Col><Button color={defineButtonColor(2)}
                     onClick={() => setAnswerStatus(question.answers[2], 2)}
-                    disabled={isButtonDisabled}>{replace(question.answers[2].text)}</Button></Col>
+                    disabled={isButtonDisabled}>{correctSpecialCharacters(question.answers[2].text)}</Button></Col>
                 <Col><Button color={defineButtonColor(3)}
                     onClick={() => setAnswerStatus(question.answers[3], 3)}
-                    disabled={isButtonDisabled}>{replace(question.answers[3].text)}</Button></Col>
+                    disabled={isButtonDisabled}>{correctSpecialCharacters(question.answers[3].text)}</Button></Col>
             </Row>
 
         </Container>

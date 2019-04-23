@@ -167,7 +167,8 @@ class App extends Component {
   };
   /*go to the next question when click on No button*/
   nextQuestion = () => {
-    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID : this.state.currentQuestionID +1})
+    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID : this.state.currentQuestionID +1,
+                   currentArticleID : this.state.currentArticleID +1})
   };
   
   

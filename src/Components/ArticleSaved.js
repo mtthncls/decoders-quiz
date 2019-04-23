@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardText, Container, Row, Col} from 'reactstrap';
 
-const RenderList = ({articlesToRecap}) => {
+const ArticleSaved = ({articlesToRecap}) => {
     return ( 
         <article>
             <Container>
@@ -26,4 +26,4 @@ const RenderList = ({articlesToRecap}) => {
      );
 }
  
-export default RenderList;
+export default ArticleSaved;
