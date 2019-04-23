@@ -3,6 +3,7 @@ import { Button } from 'reactstrap';
 import Question from './Components/Question';
 import ArticleSetChoice from './Components/ArticleSetChoice';
 import './App.css';
+import CorrectAnswersCounter from './Components/CorrectAnswersCounter';
 
 
 class App extends Component {
@@ -18,9 +19,10 @@ class App extends Component {
       isQuestionDisplayed: true,
       questions: [],
       currentQuestionID: 0,
-      isQuestionLoading: true
+      isQuestionLoading: true,
+      correctAnswersCounter: 0
     };
-    };
+  };
 
   componentDidMount() {
     //These three const get the current Date, Month, and Date
@@ -91,15 +93,18 @@ class App extends Component {
           <Question question={this.state.questions[this.state.currentQuestionID]}
             isButtonDisabled={this.state.isButtonDisabled}
             setAnswerStatus={this.setAnswerStatus}
-            defineButtonColor={this.defineButtonColor} />
+            defineButtonColor={this.defineButtonColor} increment={this.increment} />
         </div>
       )
     };
   };
 
-  //determine if the answer of clicked button is correct or incorrect and modify state accordingly
+  //determine if the answer of clicked button is correct or incorrect and modify state accordingly including the correct answer counter
   setAnswerStatus = (answer, buttonIndex) => {
     this.setState({ isAnswerCorrect: answer.correct, isQuestionAnswered: true, buttonClicked: buttonIndex, isButtonDisabled: true })
+    if (answer.correct) {
+      this.setState({ correctAnswersCounter: this.state.correctAnswersCounter + 1 })
+    }
   };
 
   //change color of clicked button according to correctness of the answer and the button clicked
@@ -151,6 +156,11 @@ class App extends Component {
     });
   };
 
+  increment = () => {
+    if (this.isAnswerCorrect) {
+      this.setState({ correctAnswersCounter: this.state.correctAnswersCounter + 1 })
+    }
+  }
   render() {
     return (
       <div className="App">
@@ -159,7 +169,9 @@ class App extends Component {
         {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state.currentNewsArticle} memorizeArticle={this.memorizeArticle} />}
 
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
+        <CorrectAnswersCounter correctAnswersCounter={this.state.correctAnswersCounter} />
       </div>
+
     );
   };
 };
