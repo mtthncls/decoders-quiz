@@ -8,8 +8,11 @@ const CategoryChoice = ({}) => {
                 <h1>Choose a theme</h1>
             </header>
             <Row>
-                <Col><Button></Button></Col>
+                <Col><Button>Category</Button></Col>
+                <Col><Button>Category</Button></Col>
+                <Col><Button>Category</Button></Col>
             </Row>
+            <Button>Next</Button>
         </Container>
     )
 }
