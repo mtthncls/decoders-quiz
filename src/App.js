@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import Question from './Components/Question';
 import ArticleSetChoice from './Components/ArticleSetChoice';
+import PlayButton from './Components/PlayButton';
 import './App.css';
 
 
@@ -18,7 +19,9 @@ class App extends Component {
       isQuestionDisplayed: true,
       questions: [],
       currentQuestionID: 0,
-      isQuestionLoading: true
+      isQuestionLoading: true,
+      isQuizzLaunched: false,
+      isNewsDisplayed: false
     };
     };
 
@@ -151,13 +154,18 @@ class App extends Component {
     });
   };
 
+  //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
+  launchQuizz = () => {
+    this.setState({ isQuizzLaunched: true });
+  }
+
   render() {
     return (
       <div className="App">
+        <PlayButton launchQuizz={this.launchQuizz}/>
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
         {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state.currentNewsArticle} memorizeArticle={this.memorizeArticle} />}
-
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
       </div>
     );
