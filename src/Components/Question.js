@@ -23,7 +23,6 @@ const Question = ({ currentQuestionID, question, setAnswerStatus, defineButtonCo
                 <p>Question #{currentQuestionID + 1} in</p>
                 <p className="categoryHeader">{question.category}</p>
                 <p className="questionHeader">{replace(question.question)}</p>
-                {console.log(question.question)}
             </header>
             <Row>
                 <Col><Button color={defineButtonColor(0)}
