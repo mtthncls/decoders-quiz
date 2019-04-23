@@ -170,7 +170,16 @@ class App extends Component {
     this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID : this.state.currentQuestionID +1,
                    currentArticleID : this.state.currentArticleID +1})
   };
-  
+
+  /*pickUpCategory = () => {
+    // const category = 
+    switch(/* category ){
+      case 21 :
+        console.log("Coucou")
+        break;
+      default : 
+    }
+  }*/
   
   render() {
     return (
