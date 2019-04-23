@@ -3,7 +3,7 @@ import { Button, Container, Col, Row } from 'reactstrap';
 import './PlayButton.css';
 
 
-const PlayButton = ({launchQuizz, usernameSubmit, usernameChange, isNameRegistered}) => {
+const HomePage = ({chooseUsername, usernameSubmit, usernameChange, isNameRegistered}) => {
     return(        
         <Container>
             <header>
@@ -17,11 +17,11 @@ const PlayButton = ({launchQuizz, usernameSubmit, usernameChange, isNameRegister
              <br></br>
             <Row>
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
-                    <Button type="submit" name="submit"  color="success" onClick={launchQuizz}>Play</Button>
+                    <Button type="submit" name="submit"  color="success" onClick={chooseUsername}>Play</Button>
                 </Col>
             </Row>
         </Container>             
     )
 }
 
-export default PlayButton;
+export default HomePage;

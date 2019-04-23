@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Container, Col, Row } from 'reactstrap';
 
-const CategoryChoice = () => {
+const CategoryChoice = ({chooseCategory}) => {
     return(
         <Container>
             <header>
@@ -12,7 +12,7 @@ const CategoryChoice = () => {
                 <Col><Button>Category</Button></Col>
                 <Col><Button>Category</Button></Col>
             </Row>
-            <Button>Next</Button>
+            <Button onClick={chooseCategory}>Next</Button>
         </Container>
     )
 }

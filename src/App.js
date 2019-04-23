@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import Question from './Components/Question';
 import ArticleSetChoice from './Components/ArticleSetChoice';
-import PlayButton from './Components/PlayButton';
+import PlayButton from './Components/HomePage';
 import './App.css';
 import CategoryChoice from './Components/CategoryChoice';
 import CustomizeQuizz from './Components/CustomizeQuizz';
@@ -12,21 +12,30 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      currentNewsArticle: {}, //ArticleSetChoice component
-      preferredNewsArticles: [], //ArticleSetChoice component
-      isQuestionAnswered: false, //Question component : has one button been clicked or not ?
-      isAnswerCorrect: false, //Question component : is the answer true or false ?
-      buttonClicked: "",   //Question component : which button has been clicked ?
-      isButtonDisabled: false, //Question component : button clickable or not
-      isQuestionDisplayed: true,
+      isHomePageDisplayed: true, //display the home page 
+      isNameRegistered: "", //stock username after he wrote it in the input area and he clicked on Play button
+      isThemePageDisplayed: false, //display the choose theme page 
+      isCustomizePageDisplayed: false, //display the custom page
+      isQuestionDisplayed: false,
+      isQuestionLoading: true,
       questions: [],
       currentQuestionID: 0,
-      isQuestionLoading: true,
-      isQuizzLaunched: false, //launch quizz when Play button is clicked and state switched to true
+      isQuestionAnswered: false, //Question component : has one button been clicked or not ?
+      buttonClicked: "",   //Question component : which button has been clicked ?
+      isButtonDisabled: false, //Question component : button clickable or not
+      isAnswerCorrect: false, //Question component : is the answer true or false ?
+      isArticleDisplayed: false,
       isNewsDisplayed: false,
-      isNameRegistered: "" //stock username after he wrote it in the input area and he clicked on Play button
+      currentNewsArticle: {}, //ArticleSetChoice component
+      preferredNewsArticles: [], //ArticleSetChoice component
+      currentArticleID: 0
+      
+      
     };
+    this.triggerArticleChoiceDisplay = this.triggerArticleChoiceDisplay.bind(this)
+      this.memorizeArticle = this.memorizeArticle.bind(this)
       this.usernameChange = this.usernameChange.bind(this);
+      this.chooseCategory = this.chooseCategory.bind(this)
     };
 
   componentDidMount() {
@@ -144,7 +153,7 @@ class App extends Component {
 
   //allows to display article selection page after clicking 'next' button
   triggerArticleChoiceDisplay = () => {
-    this.setState({ isQuestionDisplayed: false, isButtonDisabled: false });
+    this.setState({ isButtonDisabled: false, isArticleDisplayed: true, isQuestionDisplayed: false});
   };
 
   /*This method allow us to add elements from API in the array, it check if the array is empty,
@@ -153,14 +162,19 @@ class App extends Component {
     this.setState(function (prevState) {
       return {
         preferredNewsArticles: this.state.preferredNewsArticles.length === 0 ?
-          [this.state.currentNewsArticle] : [...prevState.preferredNewsArticles, this.state.currentNewsArticle]
+          [this.state.currentNewsArticle[this.state.currentArticleIDs]] : [...prevState.preferredNewsArticles, this.state.currentNewsArticle[this.state.currentArticleID]]
       };
     });
+    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID: this.state.currentQuestionID + 1, currentArticleID: this.state.currentArticleID +1 })
   };
+    //go to the next question when click on "No" button
+  nextQuestion = () => {
+    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID: this.state.currentQuestionID + 1, currentArticleID: this.state.currentArticleID +1 })
+  }
 
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
-  launchQuizz = (event) => {
-    this.setState({ isQuizzLaunched: true});
+  chooseUsername = (event) => {
+    this.setState({ isHomePageDisplayed: false, isThemePageDisplayed: true});
     alert('Name submitted: ' + this.state.isNameRegistered);
     event.preventDefault();
   }
@@ -169,17 +183,25 @@ class App extends Component {
     this.setState({isNameRegistered: event.target.value});
   }
 
+  chooseCategory = () => {
+    this.setState({isThemePageDisplayed: false, isCustomizePageDisplayed: true});
+  }
+
+  QuizzCustomize = () => {
+    this.setState({isCustomizePageDisplayed: false, isQuestionDisplayed:true})
+  }
+
 
   render() {
     return (
       <div className="App">
-        <PlayButton launchQuizz={this.launchQuizz} usernameChange={this.usernameChange}usernameSubmit={this.usernameSubmit} isNameRegistered={this.state.isNameRegistered} />
-        <CategoryChoice />
-        <CustomizeQuizz/>
+        {this.state.isHomePageDisplayed && <PlayButton chooseUsername={this.chooseUsername} usernameChange={this.usernameChange}usernameSubmit={this.usernameSubmit} isNameRegistered={this.state.isNameRegistered} />}
+        {this.state.isThemePageDisplayed && <CategoryChoice chooseCategory={this.chooseCategory} />}
+        {this.state.isCustomizePageDisplayed && <CustomizeQuizz QuizzCustomize={this.QuizzCustomize}/>}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
-        {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state.currentNewsArticle} memorizeArticle={this.memorizeArticle} />}
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
+        {this.state.isArticleDisplayed && this.state.currentNewsArticle.length > 0 && <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} addCurrentArticle={this.memorizeArticle} nextQuestion={this.nextQuestion}/>}
         
       </div>
     );
