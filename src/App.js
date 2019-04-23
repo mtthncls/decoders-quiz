@@ -18,24 +18,28 @@ class App extends Component {
       isQuestionDisplayed: true,
       questions: [],
       currentQuestionID: 0,
-      isQuestionLoading: true
+      isQuestionLoading: true,
+      questionsCategory : 21,
+      numberOfQuestions : 10
     };
     this.memorizeArticle = this.memorizeArticle.bind(this);
     this.triggerArticleChoiceDisplay = this.triggerArticleChoiceDisplay.bind(this);
   };
 
   componentDidMount() {
-    //These three const get the current Date, Month, and Date
-    const year = new Date().getFullYear();
-    const month = new Date().getMonth();
-    const date = new Date().getDate();
-
-    fetch(`https://newsapi.org/v2/everything?q=bitcoin&from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
-      .then(response => response.json())
-      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles[0] }));
-
+    
+    const category = this.state.questionsCategory;
+    switch(category){
+      case 21:
+        this.setState({questionsCategory : "Sports"});
+        break;
+      default:
+        console.log("default");
+    };
+    
     // method for API call
-    fetch("https://opentdb.com/api.php?amount=10&type=multiple")
+    fetch(`https://opentdb.com/api.php?amount=${this.state.numberOfQuestions}&category=
+           ${this.state.questionsCategory}&difficulty=medium&type=multiple`)
       .then(response => response.json())
       .then(data => {
         const apiQuestions = data.results
@@ -140,6 +144,16 @@ class App extends Component {
   //allows to display article selection page after clicking 'next' button
   triggerArticleChoiceDisplay = () => {
     this.setState({ isQuestionDisplayed: false, isButtonDisabled: false });
+
+    //These three const get the current Date, Month, and Date
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth();
+    const date = new Date().getDate();
+
+    fetch(`https://newsapi.org/v2/top-headlines?country=us&q=${this.state.questionsCategory}
+           &from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
+      .then(response => response.json())
+      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles[0] }));
   };
 
   /*This method allow us to add elements from API in the array, it check if the array is empty,
