@@ -2,15 +2,14 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import "./Question.css";
-import { pipeline } from 'stream';
 
 //Template object for global question data from API
 
-const Question = ({ question, setAnswerStatus, defineButtonColor, isButtonDisabled }) => {
+const Question = ({ currentQuestionID, question, setAnswerStatus, defineButtonColor, isButtonDisabled }) => {
     return (
         <Container>
             <header className="appHeader">
-                <p>Question #1 in</p>
+                <p>Question #{currentQuestionID + 1} in</p>
                 <p className="categoryHeader">{question.category}</p>
                 <p className="questionHeader">{question.question.replace(/&quot;|&#039;/g, "'")
                                                                 .replace(/&rdquo;|&ldquo;/g, "\"")

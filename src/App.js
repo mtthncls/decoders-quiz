@@ -98,7 +98,8 @@ class App extends Component {
           <Question question={this.state.questions[this.state.currentQuestionID]} 
                     isButtonDisabled={this.state.isButtonDisabled}
                     setAnswerStatus={this.setAnswerStatus} 
-                    defineButtonColor={this.defineButtonColor} />
+                    defineButtonColor={this.defineButtonColor}
+                    currentQuestionID={this.state.currentQuestionID} />
         </div>
       )
     };
@@ -151,7 +152,7 @@ class App extends Component {
     const month = new Date().getMonth();
     const date = new Date().getDate();
 
-    fetch(`https://newsapi.org/v2/top-headlines?country=us&q=${this.state.questionsCategory}
+    fetch(`https://newsapi.org/v2/everything?q=${this.state.questionsCategory}
            &from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
       .then(response => response.json())
       .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles }));
