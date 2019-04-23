@@ -21,7 +21,6 @@ class App extends Component {
       currentQuestionID: 0,
       isQuestionLoading: true,
       currentArticleID: 0,
-      isQuestionLoading: true,
       questionsCategory: 21,
       numberOfQuestions: 10,
       correctAnswersCounter: 0
