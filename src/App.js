@@ -215,9 +215,10 @@ class App extends Component {
         {this.state.isCustomizePageDisplayed && <CustomizeQuizz QuizzCustomize={this.QuizzCustomize}/>}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
+        {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle} nextQuestion={this.nextQuestion} />}
+
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
-        {this.state.triggerArticleChoiceDisplay && this.state.currentNewsArticle.length > 0 && <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} addCurrentArticle={this.memorizeArticle} nextQuestion={this.nextQuestion}/>}
-        
+        {this.state.isArticleDisplayed && this.state.currentNewsArticle.length > 0 && <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} addCurrentArticle={this.memorizeArticle} nextQuestion={this.nextQuestion}/>}
         
       </div>
     );
