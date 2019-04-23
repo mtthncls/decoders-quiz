@@ -151,11 +151,11 @@ class App extends Component {
           [this.state.currentNewsArticle] : [...prevState.preferredNewsArticles, this.state.currentNewsArticle]
       };
     });
-    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true})
+    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID : this.state.currentQuestionID +1})
   };
   /*go to the next question when click on No button*/
   nextQuestion = () => {
-    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true})
+    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID : this.state.currentQuestionID +1})
   }
   
   render() {
