@@ -20,9 +20,11 @@ class App extends Component {
       questions: [],
       currentQuestionID: 0,
       isQuestionLoading: true,
-      isQuizzLaunched: false,
-      isNewsDisplayed: false
+      isQuizzLaunched: false, //launch quizz when Play button is clicked and state switched to true
+      isNewsDisplayed: false,
+      isNameRegistered: "" //stock username after he wrote it in the input area and he clicked on Play button
     };
+      this.usernameChange = this.usernameChange.bind(this);
     };
 
   componentDidMount() {
@@ -155,14 +157,21 @@ class App extends Component {
   };
 
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
-  launchQuizz = () => {
-    this.setState({ isQuizzLaunched: true });
+  launchQuizz = (event) => {
+    this.setState({ isQuizzLaunched: true});
+    alert('Name submitted: ' + this.state.isNameRegistered);
+    event.preventDefault();
   }
+
+  usernameChange(event) {
+    this.setState({isNameRegistered: event.target.value});
+  }
+
 
   render() {
     return (
       <div className="App">
-        <PlayButton launchQuizz={this.launchQuizz}/>
+        <PlayButton launchQuizz={this.launchQuizz} usernameChange={this.usernameChange} usernameSubmit={this.usernameSubmit} isNameRegistered={this.state.isNameRegistered} />
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
         {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state.currentNewsArticle} memorizeArticle={this.memorizeArticle} />}
