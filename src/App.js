@@ -4,6 +4,7 @@ import Question from './Components/Question';
 import ArticleSetChoice from './Components/ArticleSetChoice';
 import PlayButton from './Components/PlayButton';
 import './App.css';
+import CustomizeQuizz from './Components/CustomizeQuizz';
 
 
 class App extends Component {
@@ -163,10 +164,12 @@ class App extends Component {
     return (
       <div className="App">
         <PlayButton launchQuizz={this.launchQuizz}/>
+        <CustomizeQuizz/>
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
         {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state.currentNewsArticle} memorizeArticle={this.memorizeArticle} />}
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
+        
       </div>
     );
   };
