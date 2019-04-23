@@ -28,7 +28,9 @@ class App extends Component {
       isNewsDisplayed: false,
       currentNewsArticle: {}, //ArticleSetChoice component
       preferredNewsArticles: [], //ArticleSetChoice component
-      currentArticleID: 0
+      currentArticleID: 0,
+      questionsCategory : 21,
+      numberOfQuestions : 10
       
       
     };
@@ -36,20 +38,23 @@ class App extends Component {
       this.memorizeArticle = this.memorizeArticle.bind(this)
       this.usernameChange = this.usernameChange.bind(this);
       this.chooseCategory = this.chooseCategory.bind(this)
+      
     };
 
   componentDidMount() {
-    //These three const get the current Date, Month, and Date
-    const year = new Date().getFullYear();
-    const month = new Date().getMonth();
-    const date = new Date().getDate();
-
-    fetch(`https://newsapi.org/v2/everything?q=bitcoin&from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
-      .then(response => response.json())
-      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles[0] }));
-
+    
+    const category = this.state.questionsCategory;
+    switch(category){
+      case 21:
+        this.setState({questionsCategory : "Sports"});
+        break;
+      default:
+        console.log("default");
+    };
+    
     // method for API call
-    fetch("https://opentdb.com/api.php?amount=10&type=multiple")
+    fetch(`https://opentdb.com/api.php?amount=${this.state.numberOfQuestions}&category=
+           ${this.state.questionsCategory}&difficulty=medium&type=multiple`)
       .then(response => response.json())
       .then(data => {
         const apiQuestions = data.results
@@ -153,11 +158,21 @@ class App extends Component {
 
   //allows to display article selection page after clicking 'next' button
   triggerArticleChoiceDisplay = () => {
-    this.setState({ isButtonDisabled: false, isArticleDisplayed: true, isQuestionDisplayed: false});
+    this.setState({ isQuestionDisplayed: false, isButtonDisabled: false, isArticleDisplayed: true });
+
+    //These three const get the current Date, Month, and Date
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth();
+    const date = new Date().getDate();
+
+    fetch(`https://newsapi.org/v2/top-headlines?country=us&q=${this.state.questionsCategory}
+           &from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
+      .then(response => response.json())
+      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles[0] }));
   };
 
   /*This method allow us to add elements from API in the array, it check if the array is empty,
-  and create a new one to add objects at the next test (method calls) */
+  and create a new one to add objects at the next test (method calls) and go to the next question when click on yes button */
   memorizeArticle = () => {
     this.setState(function (prevState) {
       return {
@@ -165,11 +180,11 @@ class App extends Component {
           [this.state.currentNewsArticle[this.state.currentArticleIDs]] : [...prevState.preferredNewsArticles, this.state.currentNewsArticle[this.state.currentArticleID]]
       };
     });
-    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID: this.state.currentQuestionID + 1, currentArticleID: this.state.currentArticleID +1 })
+  this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID : this.state.currentQuestionID +1})
   };
-    //go to the next question when click on "No" button
+  /*go to the next question when click on No button*/
   nextQuestion = () => {
-    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID: this.state.currentQuestionID + 1, currentArticleID: this.state.currentArticleID +1 })
+    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID : this.state.currentQuestionID +1})
   }
 
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
@@ -201,7 +216,8 @@ class App extends Component {
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
-        {this.state.isArticleDisplayed && this.state.currentNewsArticle.length > 0 && <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} addCurrentArticle={this.memorizeArticle} nextQuestion={this.nextQuestion}/>}
+        {this.state.triggerArticleChoiceDisplay && this.state.currentNewsArticle.length > 0 && <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} addCurrentArticle={this.memorizeArticle} nextQuestion={this.nextQuestion}/>}
+        
         
       </div>
     );
