@@ -18,6 +18,7 @@ class App extends Component {
       isQuestionDisplayed: true,
       questions: [],
       currentQuestionID: 0,
+      currentArticleID: 0,
       isQuestionLoading: true,
       questionsCategory : 21,
       numberOfQuestions : 10
@@ -36,7 +37,7 @@ class App extends Component {
       default:
         console.log("default");
     };
-    
+
     // method for API call
     fetch(`https://opentdb.com/api.php?amount=${this.state.numberOfQuestions}&category=
            ${this.state.questionsCategory}&difficulty=medium&type=multiple`)
@@ -153,7 +154,7 @@ class App extends Component {
     fetch(`https://newsapi.org/v2/top-headlines?country=us&q=${this.state.questionsCategory}
            &from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
       .then(response => response.json())
-      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles[0] }));
+      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles }));
   };
 
   /*This method allow us to add elements from API in the array, it check if the array is empty,
@@ -162,10 +163,10 @@ class App extends Component {
     this.setState(function (prevState) {
       return {
         preferredNewsArticles: this.state.preferredNewsArticles.length === 0 ?
-          [this.state.currentNewsArticle] : [...prevState.preferredNewsArticles, this.state.currentNewsArticle]
+          [this.state.currentNewsArticle[this.state.currentArticleID]] : [...prevState.preferredNewsArticles, this.state.currentNewsArticle[this.state.currentArticleID]]
       };
     });
-    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID : this.state.currentQuestionID +1})
+    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID : this.state.currentQuestionID +1, currentArticleID : this.state.currentArticleID +1})
   };
   /*go to the next question when click on No button*/
   nextQuestion = () => {
@@ -177,7 +178,9 @@ class App extends Component {
       <div className="App">
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
-        {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle} nextQuestion={this.nextQuestion} />}
+        {!this.state.isQuestionDisplayed && this.state.currentNewsArticle.length > 0 && <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} 
+                                                              addCurrentArticle={this.memorizeArticle} 
+                                                              nextQuestion={this.nextQuestion}/>}
 
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
       </div>
