@@ -143,7 +143,7 @@ class App extends Component {
   };
 
   /*This method allow us to add elements from API in the array, it check if the array is empty,
-  and create a new one to add objects at the next test (method calls) */
+  and create a new one to add objects at the next test (method calls) and go to the next question when click on yes button */
   memorizeArticle = () => {
     this.setState(function (prevState) {
       return {
@@ -151,14 +151,19 @@ class App extends Component {
           [this.state.currentNewsArticle] : [...prevState.preferredNewsArticles, this.state.currentNewsArticle]
       };
     });
+    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true})
   };
+  /*go to the next question when click on No button*/
+  nextQuestion = () => {
+    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true})
+  }
   
   render() {
     return (
       <div className="App">
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
-        {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle} />}
+        {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle} nextQuestion={this.nextQuestion} />}
 
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
       </div>
