@@ -182,11 +182,7 @@ class App extends Component {
   };
 
 
-  increment = () => {
-    if (this.isAnswerCorrect) {
-      this.setState({ correctAnswersCounter: this.state.correctAnswersCounter + 1 })
-    }
-  }
+
   render() {
     return (
       <div className="App">
