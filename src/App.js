@@ -3,6 +3,7 @@ import { Button } from 'reactstrap';
 import Question from './Components/Question';
 import ArticleSetChoice from './Components/ArticleSetChoice';
 import './App.css';
+import ArticlesRecap from './Components/ArticlesRecap';
 
 
 class App extends Component {
@@ -184,6 +185,7 @@ class App extends Component {
                                                               nextQuestion={this.nextQuestion}/>}
 
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
+        <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles}/>
       </div>
     );
   };
