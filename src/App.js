@@ -3,6 +3,7 @@ import { Button } from 'reactstrap';
 import Question from './Components/Question';
 import ArticleSetChoice from './Components/ArticleSetChoice';
 import './App.css';
+import ArticlesRecap from './Components/ArticlesRecap';
 
 
 class App extends Component {
@@ -18,22 +19,18 @@ class App extends Component {
       isQuestionDisplayed: true,
       questions: [],
       currentQuestionID: 0,
-      isQuestionLoading: true
+      currentArticleID: 0,
+      isQuestionLoading: true,
+      questionsCategory: 21,
+      numberOfQuestions: 10
     };
-    };
+  };
 
   componentDidMount() {
-    //These three const get the current Date, Month, and Date
-    const year = new Date().getFullYear();
-    const month = new Date().getMonth();
-    const date = new Date().getDate();
-
-    fetch(`https://newsapi.org/v2/everything?q=bitcoin&from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
-      .then(response => response.json())
-      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles[0] }));
 
     // method for API call
-    fetch("https://opentdb.com/api.php?amount=10&type=multiple")
+    fetch(`https://opentdb.com/api.php?amount=${this.state.numberOfQuestions}&category=
+           ${this.state.questionsCategory}&difficulty=medium&type=multiple`)
       .then(response => response.json())
       .then(data => {
         const apiQuestions = data.results
@@ -91,7 +88,8 @@ class App extends Component {
           <Question question={this.state.questions[this.state.currentQuestionID]}
             isButtonDisabled={this.state.isButtonDisabled}
             setAnswerStatus={this.setAnswerStatus}
-            defineButtonColor={this.defineButtonColor} />
+            defineButtonColor={this.defineButtonColor}
+            currentQuestionID={this.state.currentQuestionID} />
         </div>
       )
     };
@@ -99,7 +97,10 @@ class App extends Component {
 
   //determine if the answer of clicked button is correct or incorrect and modify state accordingly
   setAnswerStatus = (answer, buttonIndex) => {
-    this.setState({ isAnswerCorrect: answer.correct, isQuestionAnswered: true, buttonClicked: buttonIndex, isButtonDisabled: true })
+    this.setState({
+      isAnswerCorrect: answer.correct, isQuestionAnswered: true,
+      buttonClicked: buttonIndex, isButtonDisabled: true
+    })
   };
 
   //change color of clicked button according to correctness of the answer and the button clicked
@@ -138,27 +139,55 @@ class App extends Component {
   //allows to display article selection page after clicking 'next' button
   triggerArticleChoiceDisplay = () => {
     this.setState({ isQuestionDisplayed: false, isButtonDisabled: false });
+
+    //These three const get the current Date, Month, and Date
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth();
+    const date = new Date().getDate();
+
+    fetch(`https://newsapi.org/v2/everything?q=${this.state.questions[0].category}
+           &from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
+      .then(response => response.json())
+      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles }));
   };
 
   /*This method allow us to add elements from API in the array, it check if the array is empty,
-  and create a new one to add objects at the next test (method calls) */
+  and create a new one to add objects at the next test (method calls) and go to the next question when click on yes button */
   memorizeArticle = () => {
     this.setState(function (prevState) {
       return {
-        preferredNewsArticles: this.state.preferredNewsArticles.length === 0 ?
-          [this.state.currentNewsArticle] : [...prevState.preferredNewsArticles, this.state.currentNewsArticle]
+        preferredNewsArticles: this.state.preferredNewsArticles.length === 0
+          ? [this.state.currentNewsArticle[this.state.currentArticleID]]
+          : [...prevState.preferredNewsArticles, this.state.currentNewsArticle[this.state.currentArticleID]]
       };
     });
+    this.setState({
+      isQuestionAnswered: false, isQuestionDisplayed: true,
+      currentQuestionID: this.state.currentQuestionID + 1,
+      currentArticleID: this.state.currentArticleID + 1
+    })
   };
+  /*go to the next question when click on No button*/
+  nextQuestion = () => {
+    this.setState({
+      isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID: this.state.currentQuestionID + 1,
+      currentArticleID: this.state.currentArticleID + 1
+    })
+  };
+
 
   render() {
     return (
       <div className="App">
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
-        {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state.currentNewsArticle} memorizeArticle={this.memorizeArticle} />}
+        {!this.state.isQuestionDisplayed && this.state.currentNewsArticle.length > 0
+          && <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]}
+            addCurrentArticle={this.memorizeArticle}
+            nextQuestion={this.nextQuestion} />}
 
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
+        <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} />
       </div>
     );
   };
