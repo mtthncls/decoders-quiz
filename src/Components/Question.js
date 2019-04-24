@@ -50,8 +50,8 @@ const Question = ({ currentQuestionID, question, setAnswerStatus, defineButtonCo
             </Row>
 
         </Container>
-    );
-}
+    )
+};
 
 export default Question;
 

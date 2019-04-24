@@ -274,22 +274,22 @@ class App extends Component {
         {this.state.isHomePageDisplayed && 
         <HomePage chooseUsername={this.chooseUsername} 
                   usernameChange={this.usernameChange} 
-                  nameRegistered={this.state.nameRegistered} />};
+                  nameRegistered={this.state.nameRegistered} />}
         {this.state.isThemePageDisplayed && 
         <Categories chooseCategory={this.chooseCategory} 
                     pickUpCategory={this.pickUpCategory} 
-                    categories={this.state.categories}/>};
+                    categories={this.state.categories}/>}
         {this.state.isCustomizePageDisplayed && 
-        <CustomizeQuizz QuizzCustomize={this.QuizzCustomize}/>};
-        {this.displayLoading()};
-        {this.state.isQuestionDisplayed && this.displayQuestions()};
+        <CustomizeQuizz QuizzCustomize={this.QuizzCustomize}/>}
+        {this.displayLoading()}
+        {this.state.isQuestionDisplayed && this.displayQuestions()}
         {this.state.isButtonDisabled && 
-        <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>};
+        <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
         {!this.state.isQuestionDisplayed && 
           this.state.currentNewsArticle.length > 0 &&
            <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} 
                              addCurrentArticle={this.memorizeArticle} 
-                             nextQuestion={this.nextQuestion}/>};
+                             nextQuestion={this.nextQuestion}/>}
         <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} 
                        correctAnswersCounter={this.state.correctAnswersCounter}
                        questions={this.state.questions} />
