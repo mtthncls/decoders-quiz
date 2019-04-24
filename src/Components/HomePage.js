@@ -10,7 +10,8 @@ const HomePage = ({chooseUsername, usernameChange, nameRegistered}) => {
             </header>
             <form>
                 <label htmlFor="Username">
-                    <input placeholder="Username" name="Username" id="Username" onChange={usernameChange} value={nameRegistered} />
+                    <input placeholder="Username" name="Username" id="Username" 
+                           onChange={usernameChange} value={nameRegistered}/>
                 </label>
             </form>
              <br></br>
@@ -24,3 +25,4 @@ const HomePage = ({chooseUsername, usernameChange, nameRegistered}) => {
 }
 
 export default HomePage;
+

@@ -41,11 +41,10 @@ class App extends Component {
       
       
     };
-    this.triggerArticleChoiceDisplay = this.triggerArticleChoiceDisplay.bind(this)
-      this.memorizeArticle = this.memorizeArticle.bind(this)
+    this.triggerArticleChoiceDisplay = this.triggerArticleChoiceDisplay.bind(this);
+      this.memorizeArticle = this.memorizeArticle.bind(this);
       this.usernameChange = this.usernameChange.bind(this);
-      this.chooseCategory = this.chooseCategory.bind(this)
-      
+      this.chooseCategory = this.chooseCategory.bind(this);
     };
 
 
@@ -84,7 +83,7 @@ class App extends Component {
             defineButtonColor={this.defineButtonColor}
             currentQuestionID={this.state.currentQuestionID} />
         </div>
-      )
+      );
     };
   };
 
@@ -95,10 +94,10 @@ class App extends Component {
       isQuestionAnswered: true,
       buttonClicked: buttonIndex,
       isButtonDisabled: true
-    })
+    });
     if (answer.correct) {
       this.setState({ correctAnswersCounter: this.state.correctAnswersCounter + 1 })
-    }
+    };
   };
 
   //change color of clicked button according to correctness of the answer and the button clicked
@@ -146,7 +145,8 @@ class App extends Component {
     fetch(`https://newsapi.org/v2/everything?q=${this.state.questions[0].category}
            &from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
       .then(response => response.json())
-      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles,  isArticleDisplayed: true }));
+      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles, 
+                                              isArticleDisplayed: true }));
   };
 
   /*This method allow us to add elements from API in the array, it check if the array is empty,
@@ -162,14 +162,18 @@ class App extends Component {
     this.setState({
       isQuestionAnswered: false, isQuestionDisplayed: true,
       currentQuestionID: this.state.currentQuestionID + 1,
-      currentArticleID: this.state.currentArticleID + 1, isArticleDisplayed:false,
+      currentArticleID: this.state.currentArticleID + 1, 
+      isArticleDisplayed:false,
     });
   };
   /*go to the next question when click on No button*/
   nextQuestion = () => {
     this.setState({
-      isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID: this.state.currentQuestionID + 1,
-      currentArticleID: this.state.currentArticleID + 1, isArticleDisplayed:false,
+      isQuestionAnswered: false, 
+      isQuestionDisplayed: true, 
+      currentQuestionID: this.state.currentQuestionID + 1,
+      currentArticleID: this.state.currentArticleID + 1, 
+      isArticleDisplayed:false,
     });
   };
 
@@ -217,8 +221,8 @@ class App extends Component {
   
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
   chooseUsername = (event) => {
-    this.setState({ isHomePageDisplayed: false, isThemePageDisplayed: true});
-    alert('Name submitted: ' + this.state.nameRegistered);
+    this.setState({ isHomePageDisplayed: false, 
+                    isThemePageDisplayed: true});
     event.preventDefault();
   };
 
@@ -227,7 +231,8 @@ class App extends Component {
   };
 
   chooseCategory = () => {
-    this.setState({ isThemePageDisplayed : false, isCustomizePageDisplayed : true });
+    this.setState({ isThemePageDisplayed : false, 
+                    isCustomizePageDisplayed : true });
 
     // method for API call
     fetch(`https://opentdb.com/api.php?amount=${this.state.numberOfQuestions}&category=
@@ -258,27 +263,40 @@ class App extends Component {
   };
 
   QuizzCustomize = () => {
-    this.setState({isCustomizePageDisplayed: false, isQuestionDisplayed:true})
+    this.setState({isCustomizePageDisplayed: false, 
+                   isQuestionDisplayed: true})
   }
 
 
   render() {
     return (
       <div className="App">
-        {this.state.isHomePageDisplayed && <HomePage chooseUsername={this.chooseUsername} usernameChange={this.usernameChange} nameRegistered={this.state.nameRegistered} />}
-        {this.state.isThemePageDisplayed && <Categories chooseCategory={this.chooseCategory} pickUpCategory={this.pickUpCategory} categories={this.state.categories}/>}
-        {this.state.isCustomizePageDisplayed && <CustomizeQuizz QuizzCustomize={this.QuizzCustomize}/>}
-        {this.displayLoading()}
-        {this.state.isQuestionDisplayed && this.displayQuestions()}
-
-        {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
-        {!this.state.isQuestionDisplayed && this.state.currentNewsArticle.length > 0 && <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} addCurrentArticle={this.memorizeArticle} nextQuestion={this.nextQuestion}/>}
-        <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} correctAnswersCounter={this.state.correctAnswersCounter}
-        questions={this.state.questions} />
-        
+        {this.state.isHomePageDisplayed && 
+        <HomePage chooseUsername={this.chooseUsername} 
+                  usernameChange={this.usernameChange} 
+                  nameRegistered={this.state.nameRegistered} />};
+        {this.state.isThemePageDisplayed && 
+        <Categories chooseCategory={this.chooseCategory} 
+                    pickUpCategory={this.pickUpCategory} 
+                    categories={this.state.categories}/>};
+        {this.state.isCustomizePageDisplayed && 
+        <CustomizeQuizz QuizzCustomize={this.QuizzCustomize}/>};
+        {this.displayLoading()};
+        {this.state.isQuestionDisplayed && this.displayQuestions()};
+        {this.state.isButtonDisabled && 
+        <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>};
+        {!this.state.isQuestionDisplayed && 
+          this.state.currentNewsArticle.length > 0 &&
+           <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} 
+                             addCurrentArticle={this.memorizeArticle} 
+                             nextQuestion={this.nextQuestion}/>};
+        <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} 
+                       correctAnswersCounter={this.state.correctAnswersCounter}
+                       questions={this.state.questions} />
       </div>
     );
   };
 };
 
 export default App;
+

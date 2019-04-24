@@ -9,12 +9,14 @@ const Categories = ({categories, pickUpCategory, chooseCategory}) => {
                 <h1>Choose a theme</h1>
             </header>
             <Row>
-                {categories.map((category, index) => <CategoryChoice pickUpCategory={() => pickUpCategory(category)} 
-                                                                     category={category} key={index}/>)}
+                {categories.map((category, index) => 
+                <CategoryChoice pickUpCategory={() => pickUpCategory(category)} 
+                                category={category} key={index}/>)}
             </Row>
             <Button onClick={chooseCategory} >Next</Button>
         </Container>
     );
-}
+};
  
 export default Categories;
+
