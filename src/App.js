@@ -158,17 +158,17 @@ class App extends Component {
 
   //allows to display article selection page after clicking 'next' button
   triggerArticleChoiceDisplay = () => {
-    this.setState({ isQuestionDisplayed: false, isButtonDisabled: false, isArticleDisplayed: true });
+    this.setState({ isQuestionDisplayed: false, isButtonDisabled: false, isArticleDisplayed: true  });
 
     //These three const get the current Date, Month, and Date
     const year = new Date().getFullYear();
     const month = new Date().getMonth();
     const date = new Date().getDate();
 
-    fetch(`https://newsapi.org/v2/top-headlines?country=us&q=${this.state.questionsCategory}
+    fetch(`https://newsapi.org/v2/top-headlines?country=us&q=${this.state.questions[0].category}
            &from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
       .then(response => response.json())
-      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles[0] }));
+      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles, isArticleDisplayed: true }));
   };
 
   /*This method allow us to add elements from API in the array, it check if the array is empty,
@@ -177,14 +177,14 @@ class App extends Component {
     this.setState(function (prevState) {
       return {
         preferredNewsArticles: this.state.preferredNewsArticles.length === 0 ?
-          [this.state.currentNewsArticle[this.state.currentArticleIDs]] : [...prevState.preferredNewsArticles, this.state.currentNewsArticle[this.state.currentArticleID]]
+          [this.state.currentNewsArticle[this.state.currentArticleID]] : [...prevState.preferredNewsArticles, this.state.currentNewsArticle[this.state.currentArticleID]]
       };
     });
-  this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID : this.state.currentQuestionID +1})
+  this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, isArticleDisplayed:false, currentQuestionID : this.state.currentQuestionID +1})
   };
   /*go to the next question when click on No button*/
   nextQuestion = () => {
-    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID : this.state.currentQuestionID +1})
+    this.setState({isQuestionAnswered: false, isQuestionDisplayed: true, isArticleDisplayed:false, currentQuestionID : this.state.currentQuestionID +1})
   }
 
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
@@ -215,10 +215,9 @@ class App extends Component {
         {this.state.isCustomizePageDisplayed && <CustomizeQuizz QuizzCustomize={this.QuizzCustomize}/>}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
-        {!this.state.isQuestionDisplayed && <ArticleSetChoice currentArticle={this.state} addCurrentArticle={this.memorizeArticle} nextQuestion={this.nextQuestion} />}
 
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
-        {this.state.isArticleDisplayed && this.state.currentNewsArticle.length > 0 && <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} addCurrentArticle={this.memorizeArticle} nextQuestion={this.nextQuestion}/>}
+        {!this.state.isQuestionDisplayed && this.state.currentNewsArticle.length > 0 && <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} addCurrentArticle={this.memorizeArticle} nextQuestion={this.nextQuestion}/>}
         
       </div>
     );
