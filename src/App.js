@@ -13,7 +13,7 @@ class App extends Component {
     super()
     this.state = {
       isHomePageDisplayed: true, //display the home page 
-      isNameRegistered: "", //stock username after he wrote it in the input area and he clicked on Play button
+      nameRegistered: "", //stock username after he wrote it in the input area and he clicked on Play button
       isThemePageDisplayed: false, //display the choose theme page 
       isCustomizePageDisplayed: false, //display the custom page
       isQuestionDisplayed: false,
@@ -190,12 +190,12 @@ class App extends Component {
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
   chooseUsername = (event) => {
     this.setState({ isHomePageDisplayed: false, isThemePageDisplayed: true});
-    alert('Name submitted: ' + this.state.isNameRegistered);
+    alert('Name submitted: ' + this.state.nameRegistered);
     event.preventDefault();
   }
 
   usernameChange(event) {
-    this.setState({isNameRegistered: event.target.value});
+    this.setState({nameRegistered: event.target.value});
   }
 
   chooseCategory = () => {
@@ -210,7 +210,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.isHomePageDisplayed && <HomePage chooseUsername={this.chooseUsername} usernameChange={this.usernameChange}usernameSubmit={this.usernameSubmit} isNameRegistered={this.state.isNameRegistered} />}
+        {this.state.isHomePageDisplayed && <HomePage chooseUsername={this.chooseUsername} usernameChange={this.usernameChange} nameRegistered={this.state.nameRegistered} />}
         {this.state.isThemePageDisplayed && <CategoryChoice chooseCategory={this.chooseCategory} />}
         {this.state.isCustomizePageDisplayed && <CustomizeQuizz QuizzCustomize={this.QuizzCustomize}/>}
         {this.displayLoading()}

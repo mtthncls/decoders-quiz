@@ -2,15 +2,15 @@ import React from 'react';
 import { Button, Container, Col, Row } from 'reactstrap';
 
 
-const HomePage = ({chooseUsername, usernameSubmit, usernameChange, isNameRegistered}) => {
+const HomePage = ({chooseUsername, usernameChange, nameRegistered}) => {
     return(        
         <Container>
             <header>
                 <h1>Décodeurs Quizz</h1>
             </header>
-            <form onSubmit={usernameSubmit}>
+            <form>
                 <label htmlFor="Username">
-                    <input placeholder="Username" name="Username" id="Username" onChange={usernameChange} value={isNameRegistered} />
+                    <input placeholder="Username" name="Username" id="Username" onChange={usernameChange} value={nameRegistered} />
                 </label>
             </form>
              <br></br>
