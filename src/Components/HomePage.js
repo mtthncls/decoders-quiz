@@ -7,7 +7,7 @@ const HomePage = ({chooseUsername, usernameSubmit, usernameChange, isNameRegiste
     return(        
         <Container>
             <header>
-                <h1>Quizz des Décodeurs</h1>
+                <h1>Décodeurs Quizz</h1>
             </header>
             <form onSubmit={usernameSubmit}>
                 <label htmlFor="Username">
