@@ -36,7 +36,8 @@ class App extends Component {
       isArticleDisplayed: false,
       currentNewsArticle: {}, //ArticleSetChoice component
       preferredNewsArticles: [], //ArticleSetChoice component
-      isArticlesRecapDisplayed : false 
+      isArticlesRecapDisplayed : false,
+      correctAnswersCounter: 0
       
       
     };
@@ -87,12 +88,17 @@ class App extends Component {
     };
   };
 
-  //determine if the answer of clicked button is correct or incorrect and modify state accordingly
+  //determine if the answer of clicked button is correct or incorrect and modify state accordingly including the correct answer counter
   setAnswerStatus = (answer, buttonIndex) => {
     this.setState({
-      isAnswerCorrect: answer.correct, isQuestionAnswered: true,
-      buttonClicked: buttonIndex, isButtonDisabled: true
-    });
+      isAnswerCorrect: answer.correct,
+      isQuestionAnswered: true,
+      buttonClicked: buttonIndex,
+      isButtonDisabled: true
+    })
+    if (answer.correct) {
+      this.setState({ correctAnswersCounter: this.state.correctAnswersCounter + 1 })
+    }
   };
 
   //change color of clicked button according to correctness of the answer and the button clicked
@@ -255,6 +261,7 @@ class App extends Component {
     this.setState({isCustomizePageDisplayed: false, isQuestionDisplayed:true})
   }
 
+
   render() {
     return (
       <div className="App">
@@ -266,7 +273,8 @@ class App extends Component {
 
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
         {!this.state.isQuestionDisplayed && this.state.currentNewsArticle.length > 0 && <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} addCurrentArticle={this.memorizeArticle} nextQuestion={this.nextQuestion}/>}
-        {this.state.isArticleRecapDisplayed && <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} />}
+        <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} correctAnswersCounter={this.state.correctAnswersCounter}
+        questions={this.state.questions} />
         
       </div>
     );
