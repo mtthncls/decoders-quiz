@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Container, Col, Row } from 'reactstrap';
 import "./CustomizeQuizz.css";
 
-const CustomizeQuizz = () => {
+const CustomizeQuizz = ({QuizzCustomize}) => {
     return(
         <Container>
             <header>
@@ -20,7 +20,7 @@ const CustomizeQuizz = () => {
                 <Col><Button>Medium</Button></Col>     
                 <Col><Button>Hard</Button></Col>
             </Row>
-            <Button>Next</Button>  
+            <Button onClick={QuizzCustomize}>Next</Button>  
         </Container>
     )
 }

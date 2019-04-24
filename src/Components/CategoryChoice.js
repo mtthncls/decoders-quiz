@@ -5,12 +5,10 @@ const CategoryChoice = ({category, pickUpCategory}) => {
     return(
             <Col lg={2}>
             <div>
-                <Button onClick={pickUpCategory} >{category}</Button>
+                <Button onClick={pickUpCategory}>{category}</Button>
         </div>
             </Col>
     )
 }
-
-
 
 export default CategoryChoice;

@@ -8,7 +8,7 @@ const ArticleSetChoice = ({ currentArticle, addCurrentArticle, nextQuestion }) =
             {/* News must display data gets from News API */}
             <Article currentArticle={currentArticle} />
             {/* Props transfers the method to ride up child information up to here */}
-            <ArticleChoice addCurrentArticle={addCurrentArticle} nextQuestion={nextQuestion} />
+            <ArticleChoice addCurrentArticle={addCurrentArticle} nextQuestion={nextQuestion}/>
         </article>
     )
 }

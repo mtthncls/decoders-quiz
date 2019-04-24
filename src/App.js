@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import Question from './Components/Question';
 import ArticleSetChoice from './Components/ArticleSetChoice';
-import PlayButton from './Components/PlayButton';
+import HomePage from './Components/HomePage';
 import './App.css';
 import ArticlesRecap from './Components/ArticlesRecap';
 import CustomizeQuizz from './Components/CustomizeQuizz';
@@ -13,28 +13,38 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      currentNewsArticle: {}, //ArticleSetChoice component
-      preferredNewsArticles: [], //ArticleSetChoice component
+      isHomePageDisplayed: true, //display the home page 
+      nameRegistered: "", //stock username after he wrote it in the input area and he clicked on Play button
+      isThemePageDisplayed: false, //display the choose theme page 
+      isCustomizePageDisplayed: false, //display the custom page
+      isQuestionDisplayed: false,
+      isQuestionLoading: true,
+      questions: [],
+      currentQuestionID: 0,
       isQuestionAnswered: false, //Question component : has one button been clicked or not ?
-      isAnswerCorrect: false, //Question component : is the answer true or false ?
       buttonClicked: "",   //Question component : which button has been clicked ?
       isButtonDisabled: false, //Question component : button clickable or not
-      isQuestionDisplayed: true,
-      questions: [],
       categories : ["Animals", "Sport", "Books", "Films", "Music", "Video Games", 
                     "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
-      currentQuestionID: 0,
       currentArticleID: 0,
-      isQuestionLoading: true,
       questionsCategory: 21,
       numberOfQuestions: 10,
       isQuizzLaunched: false, //launch quizz when Play button is clicked and state switched to true
       isNewsDisplayed: false,
-      isNameRegistered: "", //stock username after he wrote it in the input area and he clicked on Play button
       isThemePageDispolayed : false,
-      isCustomizePageDisplayed : false
+      isAnswerCorrect: false, //Question component : is the answer true or false ?
+      isArticleDisplayed: false,
+      currentNewsArticle: {}, //ArticleSetChoice component
+      preferredNewsArticles: [], //ArticleSetChoice component
+      isArticlesRecapDisplayed : false 
+      
+      
     };
+    this.triggerArticleChoiceDisplay = this.triggerArticleChoiceDisplay.bind(this)
+      this.memorizeArticle = this.memorizeArticle.bind(this)
       this.usernameChange = this.usernameChange.bind(this);
+      this.chooseCategory = this.chooseCategory.bind(this)
+      
     };
 
 
@@ -120,7 +130,7 @@ class App extends Component {
 
   //allows to display article selection page after clicking 'next' button
   triggerArticleChoiceDisplay = () => {
-    this.setState({ isQuestionDisplayed: false, isButtonDisabled: false });
+    this.setState({ isQuestionDisplayed: false, isButtonDisabled: false, isArticleDisplayed: true  });
 
     //These three const get the current Date, Month, and Date
     const year = new Date().getFullYear();
@@ -130,7 +140,7 @@ class App extends Component {
     fetch(`https://newsapi.org/v2/everything?q=${this.state.questions[0].category}
            &from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
       .then(response => response.json())
-      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles }));
+      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles,  isArticleDisplayed: true }));
   };
 
   /*This method allow us to add elements from API in the array, it check if the array is empty,
@@ -146,14 +156,14 @@ class App extends Component {
     this.setState({
       isQuestionAnswered: false, isQuestionDisplayed: true,
       currentQuestionID: this.state.currentQuestionID + 1,
-      currentArticleID: this.state.currentArticleID + 1
+      currentArticleID: this.state.currentArticleID + 1, isArticleDisplayed:false,
     });
   };
   /*go to the next question when click on No button*/
   nextQuestion = () => {
     this.setState({
       isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID: this.state.currentQuestionID + 1,
-      currentArticleID: this.state.currentArticleID + 1
+      currentArticleID: this.state.currentArticleID + 1, isArticleDisplayed:false,
     });
   };
 
@@ -200,18 +210,18 @@ class App extends Component {
   };
   
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
-  launchQuizz = (event) => {
-    this.setState({ isQuizzLaunched: true});
-    alert('Name submitted: ' + this.state.isNameRegistered);
+  chooseUsername = (event) => {
+    this.setState({ isHomePageDisplayed: false, isThemePageDisplayed: true});
+    alert('Name submitted: ' + this.state.nameRegistered);
     event.preventDefault();
   };
 
   usernameChange(event) {
-    this.setState({isNameRegistered: event.target.value});
+    this.setState({nameRegistered: event.target.value});
   };
 
   chooseCategory = () => {
-    this.setState({ isThemePageDispolayed : false, isCustomizePageDisplayed : true });
+    this.setState({ isThemePageDisplayed : false, isCustomizePageDisplayed : true });
 
     // method for API call
     fetch(`https://opentdb.com/api.php?amount=${this.state.numberOfQuestions}&category=
@@ -241,22 +251,23 @@ class App extends Component {
       });
   };
 
+  QuizzCustomize = () => {
+    this.setState({isCustomizePageDisplayed: false, isQuestionDisplayed:true})
+  }
 
   render() {
     return (
       <div className="App">
-        <PlayButton launchQuizz={this.launchQuizz} usernameChange={this.usernameChange}usernameSubmit={this.usernameSubmit} isNameRegistered={this.state.isNameRegistered} />
-        <Categories chooseCategory={this.chooseCategory} pickUpCategory={this.pickUpCategory} categories={this.state.categories}/>
-        <CustomizeQuizz/>
+        {this.state.isHomePageDisplayed && <HomePage chooseUsername={this.chooseUsername} usernameChange={this.usernameChange} nameRegistered={this.state.nameRegistered} />}
+        {this.state.isThemePageDisplayed && <Categories chooseCategory={this.chooseCategory} pickUpCategory={this.pickUpCategory} categories={this.state.categories}/>}
+        {this.state.isCustomizePageDisplayed && <CustomizeQuizz QuizzCustomize={this.QuizzCustomize}/>}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
-        {!this.state.isQuestionDisplayed && this.state.currentNewsArticle.length > 0
-          && <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]}
-            addCurrentArticle={this.memorizeArticle}
-            nextQuestion={this.nextQuestion} />}
 
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
-        <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} />
+        {!this.state.isQuestionDisplayed && this.state.currentNewsArticle.length > 0 && <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} addCurrentArticle={this.memorizeArticle} nextQuestion={this.nextQuestion}/>}
+        {this.state.isArticleRecapDisplayed && <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} />}
+        
       </div>
     );
   };
