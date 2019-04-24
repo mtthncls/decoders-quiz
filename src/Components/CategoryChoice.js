@@ -17,6 +17,4 @@ const CategoryChoice = ({chooseCategory}) => {
     )
 }
 
-
-
 export default CategoryChoice;
