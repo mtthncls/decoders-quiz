@@ -8,15 +8,15 @@ import "./Question.css";
 
 const correctSpecialCharacters = (string) => {
     return string.replace(/&quot;|&#039;/g, "'")
-    .replace(/&rdquo;|&ldquo;/g, "\"")
-    .replace(/&eacute;/g, "é")
-    .replace(/&deg;/g, "°")
-    .replace(/&pipeline;/g, "Π")
-    .replace(/&amp;/g, "&")
-    .replace(/&hellip;/g, "...")
-  };
+        .replace(/&rdquo;|&ldquo;/g, "\"")
+        .replace(/&eacute;/g, "é")
+        .replace(/&deg;/g, "°")
+        .replace(/&pipeline;/g, "Π")
+        .replace(/&amp;/g, "&")
+        .replace(/&hellip;/g, "...")
+};
 
-const Question = ({ currentQuestionID, question, setAnswerStatus, defineButtonColor, isButtonDisabled}) => {
+const Question = ({ currentQuestionID, question, setAnswerStatus, defineButtonColor, isButtonDisabled }) => {
     return (
         <Container>
             <header className="appHeader">

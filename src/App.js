@@ -19,10 +19,11 @@ class App extends Component {
       isQuestionDisplayed: true,
       questions: [],
       currentQuestionID: 0,
-      currentArticleID: 0,
       isQuestionLoading: true,
+      currentArticleID: 0,
       questionsCategory: 21,
-      numberOfQuestions: 10
+      numberOfQuestions: 10,
+      correctAnswersCounter: 0
     };
   };
 
@@ -95,12 +96,17 @@ class App extends Component {
     };
   };
 
-  //determine if the answer of clicked button is correct or incorrect and modify state accordingly
+  //determine if the answer of clicked button is correct or incorrect and modify state accordingly including the correct answer counter
   setAnswerStatus = (answer, buttonIndex) => {
     this.setState({
-      isAnswerCorrect: answer.correct, isQuestionAnswered: true,
-      buttonClicked: buttonIndex, isButtonDisabled: true
+      isAnswerCorrect: answer.correct,
+      isQuestionAnswered: true,
+      buttonClicked: buttonIndex,
+      isButtonDisabled: true
     })
+    if (answer.correct) {
+      this.setState({ correctAnswersCounter: this.state.correctAnswersCounter + 1 })
+    }
   };
 
   //change color of clicked button according to correctness of the answer and the button clicked
@@ -176,6 +182,7 @@ class App extends Component {
   };
 
 
+
   render() {
     return (
       <div className="App">
@@ -185,10 +192,12 @@ class App extends Component {
           && <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]}
             addCurrentArticle={this.memorizeArticle}
             nextQuestion={this.nextQuestion} />}
-
         {this.state.isButtonDisabled && <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
-        <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} />
-      </div>
+        <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles}
+          correctAnswersCounter={this.state.correctAnswersCounter}
+          questions={this.state.questions} />
+      </div >
+
     );
   };
 };
