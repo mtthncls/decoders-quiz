@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Button, Container } from 'reactstrap';
 import Question from './Components/Question';
 import ArticleSetChoice from './Components/ArticleSetChoice';
+import PlayButton from './Components/PlayButton';
 import './App.css';
 import ArticlesRecap from './Components/ArticlesRecap';
+import CustomizeQuizz from './Components/CustomizeQuizz';
+import Categories from './Categories';
 
 
 class App extends Component {
@@ -18,13 +21,18 @@ class App extends Component {
       isButtonDisabled: false, //Question component : button clickable or not
       isQuestionDisplayed: true,
       questions: [],
+      categories : ["Animals", "Sport"],
       currentQuestionID: 0,
       currentArticleID: 0,
       isQuestionLoading: true,
       questionsCategory: 21,
-      numberOfQuestions: 10
+      numberOfQuestions: 10,
+      isQuizzLaunched: false, //launch quizz when Play button is clicked and state switched to true
+      isNewsDisplayed: false,
+      isNameRegistered: "" //stock username after he wrote it in the input area and he clicked on Play button
     };
-  };
+      this.usernameChange = this.usernameChange.bind(this);
+    };
 
   componentDidMount() {
 
@@ -175,19 +183,39 @@ class App extends Component {
     })
   };
 
-  /*pickUpCategory = () => {
-    // const category = 
-    switch(/* category ){
-      case 21 :
-        console.log("Coucou")
-        break;
-      default : 
-    }
-  }*/
+  pickUpCategory = (category) => {
+    console.log(category)
+      switch(category){
+        case "Sport" :
+          this.setState({ questionsCategory : 21 });
+          console.log("Sports done")
+          break;
+        case "Animals" :
+        this.setState({ questionsCategory : 27 });
+        console.log("Animals done")
+          break;
+        default :
+      };
+  };
   
+  //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
+  launchQuizz = (event) => {
+    this.setState({ isQuizzLaunched: true});
+    alert('Name submitted: ' + this.state.isNameRegistered);
+    event.preventDefault();
+  }
+
+  usernameChange(event) {
+    this.setState({isNameRegistered: event.target.value});
+  }
+
+
   render() {
     return (
       <div className="App">
+        <PlayButton launchQuizz={this.launchQuizz} usernameChange={this.usernameChange}usernameSubmit={this.usernameSubmit} isNameRegistered={this.state.isNameRegistered} />
+        <Categories pickUpCategory={this.pickUpCategory} categories={this.state.categories}/>
+        <CustomizeQuizz/>
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
         {!this.state.isQuestionDisplayed && this.state.currentNewsArticle.length > 0
