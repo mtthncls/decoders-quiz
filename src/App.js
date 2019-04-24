@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import Question from './Components/Question';
 import ArticleSetChoice from './Components/ArticleSetChoice';
-import PlayButton from './Components/HomePage';
+import HomePage from './Components/HomePage';
 import './App.css';
 import CategoryChoice from './Components/CategoryChoice';
 import CustomizeQuizz from './Components/CustomizeQuizz';
@@ -210,7 +210,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.isHomePageDisplayed && <PlayButton chooseUsername={this.chooseUsername} usernameChange={this.usernameChange}usernameSubmit={this.usernameSubmit} isNameRegistered={this.state.isNameRegistered} />}
+        {this.state.isHomePageDisplayed && <HomePage chooseUsername={this.chooseUsername} usernameChange={this.usernameChange}usernameSubmit={this.usernameSubmit} isNameRegistered={this.state.isNameRegistered} />}
         {this.state.isThemePageDisplayed && <CategoryChoice chooseCategory={this.chooseCategory} />}
         {this.state.isCustomizePageDisplayed && <CustomizeQuizz QuizzCustomize={this.QuizzCustomize}/>}
         {this.displayLoading()}

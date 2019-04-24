@@ -18,4 +18,3 @@ const ArticleChoice = ({addCurrentArticle, nextQuestion}) => {
         };
  
 export default ArticleChoice;
-

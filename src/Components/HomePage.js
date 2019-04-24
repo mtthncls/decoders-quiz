@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Container, Col, Row } from 'reactstrap';
-import './PlayButton.css';
+import './HomePage.css';
 
 
 const HomePage = ({chooseUsername, usernameSubmit, usernameChange, isNameRegistered}) => {
