@@ -21,7 +21,8 @@ class App extends Component {
       isButtonDisabled: false, //Question component : button clickable or not
       isQuestionDisplayed: true,
       questions: [],
-      categories : ["Animals", "Sport", "Books", "Films", "Music", "Video Games"],
+      categories : ["Animals", "Sport", "Books", "Films", "Music", "Video Games", 
+                    "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
       currentQuestionID: 0,
       currentArticleID: 0,
       isQuestionLoading: true,
@@ -57,7 +58,7 @@ class App extends Component {
     if (this.state.isQuestionLoading) {
       return (
         <p className="loadText">loading...</p>
-      )
+      );
     };
   };
 
@@ -81,7 +82,7 @@ class App extends Component {
     this.setState({
       isAnswerCorrect: answer.correct, isQuestionAnswered: true,
       buttonClicked: buttonIndex, isButtonDisabled: true
-    })
+    });
   };
 
   //change color of clicked button according to correctness of the answer and the button clicked
@@ -146,42 +147,53 @@ class App extends Component {
       isQuestionAnswered: false, isQuestionDisplayed: true,
       currentQuestionID: this.state.currentQuestionID + 1,
       currentArticleID: this.state.currentArticleID + 1
-    })
+    });
   };
   /*go to the next question when click on No button*/
   nextQuestion = () => {
     this.setState({
       isQuestionAnswered: false, isQuestionDisplayed: true, currentQuestionID: this.state.currentQuestionID + 1,
       currentArticleID: this.state.currentArticleID + 1
-    })
+    });
   };
 
   pickUpCategory = (category) => {
-    console.log(category)
       switch(category){
         case "Sport" :
           this.setState({ questionsCategory : 21 });
-          console.log("Sports done")
           break;
         case "Animals" :
         this.setState({ questionsCategory : 27 });
-        console.log("Animals done")
           break;
           case "Books" :
         this.setState({ questionsCategory : 10 });
-        console.log("Animals done")
           break;
           case "Films" :
         this.setState({ questionsCategory : 11 });
-        console.log("Animals done")
           break;
           case "Music" :
         this.setState({ questionsCategory : 12 });
-        console.log("Animals done")
           break;
           case "Video Games" :
         this.setState({ questionsCategory : 15 });
-        console.log("Animals done")
+          break;
+          case "Mythology" :
+        this.setState({ questionsCategory : 20 });
+          break;
+          case "Celebrities" :
+        this.setState({ questionsCategory : 26 });
+          break;
+          case "Television" :
+        this.setState({ questionsCategory : 14 });
+          break;
+          case "General Knowledge" :
+        this.setState({ questionsCategory : 9 });
+          break;
+          case "Geography" :
+        this.setState({ questionsCategory : 22 });
+          break;
+          case "History" :
+        this.setState({ questionsCategory : 23 });
           break;
         default :
       };
@@ -192,7 +204,7 @@ class App extends Component {
     this.setState({ isQuizzLaunched: true});
     alert('Name submitted: ' + this.state.isNameRegistered);
     event.preventDefault();
-  }
+  };
 
   usernameChange(event) {
     this.setState({isNameRegistered: event.target.value});
@@ -227,7 +239,7 @@ class App extends Component {
           isQuestionLoading: false
         });
       });
-  }
+  };
 
 
   render() {

@@ -3,11 +3,11 @@ import { Button,Col} from 'reactstrap';
 
 const CategoryChoice = ({category, pickUpCategory}) => {
     return(
-        <div>
-            <Col>
+            <Col lg={2}>
+            <div>
                 <Button onClick={pickUpCategory} >{category}</Button>
-            </Col>
         </div>
+            </Col>
     )
 }
 
