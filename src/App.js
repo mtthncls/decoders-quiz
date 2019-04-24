@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Container } from 'reactstrap';
+import { Button } from 'reactstrap';
 import Question from './Components/Question';
 import ArticleSetChoice from './Components/ArticleSetChoice';
 import PlayButton from './Components/PlayButton';
@@ -21,7 +21,7 @@ class App extends Component {
       isButtonDisabled: false, //Question component : button clickable or not
       isQuestionDisplayed: true,
       questions: [],
-      categories : ["Animals", "Sport"],
+      categories : ["Animals", "Sport", "Books", "Films", "Music", "Video Games"],
       currentQuestionID: 0,
       currentArticleID: 0,
       isQuestionLoading: true,
@@ -29,40 +29,13 @@ class App extends Component {
       numberOfQuestions: 10,
       isQuizzLaunched: false, //launch quizz when Play button is clicked and state switched to true
       isNewsDisplayed: false,
-      isNameRegistered: "" //stock username after he wrote it in the input area and he clicked on Play button
+      isNameRegistered: "", //stock username after he wrote it in the input area and he clicked on Play button
+      isThemePageDispolayed : false,
+      isCustomizePageDisplayed : false
     };
       this.usernameChange = this.usernameChange.bind(this);
     };
 
-  componentDidMount() {
-
-    // method for API call
-    fetch(`https://opentdb.com/api.php?amount=${this.state.numberOfQuestions}&category=
-           ${this.state.questionsCategory}&difficulty=medium&type=multiple`)
-      .then(response => response.json())
-      .then(data => {
-        const apiQuestions = data.results
-        const questions = []
-        for (let i = 0; i < apiQuestions.length; i++) {
-          const question = {
-            category: apiQuestions[i].category,
-            question: apiQuestions[i].question,
-            answers: this.randomizeAnswersDisplay([
-              { text: apiQuestions[i].correct_answer, correct: true },
-              { text: apiQuestions[i].incorrect_answers[0], correct: false },
-              { text: apiQuestions[i].incorrect_answers[1], correct: false },
-              { text: apiQuestions[i].incorrect_answers[2], correct: false }
-            ])
-          };
-          questions.push(question)
-        };
-
-        this.setState({
-          questions: questions,
-          isQuestionLoading: false
-        });
-      });
-  };
 
   //to randomize the order of apperance of the answers on screen
   randomizeAnswersDisplay = (answers) => {
@@ -194,6 +167,22 @@ class App extends Component {
         this.setState({ questionsCategory : 27 });
         console.log("Animals done")
           break;
+          case "Books" :
+        this.setState({ questionsCategory : 10 });
+        console.log("Animals done")
+          break;
+          case "Films" :
+        this.setState({ questionsCategory : 11 });
+        console.log("Animals done")
+          break;
+          case "Music" :
+        this.setState({ questionsCategory : 12 });
+        console.log("Animals done")
+          break;
+          case "Video Games" :
+        this.setState({ questionsCategory : 15 });
+        console.log("Animals done")
+          break;
         default :
       };
   };
@@ -207,6 +196,37 @@ class App extends Component {
 
   usernameChange(event) {
     this.setState({isNameRegistered: event.target.value});
+  };
+
+  chooseCategory = () => {
+    this.setState({ isThemePageDispolayed : false, isCustomizePageDisplayed : true });
+
+    // method for API call
+    fetch(`https://opentdb.com/api.php?amount=${this.state.numberOfQuestions}&category=
+           ${this.state.questionsCategory}&difficulty=medium&type=multiple`)
+      .then(response => response.json())
+      .then(data => {
+        const apiQuestions = data.results
+        const questions = []
+        for (let i = 0; i < apiQuestions.length; i++) {
+          const question = {
+            category: apiQuestions[i].category,
+            question: apiQuestions[i].question,
+            answers: this.randomizeAnswersDisplay([
+              { text: apiQuestions[i].correct_answer, correct: true },
+              { text: apiQuestions[i].incorrect_answers[0], correct: false },
+              { text: apiQuestions[i].incorrect_answers[1], correct: false },
+              { text: apiQuestions[i].incorrect_answers[2], correct: false }
+            ])
+          };
+          questions.push(question)
+        };
+
+        this.setState({
+          questions: questions,
+          isQuestionLoading: false
+        });
+      });
   }
 
 
@@ -214,7 +234,7 @@ class App extends Component {
     return (
       <div className="App">
         <PlayButton launchQuizz={this.launchQuizz} usernameChange={this.usernameChange}usernameSubmit={this.usernameSubmit} isNameRegistered={this.state.isNameRegistered} />
-        <Categories pickUpCategory={this.pickUpCategory} categories={this.state.categories}/>
+        <Categories chooseCategory={this.chooseCategory} pickUpCategory={this.pickUpCategory} categories={this.state.categories}/>
         <CustomizeQuizz/>
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}

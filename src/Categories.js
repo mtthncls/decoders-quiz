@@ -2,16 +2,17 @@ import React from 'react';
 import { Button, Container, Row } from 'reactstrap';
 import CategoryChoice from './Components/CategoryChoice';
 
-const Categories = ({categories, pickUpCategory}) => {
+const Categories = ({categories, pickUpCategory, chooseCategory}) => {
     return ( 
         <Container>
             <header>
                 <h1>Choose a theme</h1>
             </header>
             <Row>
-                {categories.map(category => <CategoryChoice pickUpCategory={() => pickUpCategory(category)} category={category}/>)}
+                {categories.map((category, index) => <CategoryChoice pickUpCategory={() => pickUpCategory(category)} 
+                                                                     category={category} key={index}/>)}
             </Row>
-            <Button>Next</Button>
+            <Button onClick={chooseCategory} >Next</Button>
         </Container>
     );
 }
