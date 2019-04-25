@@ -26,9 +26,10 @@ class App extends Component {
       isButtonDisabled: false, //Question component : button clickable or not
       categories : ["Animals", "Sport", "Books", "Films", "Music", "Video Games", 
                     "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
+      numberOfQuestions: ["5", "10", "15"],
+      chooseNumberOfQuestions: 0,
       currentArticleID: 0,
       questionsCategory: 21,
-      numberOfQuestions: 10,
       isQuizzLaunched: false, //launch quizz when Play button is clicked and state switched to true
       isNewsDisplayed: false,
       isThemePageDispolayed : false,
@@ -38,6 +39,7 @@ class App extends Component {
       preferredNewsArticles: [], //ArticleSetChoice component
       isArticlesRecapDisplayed : false,
       correctAnswersCounter: 0
+      
       };
     };
 
@@ -227,38 +229,41 @@ class App extends Component {
   chooseCategory = () => {
     this.setState({ isThemePageDisplayed : false, 
                     isCustomizePageDisplayed : true });
-
-    // method for API call
-    fetch(`https://opentdb.com/api.php?amount=${this.state.numberOfQuestions}&category=
-           ${this.state.questionsCategory}&difficulty=medium&type=multiple`)
-      .then(response => response.json())
-      .then(data => {
-        const apiQuestions = data.results
-        const questions = []
-        for (let i = 0; i < apiQuestions.length; i++) {
-          const question = {
-            category: apiQuestions[i].category,
-            question: apiQuestions[i].question,
-            answers: this.randomizeAnswersDisplay([
-              { text: apiQuestions[i].correct_answer, correct: true },
-              { text: apiQuestions[i].incorrect_answers[0], correct: false },
-              { text: apiQuestions[i].incorrect_answers[1], correct: false },
-              { text: apiQuestions[i].incorrect_answers[2], correct: false }
-            ])
-          };
-          questions.push(question)
-        };
-
-        this.setState({
-          questions: questions,
-          isQuestionLoading: false
-        });
-      });
   };
 
   QuizzCustomize = () => {
     this.setState({isCustomizePageDisplayed: false, 
-                   isQuestionDisplayed: true})
+                   isQuestionDisplayed: true});
+
+  // method for API call
+  fetch(`https://opentdb.com/api.php?amount=${this.state.chooseNumberOfQuestions}&category=
+         ${this.state.questionsCategory}&difficulty=medium&type=multiple`)
+    .then(response => response.json())
+    .then(data => {
+      const apiQuestions = data.results
+      const questions = []
+        for (let i = 0; i < apiQuestions.length; i++) {
+          const question = {
+                category: apiQuestions[i].category,
+                question: apiQuestions[i].question,
+                answers: this.randomizeAnswersDisplay([
+     { text: apiQuestions[i].correct_answer, correct: true },
+     { text: apiQuestions[i].incorrect_answers[0], correct: false },
+     { text: apiQuestions[i].incorrect_answers[1], correct: false },
+     { text: apiQuestions[i].incorrect_answers[2], correct: false }
+   ])
+ };
+ questions.push(question)
+};
+
+this.setState({
+ questions: questions,
+ isQuestionLoading: false
+});
+});
+  }
+  NumberOfQuestionsChoice = (numberOfQuestions) => {
+    this.setState({chooseNumberOfQuestions: numberOfQuestions})
   }
 
 
@@ -274,7 +279,9 @@ class App extends Component {
                     pickUpCategory={this.pickUpCategory} 
                     categories={this.state.categories}/>}
         {this.state.isCustomizePageDisplayed && 
-        <CustomizeQuizz QuizzCustomize={this.QuizzCustomize}/>}
+        <CustomizeQuizz QuizzCustomize={this.QuizzCustomize}
+                        numberOfQuestions={this.state.numberOfQuestions}
+                        NumberOfQuestionsChoice={this.NumberOfQuestionsChoice}/>}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
         {this.state.isButtonDisabled && 
