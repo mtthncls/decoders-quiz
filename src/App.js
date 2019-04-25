@@ -261,7 +261,7 @@ class App extends Component {
       });
   };
 
-  QuizzCustomize = () => {
+  quizzCustomize = () => {
     this.setState({
       isCustomizePageDisplayed: false,
       isQuestionDisplayed: true
@@ -307,7 +307,7 @@ class App extends Component {
             pickUpCategory={this.pickUpCategory}
             categories={this.state.categories} />}
         {this.state.isCustomizePageDisplayed &&
-          <CustomizeQuizz QuizzCustomize={this.QuizzCustomize} />}
+          <CustomizeQuizz quizzCustomize={this.quizzCustomize} />}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
         {this.state.isButtonDisabled &&
