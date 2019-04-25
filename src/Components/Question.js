@@ -14,6 +14,7 @@ const correctSpecialCharacters = (string) => {
                  .replace(/&pipeline;/g, "Π")
                  .replace(/&amp;/g, "&")
                  .replace(/&hellip;/g, "...")
+                 .replace(/&rsquo;/g, "'")
 };
 
 const Question = ({ currentQuestionID, question, setAnswerStatus, defineButtonColor, isButtonDisabled }) => {
