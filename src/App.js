@@ -27,7 +27,7 @@ class App extends Component {
       categories : ["Animals", "Sport", "Books", "Films", "Music", "Video Games", 
                     "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
       difficulties : ["easy", "medium", "hard"],
-      chooseDifficulty : "",
+      chosenDifficulty : "",
       currentArticleID: 0,
       questionsCategory: 21,
       numberOfQuestions: 10,
@@ -231,12 +231,12 @@ class App extends Component {
                     isCustomizePageDisplayed : true });
   };
 
-  QuizzCustomize = () => {
+  quizzCustomize = () => {
     this.setState({isCustomizePageDisplayed: false, 
                    isQuestionDisplayed: true});
     // method for API call
     fetch(`https://opentdb.com/api.php?amount=${this.state.numberOfQuestions}&category=
-           ${this.state.questionsCategory}&difficulty=${this.state.chooseDifficulty}&type=multiple`)
+           ${this.state.questionsCategory}&difficulty=${this.state.chosenDifficulty}&type=multiple`)
       .then(response => response.json())
       .then(data => {
         const apiQuestions = data.results
@@ -262,8 +262,8 @@ class App extends Component {
       });
   };
 
-  DifficultiesChoice = (difficulty) => {
-    this.setState({ chooseDifficulty : difficulty });
+  difficultiesChoice = (difficulty) => {
+    this.setState({ chosenDifficulty : difficulty });
   }
 
 
@@ -280,8 +280,8 @@ class App extends Component {
                     categories={this.state.categories}/>}
         {this.state.isCustomizePageDisplayed && 
         <CustomizeQuizz difficulties={this.state.difficulties} 
-                        QuizzCustomize={this.QuizzCustomize}
-                        DifficultiesChoice={this.DifficultiesChoice}/>}
+                        QuizzCustomize={this.quizzCustomize}
+                        DifficultiesChoice={this.difficultiesChoice}/>}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
         {this.state.isButtonDisabled && 
