@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Container, Col, Row } from 'reactstrap';
+import '../App.css';
 
 
 const HomePage = ({chooseUsername, usernameChange, nameRegistered}) => {
@@ -15,7 +16,7 @@ const HomePage = ({chooseUsername, usernameChange, nameRegistered}) => {
                 </label>
             </form>
              <br></br>
-            <Row>
+            <Row className="zoom-button">
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
                     <Button type="submit" name="submit" color="success" onClick={chooseUsername}>PLAY</Button>
                 </Col>

@@ -3,6 +3,7 @@ import { Button, Container, Row } from 'reactstrap';
 import "./CustomizeQuizz.css";
 import NumberOfQuestionsButton from './NumberOfQuestionsButton'
 import DifficultyButton from './DifficultyButtons';
+import '../App.css';
 
 const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsChoice, difficulties, DifficultiesChoice}) => {
     return(
@@ -20,7 +21,9 @@ const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsCho
                                                                            key={index}
                                                                            DifficultiesChoice={DifficultiesChoice}/>)}
             </Row>
-            <Button onClick={quizzcustomize}>Next</Button>  
+            <div className="zoom-button">
+            <Button onClick={quizzcustomize}>Next</Button>
+            </div>  
         </Container>
     )
 }

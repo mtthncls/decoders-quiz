@@ -51,3 +51,11 @@ transition: all 0.2s ease-in;
 .imgSize{
 width: 44vh;
 }
+
+/*Animations Button*/
+.zoom-button .btn{
+  transition: transform .2s;
+}
+.zoom-button:hover .btn{
+  transform: scale(1.1); 
+}
