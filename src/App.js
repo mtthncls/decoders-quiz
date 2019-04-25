@@ -31,7 +31,6 @@ class App extends Component {
       numberOfQuestions: 10,
       isQuizzLaunched: false, //launch quizz when Play button is clicked and state switched to true
       isNewsDisplayed: false,
-      isThemePageDispolayed : false,
       isAnswerCorrect: false, //Question component : is the answer true or false ?
       isArticleDisplayed: false,
       currentNewsArticle: {}, //ArticleSetChoice component
@@ -129,7 +128,7 @@ class App extends Component {
 
   //allows to display article selection page after clicking 'next' button
   triggerArticleChoiceDisplay = () => {
-    this.setState({ isQuestionDisplayed: false, isButtonDisabled: false, isArticleDisplayed: true  });
+    this.setState({ isQuestionDisplayed: false, isButtonDisabled: false, isArticleDisplayed : false });
 
     //These three const get the current Date, Month, and Date
     const year = new Date().getFullYear();
@@ -159,6 +158,10 @@ class App extends Component {
       currentArticleID: this.state.currentArticleID + 1, 
       isArticleDisplayed:false,
     });
+    /*condition to display recap page*/
+    if (this.state.currentQuestionID >= 9){
+      this.setState({ isQuestionDisplayed : false, isArticlesRecapDisplayed: true, isArticleDisplayed : false });
+    }
   };
   /*go to the next question when click on No button*/
   nextQuestion = () => {
@@ -169,8 +172,12 @@ class App extends Component {
       currentArticleID: this.state.currentArticleID + 1, 
       isArticleDisplayed:false,
     });
+  /*condition to display recap page*/  
+    if (this.state.currentQuestionID >= 9){
+      this.setState({ isQuestionDisplayed : false, isArticlesRecapDisplayed: true, isArticleDisplayed : false });
+    }
   };
-
+  
   pickUpCategory = (category) => {
       switch(category){
         case "Sport" :
@@ -281,14 +288,16 @@ class App extends Component {
         <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
         {!this.state.isQuestionDisplayed && 
           this.state.currentNewsArticle.length > 0 &&
+          this.state.isArticleDisplayed &&
            <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} 
                              addCurrentArticle={this.memorizeArticle} 
                              nextQuestion={this.nextQuestion}/>}
-        <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} 
+        {this.state.isArticlesRecapDisplayed && 
+          <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} 
                        correctAnswersCounter={this.state.correctAnswersCounter}
-                       questions={this.state.questions} />
+                       questions={this.state.questions} />}
       </div>
-    );
+    )
   };
 };
 

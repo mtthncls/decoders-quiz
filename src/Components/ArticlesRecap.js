@@ -11,7 +11,7 @@ const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions }) =>
             {articlesToRecap.length === 0 
             ? <h1>No articles saved</h1>
             : articlesToRecap.map((article, index) =>
-                <ArticleSaved key={index} articlesToRecap={article} />)};
+                <ArticleSaved key={index} articlesToRecap={article} />)}
 
             {/* that button must send back to the 1st page of the app */}
             <button>Try again</button>
