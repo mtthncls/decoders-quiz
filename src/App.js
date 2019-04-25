@@ -26,6 +26,8 @@ class App extends Component {
       isButtonDisabled: false, //Question component : button clickable or not
       categories: ["Animals", "Sport", "Books", "Films", "Music", "Video Games",
         "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
+      difficulties: ["easy", "medium", "hard"],
+      chosenDifficulty: "",
       currentArticleID: 0,
       questionsCategory: 21,
       numberOfQuestions: 10,
@@ -232,10 +234,16 @@ class App extends Component {
       isThemePageDisplayed: false,
       isCustomizePageDisplayed: true
     });
+  };
 
+  quizzCustomize = () => {
+    this.setState({
+      isCustomizePageDisplayed: false,
+      isQuestionDisplayed: true
+    });
     // method for API call
     fetch(`https://opentdb.com/api.php?amount=${this.state.numberOfQuestions}&category=
-           ${this.state.questionsCategory}&difficulty=medium&type=multiple`)
+           ${this.state.questionsCategory}&difficulty=${this.state.chosenDifficulty}&type=multiple`)
       .then(response => response.json())
       .then(data => {
         const apiQuestions = data.results
@@ -261,12 +269,10 @@ class App extends Component {
       });
   };
 
-  quizzCustomize = () => {
-    this.setState({
-      isCustomizePageDisplayed: false,
-      isQuestionDisplayed: true
-    })
-  };
+  difficultiesChoice = (difficulty) => {
+    this.setState({ chosenDifficulty: difficulty });
+  }
+
   // starting a new quiz after the recap page
   TryAgain = () => {
     this.setState({
@@ -307,7 +313,9 @@ class App extends Component {
             pickUpCategory={this.pickUpCategory}
             categories={this.state.categories} />}
         {this.state.isCustomizePageDisplayed &&
-          <CustomizeQuizz quizzCustomize={this.quizzCustomize} />}
+          <CustomizeQuizz difficulties={this.state.difficulties}
+            QuizzCustomize={this.quizzCustomize}
+            DifficultiesChoice={this.difficultiesChoice} />}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
         {this.state.isButtonDisabled &&

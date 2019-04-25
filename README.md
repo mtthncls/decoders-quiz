@@ -1,12 +1,12 @@
-# Le Quizz des décodeurs
+# Le Quiz des décodeurs
 
 ## JS Developers:
 
-* Jérémy FIGUEIREDO    
-* Sébastien JOLLY    
-* Axel CHANDELIER    
-* Matthieu NICOLAS    
-* Grégoire SURAY  
+* [Jérémy FIGUEIREDO](https://github.com/0figueiredo)    
+* [Sébastien Jolly](https://github.com/seb879)    
+* [Axel Chandelier](https://github.com/spartakyste)   
+* [Matthieu Nicolas](https://github.com/mtthncls)    
+* [Grégoire Suray](https://github.com/dezedene)  
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
