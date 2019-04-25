@@ -2,8 +2,9 @@ import React from 'react';
 import { Button, Container, Row } from 'reactstrap';
 import "./CustomizeQuizz.css";
 import NumberOfQuestionsButton from './NumberOfQuestionsButton'
+import DifficultyButton from './DifficultyButtons';
 
-const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsChoice}) => {
+const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsChoice, difficulties, DifficultiesChoice}) => {
     return(
         <Container>
             <header>
@@ -13,6 +14,11 @@ const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsCho
                 {numberOfQuestions.map((numberOfQuestion, index) => <NumberOfQuestionsButton numberOfQuestion={numberOfQuestion}
                                                                                               key={index}
                                                                                               numberOfQuestionsChoice={numberOfQuestionsChoice} />)}
+            </Row>
+            <Row>
+                {difficulties.map((difficulty, index) => <DifficultyButton difficulty={difficulty} 
+                                                                           key={index}
+                                                                           DifficultiesChoice={DifficultiesChoice}/>)}
             </Row>
             <Button onClick={quizzcustomize}>Next</Button>  
         </Container>

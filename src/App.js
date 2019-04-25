@@ -28,20 +28,22 @@ class App extends Component {
                     "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
       numberOfQuestions: ["5", "10", "15"],
       choosenNumberOfQuestions: 0,
+      difficulties: ["easy", "medium", "hard"],
+      chosenDifficulty: "",
       currentArticleID: 0,
       questionsCategory: 21,
       isQuizzLaunched: false, //launch quizz when Play button is clicked and state switched to true
       isNewsDisplayed: false,
-      isThemePageDispolayed : false,
       isAnswerCorrect: false, //Question component : is the answer true or false ?
       isArticleDisplayed: false,
       currentNewsArticle: {}, //ArticleSetChoice component
       preferredNewsArticles: [], //ArticleSetChoice component
-      isArticlesRecapDisplayed : false,
+      isArticlesRecapDisplayed: false,
       correctAnswersCounter: 0
       
       };
     };
+  
 
 
   //to randomize the order of apperance of the answers on screen
@@ -131,7 +133,7 @@ class App extends Component {
 
   //allows to display article selection page after clicking 'next' button
   triggerArticleChoiceDisplay = () => {
-    this.setState({ isQuestionDisplayed: false, isButtonDisabled: false, isArticleDisplayed: true  });
+    this.setState({ isQuestionDisplayed: false, isButtonDisabled: false, isArticleDisplayed : false });
 
     //These three const get the current Date, Month, and Date
     const year = new Date().getFullYear();
@@ -141,8 +143,10 @@ class App extends Component {
     fetch(`https://newsapi.org/v2/everything?q=${this.state.questions[0].category}
            &from=${year}-${month}-${date}&sortBy=publishedAt&apiKey=8ff3d2c7ecb44abaa9d1db3eae9dfcc8`)
       .then(response => response.json())
-      .then(responseInJson => this.setState({ currentNewsArticle: responseInJson.articles, 
-                                              isArticleDisplayed: true }));
+      .then(responseInJson => this.setState({
+        currentNewsArticle: responseInJson.articles,
+        isArticleDisplayed: true
+      }));
   };
 
   /*This method allow us to add elements from API in the array, it check if the array is empty,
@@ -158,78 +162,88 @@ class App extends Component {
     this.setState({
       isQuestionAnswered: false, isQuestionDisplayed: true,
       currentQuestionID: this.state.currentQuestionID + 1,
-      currentArticleID: this.state.currentArticleID + 1, 
-      isArticleDisplayed:false,
+      currentArticleID: this.state.currentArticleID + 1,
+      isArticleDisplayed: false,
     });
+    /*condition to display recap page*/
+    if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1){
+      this.setState({ isQuestionDisplayed : false, isArticlesRecapDisplayed: true, isArticleDisplayed : false });
+    }
   };
   /*go to the next question when click on No button*/
   nextQuestion = () => {
     this.setState({
-      isQuestionAnswered: false, 
-      isQuestionDisplayed: true, 
+      isQuestionAnswered: false,
+      isQuestionDisplayed: true,
       currentQuestionID: this.state.currentQuestionID + 1,
-      currentArticleID: this.state.currentArticleID + 1, 
-      isArticleDisplayed:false,
+      currentArticleID: this.state.currentArticleID + 1,
+      isArticleDisplayed: false,
     });
-  };
-
-  pickUpCategory = (category) => {
-      switch(category){
-        case "Sport" :
-          this.setState({ questionsCategory : 21 });
-          break;
-        case "Animals" :
-        this.setState({ questionsCategory : 27 });
-          break;
-          case "Books" :
-        this.setState({ questionsCategory : 10 });
-          break;
-          case "Films" :
-        this.setState({ questionsCategory : 11 });
-          break;
-          case "Music" :
-        this.setState({ questionsCategory : 12 });
-          break;
-          case "Video Games" :
-        this.setState({ questionsCategory : 15 });
-          break;
-          case "Mythology" :
-        this.setState({ questionsCategory : 20 });
-          break;
-          case "Celebrities" :
-        this.setState({ questionsCategory : 26 });
-          break;
-          case "Television" :
-        this.setState({ questionsCategory : 14 });
-          break;
-          case "General Knowledge" :
-        this.setState({ questionsCategory : 9 });
-          break;
-          case "Geography" :
-        this.setState({ questionsCategory : 22 });
-          break;
-          case "History" :
-        this.setState({ questionsCategory : 23 });
-          break;
-        default :
-      };
+  /*condition to display recap page*/  
+    if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1){
+      this.setState({ isQuestionDisplayed : false, isArticlesRecapDisplayed: true, isArticleDisplayed : false });
+    }
   };
   
+  pickUpCategory = (category) => {
+    switch (category) {
+      case "Sport":
+        this.setState({ questionsCategory: 21 });
+        break;
+      case "Animals":
+        this.setState({ questionsCategory: 27 });
+        break;
+      case "Books":
+        this.setState({ questionsCategory: 10 });
+        break;
+      case "Films":
+        this.setState({ questionsCategory: 11 });
+        break;
+      case "Music":
+        this.setState({ questionsCategory: 12 });
+        break;
+      case "Video Games":
+        this.setState({ questionsCategory: 15 });
+        break;
+      case "Mythology":
+        this.setState({ questionsCategory: 20 });
+        break;
+      case "Celebrities":
+        this.setState({ questionsCategory: 26 });
+        break;
+      case "Television":
+        this.setState({ questionsCategory: 14 });
+        break;
+      case "General Knowledge":
+        this.setState({ questionsCategory: 9 });
+        break;
+      case "Geography":
+        this.setState({ questionsCategory: 22 });
+        break;
+      case "History":
+        this.setState({ questionsCategory: 23 });
+        break;
+      default:
+    };
+  };
+
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
   chooseUsername = (event) => {
-    this.setState({ isHomePageDisplayed: false, 
-                    isThemePageDisplayed: true});
+    this.setState({
+      isHomePageDisplayed: false,
+      isThemePageDisplayed: true
+    });
     event.preventDefault();
   };
 
   usernameChange = (event) => {
-    this.setState({nameRegistered: event.target.value});
+    this.setState({ nameRegistered: event.target.value });
   };
 
   chooseCategory = () => {
-    this.setState({ isThemePageDisplayed : false, 
-                    isCustomizePageDisplayed : true });
-  };
+      this.setState({ isThemePageDisplayed : false, 
+                      isCustomizePageDisplayed : true });
+    };
 
   quizzcustomize = () => {
     this.setState({isCustomizePageDisplayed: false, 
@@ -237,7 +251,7 @@ class App extends Component {
 
   // method for API call
   fetch(`https://opentdb.com/api.php?amount=${this.state.choosenNumberOfQuestions}&category=
-         ${this.state.questionsCategory}&difficulty=medium&type=multiple`)
+         ${this.state.questionsCategory}&difficulty=${this.state.chosenDifficulty}&type=multiple`)
     .then(response => response.json())
     .then(data => {
       const apiQuestions = data.results
@@ -265,8 +279,38 @@ this.setState({
   numberOfQuestionsChoice = (numberOfQuestions) => {
     this.setState({choosenNumberOfQuestions: numberOfQuestions})
   }
+  difficultiesChoice = (difficulty) => {
+    this.setState({ chosenDifficulty: difficulty });
+  }
 
-
+  // starting a new quiz after the recap page
+  TryAgain = () => {
+    this.setState({
+      buttonClicked: "",
+      categories: ["Animals", "Sport", "Books", "Films", "Music", "Video Games", "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
+      correctAnswersCounter: 0,
+      currentArticleID: 0,
+      currentNewsArticle: {},
+      currentQuestionID: 0,
+      isAnswerCorrect: false,
+      isArticleDisplayed: false,
+      isArticlesRecapDisplayed: false,
+      isButtonDisabled: false,
+      isCustomizePageDisplayed: false,
+      isHomePageDisplayed: false,
+      isNewsDisplayed: false,
+      isQuestionAnswered: false,
+      isQuestionDisplayed: false,
+      isQuestionLoading: true,
+      isQuizzLaunched: false,
+      isThemePageDisplayed: true,
+      nameRegistered: this.state.nameRegistered,
+      numberOfQuestions: 10,
+      preferredNewsArticles: [],
+      questions: [],
+      questionsCategory: 21
+    })
+  };
   render() {
     return (
       <div className="App">
@@ -281,21 +325,26 @@ this.setState({
         {this.state.isCustomizePageDisplayed && 
         <CustomizeQuizz quizzcustomize={this.quizzcustomize}
                         numberOfQuestions={this.state.numberOfQuestions}
-                        numberOfQuestionsChoice={this.numberOfQuestionsChoice}/>}
+                        numberOfQuestionsChoice={this.numberOfQuestionsChoice}
+                        difficulties={this.state.difficulties}
+                        DifficultiesChoice={this.difficultiesChoice}/>}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
-        {this.state.isButtonDisabled && 
-        <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
-        {!this.state.isQuestionDisplayed && 
+        {this.state.isButtonDisabled &&
+          <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
+        {!this.state.isQuestionDisplayed &&
           this.state.currentNewsArticle.length > 0 &&
+          this.state.isArticleDisplayed &&
            <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]} 
                              addCurrentArticle={this.memorizeArticle} 
                              nextQuestion={this.nextQuestion}/>}
-        <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} 
+        {this.state.isArticlesRecapDisplayed && 
+          <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} 
                        correctAnswersCounter={this.state.correctAnswersCounter}
-                       questions={this.state.questions} />
+                       questions={this.state.questions}
+                       tryButton={this.TryAgain}/>}
       </div>
-    );
+    )
   };
 };
 
