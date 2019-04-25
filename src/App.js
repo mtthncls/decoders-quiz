@@ -267,7 +267,7 @@ class App extends Component {
       isQuestionDisplayed: true
     })
   };
-
+  // starting a new quiz after the recap page
   TryAgain = () => {
     this.setState({
       buttonClicked: "",

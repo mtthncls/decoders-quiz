@@ -13,7 +13,7 @@ const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions, tryB
                 : articlesToRecap.map((article, index) =>
                     <ArticleSaved key={index} articlesToRecap={article} />)}
 
-            {/* that button must send back to the 1st page of the app */}
+            {/* that button sends back to the "choose category" page of the app */}
             <button onClick={tryButton}>Try again</button >
         </div>
     );
