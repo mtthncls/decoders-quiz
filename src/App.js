@@ -226,7 +226,7 @@ class App extends Component {
     event.preventDefault();
   };
 
-  usernameChange(event) {
+  usernameChange = (event) => {
     this.setState({nameRegistered: event.target.value});
   };
 
