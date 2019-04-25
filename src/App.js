@@ -38,13 +38,7 @@ class App extends Component {
       preferredNewsArticles: [], //ArticleSetChoice component
       isArticlesRecapDisplayed : false,
       correctAnswersCounter: 0
-      
-      
-    };
-    this.triggerArticleChoiceDisplay = this.triggerArticleChoiceDisplay.bind(this);
-      this.memorizeArticle = this.memorizeArticle.bind(this);
-      this.usernameChange = this.usernameChange.bind(this);
-      this.chooseCategory = this.chooseCategory.bind(this);
+      };
     };
 
 
