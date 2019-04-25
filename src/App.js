@@ -284,33 +284,36 @@ this.setState({
   }
 
   // starting a new quiz after the recap page
-  TryAgain = () => {
-    this.setState({
-      buttonClicked: "",
-      categories: ["Animals", "Sport", "Books", "Films", "Music", "Video Games", "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
-      correctAnswersCounter: 0,
-      currentArticleID: 0,
-      currentNewsArticle: {},
-      currentQuestionID: 0,
-      isAnswerCorrect: false,
-      isArticleDisplayed: false,
-      isArticlesRecapDisplayed: false,
-      isButtonDisabled: false,
-      isCustomizePageDisplayed: false,
-      isHomePageDisplayed: false,
-      isNewsDisplayed: false,
-      isQuestionAnswered: false,
-      isQuestionDisplayed: false,
-      isQuestionLoading: true,
-      isQuizzLaunched: false,
-      isThemePageDisplayed: true,
-      nameRegistered: this.state.nameRegistered,
-      numberOfQuestions: 10,
-      preferredNewsArticles: [],
-      questions: [],
-      questionsCategory: 21
-    })
-  };
+ TryAgain = () => {
+  this.setState({
+    buttonClicked: "",
+    categories: this.state.categories,
+    choosenNumberOfQuestions: 0,
+    chosenDifficulty: "",
+    correctAnswersCounter: 0,
+    currentArticleID: 0,
+    currentNewsArticle: {},
+    currentQuestionID: 0,
+    difficulties: this.state.difficulties,
+    isAnswerCorrect: false,
+    isArticleDisplayed: false,
+    isArticlesRecapDisplayed: false,
+    isButtonDisabled: false,
+    isCustomizePageDisplayed: false,
+    isHomePageDisplayed: false,
+    isNewsDisplayed: false,
+    isQuestionAnswered: false,
+    isQuestionDisplayed: false,
+    isQuestionLoading: true,
+    isQuizzLaunched: false,
+    isThemePageDisplayed: true,
+    nameRegistered: this.state.nameRegistered,
+    numberOfQuestions: ["5", "10", "15"],
+    preferredNewsArticles: [],
+    questions: [],
+    questionsCategory: 21
+  })
+};
   render() {
     return (
       <div className="App">
