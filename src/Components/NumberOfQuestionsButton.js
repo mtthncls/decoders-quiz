@@ -1,10 +1,10 @@
 import React from 'react';
 import { Col, Button } from 'reactstrap';
 
-const NumberOfQuestionsButton = ({numberOfQuestion, NumberOfQuestionsChoice}) => {
+const NumberOfQuestionsButton = ({numberOfQuestion, numberOfQuestionsChoice}) => {
     return ( 
         <Col>
-            <Button onClick={() => NumberOfQuestionsChoice(numberOfQuestion)}>{numberOfQuestion}</Button>
+            <Button onClick={() => numberOfQuestionsChoice(numberOfQuestion)}>{numberOfQuestion}</Button>
         </Col>
      );
 }

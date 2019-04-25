@@ -27,7 +27,7 @@ class App extends Component {
       categories : ["Animals", "Sport", "Books", "Films", "Music", "Video Games", 
                     "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
       numberOfQuestions: ["5", "10", "15"],
-      chooseNumberOfQuestions: 0,
+      choosenNumberOfQuestions: 0,
       currentArticleID: 0,
       questionsCategory: 21,
       isQuizzLaunched: false, //launch quizz when Play button is clicked and state switched to true
@@ -231,12 +231,12 @@ class App extends Component {
                     isCustomizePageDisplayed : true });
   };
 
-  QuizzCustomize = () => {
+  quizzcustomize = () => {
     this.setState({isCustomizePageDisplayed: false, 
                    isQuestionDisplayed: true});
 
   // method for API call
-  fetch(`https://opentdb.com/api.php?amount=${this.state.chooseNumberOfQuestions}&category=
+  fetch(`https://opentdb.com/api.php?amount=${this.state.choosenNumberOfQuestions}&category=
          ${this.state.questionsCategory}&difficulty=medium&type=multiple`)
     .then(response => response.json())
     .then(data => {
@@ -262,8 +262,8 @@ this.setState({
 });
 });
   }
-  NumberOfQuestionsChoice = (numberOfQuestions) => {
-    this.setState({chooseNumberOfQuestions: numberOfQuestions})
+  numberOfQuestionsChoice = (numberOfQuestions) => {
+    this.setState({choosenNumberOfQuestions: numberOfQuestions})
   }
 
 
@@ -279,9 +279,9 @@ this.setState({
                     pickUpCategory={this.pickUpCategory} 
                     categories={this.state.categories}/>}
         {this.state.isCustomizePageDisplayed && 
-        <CustomizeQuizz QuizzCustomize={this.QuizzCustomize}
+        <CustomizeQuizz quizzcustomize={this.quizzcustomize}
                         numberOfQuestions={this.state.numberOfQuestions}
-                        NumberOfQuestionsChoice={this.NumberOfQuestionsChoice}/>}
+                        numberOfQuestionsChoice={this.numberOfQuestionsChoice}/>}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
         {this.state.isButtonDisabled && 

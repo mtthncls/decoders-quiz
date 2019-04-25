@@ -3,7 +3,7 @@ import { Button, Container, Row } from 'reactstrap';
 import "./CustomizeQuizz.css";
 import NumberOfQuestionsButton from './NumberOfQuestionsButton'
 
-const CustomizeQuizz = ({QuizzCustomize, numberOfQuestions, NumberOfQuestionsChoice}) => {
+const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsChoice}) => {
     return(
         <Container>
             <header>
@@ -12,9 +12,9 @@ const CustomizeQuizz = ({QuizzCustomize, numberOfQuestions, NumberOfQuestionsCho
             <Row>
                 {numberOfQuestions.map((numberOfQuestion, index) => <NumberOfQuestionsButton numberOfQuestion={numberOfQuestion}
                                                                                               key={index}
-                                                                                              NumberOfQuestionsChoice={NumberOfQuestionsChoice} />)}
+                                                                                              numberOfQuestionsChoice={numberOfQuestionsChoice} />)}
             </Row>
-            <Button onClick={QuizzCustomize}>Next</Button>  
+            <Button onClick={quizzcustomize}>Next</Button>  
         </Container>
     )
 }
