@@ -7,6 +7,7 @@ import './App.css';
 import ArticlesRecap from './Components/ArticlesRecap';
 import CustomizeQuizz from './Components/CustomizeQuizz';
 import Categories from './Categories';
+import AlertArticleSaved from './AlertArticleSaved';
 
 
 class App extends Component {
@@ -37,7 +38,8 @@ class App extends Component {
       currentNewsArticle: {}, //ArticleSetChoice component
       preferredNewsArticles: [], //ArticleSetChoice component
       isArticlesRecapDisplayed : false,
-      correctAnswersCounter: 0
+      correctAnswersCounter: 0,
+      isAlertDisplayed : false
       };
     };
 
@@ -159,7 +161,12 @@ class App extends Component {
       currentArticleID: this.state.currentArticleID + 1, 
       isArticleDisplayed:false,
     });
-  };
+      this.setState({isAlertDisplayed : true},()=>{
+      window.setTimeout(()=>{
+        this.setState({isAlertDisplayed : false})
+      },2000)
+    })
+  }
   /*go to the next question when click on No button*/
   nextQuestion = () => {
     this.setState({
@@ -275,6 +282,7 @@ class App extends Component {
                     categories={this.state.categories}/>}
         {this.state.isCustomizePageDisplayed && 
         <CustomizeQuizz QuizzCustomize={this.QuizzCustomize}/>}
+        {this.state.isAlertDisplayed && <AlertArticleSaved/>}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
         {this.state.isButtonDisabled && 
