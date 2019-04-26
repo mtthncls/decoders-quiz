@@ -229,6 +229,7 @@ class App extends Component {
 
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
   chooseUsername = (event) => {
+    if (this.state.nameRegistered !== "")
     this.setState({
       isHomePageDisplayed: false,
       isThemePageDisplayed: true
