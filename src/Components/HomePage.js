@@ -2,13 +2,13 @@ import React from 'react';
 import { Button, Container, Col, Row } from 'reactstrap';
 
 
-const HomePage = ({ chooseUsername, usernameChange, nameRegistered }) => {
+const HomePage = ({ chooseUsername, chooseUsernamePressEnter, usernameChange, nameRegistered }) => {
     return (
         <Container className="home-page">
             <header className="home-page-header">
                 <div>DECODER'S QUIZ</div>
             </header>
-            <form>
+            <form onSubmit={chooseUsernamePressEnter}>
                 <div><label htmlFor="Username">Please enter a username...</label></div>
                 <div> <input placeholder="" name="Username" id="Username"
                     onChange={usernameChange} value={nameRegistered} required /></div>

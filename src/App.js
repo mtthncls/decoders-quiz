@@ -31,7 +31,7 @@ class App extends Component {
       difficulties: ["easy", "medium", "hard"],
       chosenDifficulty: "",
       currentArticleID: 0,
-      questionsCategory: 21,
+      questionsCategory: 0,
       isQuizzLaunched: false, //launch quizz when Play button is clicked and state switched to true
       isNewsDisplayed: false,
       isAnswerCorrect: false, //Question component : is the answer true or false ?
@@ -228,6 +228,14 @@ class App extends Component {
   };
 
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
+  chooseUsernamePressEnter = (e) => {
+    e.preventDefault()
+    this.setState({
+      isHomePageDisplayed: false,
+      isThemePageDisplayed: true
+    });
+  }
+
   chooseUsername = (event) => {
     this.setState({
       isHomePageDisplayed: false,
@@ -241,18 +249,30 @@ class App extends Component {
   };
 
   chooseCategory = () => {
-    this.setState({
-      isThemePageDisplayed: false,
-      isCustomizePageDisplayed: true
-    });
+    this.state.questionsCategory === 0 ?
+      this.setState({
+        isThemePageDisplayed: true,
+        isCustomizePageDisplayed: false
+      })
+      : this.setState({
+        isThemePageDisplayed: false,
+        isCustomizePageDisplayed: true
+      });
   };
 
   quizzcustomize = () => {
-    this.setState({
-      isCustomizePageDisplayed: false,
-      isQuizzLaunched: true,
-      isQuestionDisplayed: true
-    });
+    (this.state.choosenNumberOfQuestions === "" || this.state.chosenDifficulty.length === 0)
+      ?
+      this.setState({
+        isCustomizePageDisplayed: true,
+        isQuizzLaunched: false,
+        isQuestionDisplayed: false
+      })
+      : this.setState({
+        isCustomizePageDisplayed: false,
+        isQuizzLaunched: true,
+        isQuestionDisplayed: true
+      });
 
     // method for API call
     fetch(`https://opentdb.com/api.php?amount=${this.state.choosenNumberOfQuestions}&category=
@@ -324,6 +344,7 @@ class App extends Component {
       <div className="App">
         {this.state.isHomePageDisplayed &&
           <HomePage chooseUsername={this.chooseUsername}
+            chooseUsernamePressEnter={this.chooseUsernamePressEnter}
             usernameChange={this.usernameChange}
             nameRegistered={this.state.nameRegistered} />}
         {this.state.isThemePageDisplayed &&
