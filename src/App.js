@@ -24,13 +24,14 @@ class App extends Component {
       isQuestionAnswered: false, //Question component : has one button been clicked or not ?
       buttonClicked: "",   //Question component : which button has been clicked ?
       isButtonDisabled: false, //Question component : button clickable or not
-      categories: ["Animals", "Sport", "Books", "Films", "Music", "Video Games",
-        "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
+      categories : ["Animals", "Sport", "Books", "Films", "Music", "Video Games", 
+                    "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
+      numberOfQuestions: ["5", "10", "15"],
+      choosenNumberOfQuestions: 0,
       difficulties: ["easy", "medium", "hard"],
       chosenDifficulty: "",
       currentArticleID: 0,
       questionsCategory: 21,
-      numberOfQuestions: 10,
       isQuizzLaunched: false, //launch quizz when Play button is clicked and state switched to true
       isNewsDisplayed: false,
       isAnswerCorrect: false, //Question component : is the answer true or false ?
@@ -39,8 +40,10 @@ class App extends Component {
       preferredNewsArticles: [], //ArticleSetChoice component
       isArticlesRecapDisplayed: false,
       correctAnswersCounter: 0
+      
+      };
     };
-  };
+  
 
 
   //to randomize the order of apperance of the answers on screen
@@ -163,7 +166,7 @@ class App extends Component {
       isArticleDisplayed: false,
     });
     /*condition to display recap page*/
-    if (this.state.currentQuestionID >= 9){
+    if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1){
       this.setState({ isQuestionDisplayed : false, isArticlesRecapDisplayed: true, isArticleDisplayed : false });
     }
   };
@@ -177,7 +180,7 @@ class App extends Component {
       isArticleDisplayed: false,
     });
   /*condition to display recap page*/  
-    if (this.state.currentQuestionID >= 9){
+    if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1){
       this.setState({ isQuestionDisplayed : false, isArticlesRecapDisplayed: true, isArticleDisplayed : false });
     }
   };
@@ -238,92 +241,96 @@ class App extends Component {
   };
 
   chooseCategory = () => {
-    this.setState({
-      isThemePageDisplayed: false,
-      isCustomizePageDisplayed: true
-    });
-  };
+      this.setState({ isThemePageDisplayed : false, 
+                      isCustomizePageDisplayed : true });
+    };
 
-  quizzCustomize = () => {
-    this.setState({
-      isCustomizePageDisplayed: false,
-      isQuestionDisplayed: true
-    });
-    // method for API call
-    fetch(`https://opentdb.com/api.php?amount=${this.state.numberOfQuestions}&category=
-           ${this.state.questionsCategory}&difficulty=${this.state.chosenDifficulty}&type=multiple`)
-      .then(response => response.json())
-      .then(data => {
-        const apiQuestions = data.results
-        const questions = []
+  quizzcustomize = () => {
+    this.setState({isCustomizePageDisplayed: false, 
+                   isQuestionDisplayed: true});
+
+  // method for API call
+  fetch(`https://opentdb.com/api.php?amount=${this.state.choosenNumberOfQuestions}&category=
+         ${this.state.questionsCategory}&difficulty=${this.state.chosenDifficulty}&type=multiple`)
+    .then(response => response.json())
+    .then(data => {
+      const apiQuestions = data.results
+      const questions = []
         for (let i = 0; i < apiQuestions.length; i++) {
           const question = {
-            category: apiQuestions[i].category,
-            question: apiQuestions[i].question,
-            answers: this.randomizeAnswersDisplay([
-              { text: apiQuestions[i].correct_answer, correct: true },
-              { text: apiQuestions[i].incorrect_answers[0], correct: false },
-              { text: apiQuestions[i].incorrect_answers[1], correct: false },
-              { text: apiQuestions[i].incorrect_answers[2], correct: false }
-            ])
-          };
-          questions.push(question)
-        };
+                category: apiQuestions[i].category,
+                question: apiQuestions[i].question,
+                answers: this.randomizeAnswersDisplay([
+     { text: apiQuestions[i].correct_answer, correct: true },
+     { text: apiQuestions[i].incorrect_answers[0], correct: false },
+     { text: apiQuestions[i].incorrect_answers[1], correct: false },
+     { text: apiQuestions[i].incorrect_answers[2], correct: false }
+   ])
+ };
+ questions.push(question)
+};
 
-        this.setState({
-          questions: questions,
-          isQuestionLoading: false
-        });
-      });
-  };
-
+this.setState({
+ questions: questions,
+ isQuestionLoading: false
+});
+});
+  }
+  numberOfQuestionsChoice = (numberOfQuestions) => {
+    this.setState({choosenNumberOfQuestions: numberOfQuestions})
+  }
   difficultiesChoice = (difficulty) => {
     this.setState({ chosenDifficulty: difficulty });
   }
 
   // starting a new quiz after the recap page
-  TryAgain = () => {
-    this.setState({
-      buttonClicked: "",
-      categories: ["Animals", "Sport", "Books", "Films", "Music", "Video Games", "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
-      correctAnswersCounter: 0,
-      currentArticleID: 0,
-      currentNewsArticle: {},
-      currentQuestionID: 0,
-      isAnswerCorrect: false,
-      isArticleDisplayed: false,
-      isArticlesRecapDisplayed: false,
-      isButtonDisabled: false,
-      isCustomizePageDisplayed: false,
-      isHomePageDisplayed: false,
-      isNewsDisplayed: false,
-      isQuestionAnswered: false,
-      isQuestionDisplayed: false,
-      isQuestionLoading: true,
-      isQuizzLaunched: false,
-      isThemePageDisplayed: true,
-      nameRegistered: this.state.nameRegistered,
-      numberOfQuestions: 10,
-      preferredNewsArticles: [],
-      questions: [],
-      questionsCategory: 21
-    })
-  };
+ TryAgain = () => {
+  this.setState({
+    buttonClicked: "",
+    categories: this.state.categories,
+    choosenNumberOfQuestions: 0,
+    chosenDifficulty: "",
+    correctAnswersCounter: 0,
+    currentArticleID: 0,
+    currentNewsArticle: {},
+    currentQuestionID: 0,
+    difficulties: this.state.difficulties,
+    isAnswerCorrect: false,
+    isArticleDisplayed: false,
+    isArticlesRecapDisplayed: false,
+    isButtonDisabled: false,
+    isCustomizePageDisplayed: false,
+    isHomePageDisplayed: false,
+    isNewsDisplayed: false,
+    isQuestionAnswered: false,
+    isQuestionDisplayed: false,
+    isQuestionLoading: true,
+    isQuizzLaunched: false,
+    isThemePageDisplayed: true,
+    nameRegistered: this.state.nameRegistered,
+    numberOfQuestions: ["5", "10", "15"],
+    preferredNewsArticles: [],
+    questions: [],
+    questionsCategory: 21
+  })
+};
   render() {
     return (
       <div className="App">
-        {this.state.isHomePageDisplayed &&
-          <HomePage chooseUsername={this.chooseUsername}
-            usernameChange={this.usernameChange}
-            nameRegistered={this.state.nameRegistered} />}
-        {this.state.isThemePageDisplayed &&
-          <Categories chooseCategory={this.chooseCategory}
-            pickUpCategory={this.pickUpCategory}
-            categories={this.state.categories} />}
-        {this.state.isCustomizePageDisplayed &&
-          <CustomizeQuizz difficulties={this.state.difficulties}
-            QuizzCustomize={this.quizzCustomize}
-            DifficultiesChoice={this.difficultiesChoice} />}
+        {this.state.isHomePageDisplayed && 
+        <HomePage chooseUsername={this.chooseUsername} 
+                  usernameChange={this.usernameChange} 
+                  nameRegistered={this.state.nameRegistered} />}
+        {this.state.isThemePageDisplayed && 
+        <Categories chooseCategory={this.chooseCategory} 
+                    pickUpCategory={this.pickUpCategory} 
+                    categories={this.state.categories}/>}
+        {this.state.isCustomizePageDisplayed && 
+        <CustomizeQuizz quizzcustomize={this.quizzcustomize}
+                        numberOfQuestions={this.state.numberOfQuestions}
+                        numberOfQuestionsChoice={this.numberOfQuestionsChoice}
+                        difficulties={this.state.difficulties}
+                        DifficultiesChoice={this.difficultiesChoice}/>}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
         {this.state.isButtonDisabled &&
