@@ -14,7 +14,7 @@ class App extends Component {
     super()
     this.state = {
       isHomePageDisplayed: true, //display the home page 
-      nameRegistered: "", //stock username after he wrote it in the input area and he clicked on Play button
+      nameRegistered: "", //stock username after user wrote it in the input area then clicked on Play button
       isThemePageDisplayed: false, //display the choose theme page 
       isCustomizePageDisplayed: false, //display the custom page
       isQuestionDisplayed: false,
@@ -329,7 +329,8 @@ class App extends Component {
         {this.state.isThemePageDisplayed &&
           <Categories chooseCategory={this.chooseCategory}
             pickUpCategory={this.pickUpCategory}
-            categories={this.state.categories} />}
+            categories={this.state.categories}
+            nameRegistered={this.state.nameRegistered} />}
         {this.state.isCustomizePageDisplayed &&
           <CustomizeQuizz quizzcustomize={this.quizzcustomize}
             numberOfQuestions={this.state.numberOfQuestions}
@@ -350,7 +351,9 @@ class App extends Component {
           <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles}
             correctAnswersCounter={this.state.correctAnswersCounter}
             questions={this.state.questions}
-            tryButton={this.TryAgain} />}
+            tryButton={this.TryAgain}
+            nameRegistered={this.state.nameRegistered}
+             />}
       </div>
     )
   };
