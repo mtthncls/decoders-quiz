@@ -98,6 +98,14 @@ class App extends Component {
     };
   };
 
+  //change color of clicked button according to the choice of category
+  categoryChoiced = () => {
+    if (this.state.questionsCategory !== 21){
+      return true;
+    }
+    console.log("coucou")
+  };
+
   //change color of clicked button according to correctness of the answer and the button clicked
   defineButtonColor = (buttonIndex) => {
     if (this.state.questions !== []) {
@@ -321,7 +329,8 @@ this.setState({
         {this.state.isThemePageDisplayed && 
         <Categories chooseCategory={this.chooseCategory} 
                     pickUpCategory={this.pickUpCategory} 
-                    categories={this.state.categories}/>}
+                    categories={this.state.categories}
+                    categoryChoiced={this.categoryChoiced}/>}                    
         {this.state.isCustomizePageDisplayed && 
         <CustomizeQuizz quizzcustomize={this.quizzcustomize}
                         numberOfQuestions={this.state.numberOfQuestions}

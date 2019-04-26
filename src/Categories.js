@@ -3,16 +3,16 @@ import { Button, Container, Row } from 'reactstrap';
 import CategoryChoice from './Components/CategoryChoice';
 import './App.css';
 
-const Categories = ({categories, pickUpCategory, chooseCategory}) => {
+const Categories = ({categories, pickUpCategory,categoryChoiced, chooseCategory}) => {
     return ( 
-        <Container className="test">
+        <Container className="card-support">
             <header className="title">
-                <h1>Choose a theme</h1>
+                <h1>Step 1/2 : Please choose category...</h1>
             </header>
             <Row>
                 {categories.map((category, index) => 
                 <CategoryChoice pickUpCategory={() => pickUpCategory(category)} 
-                                category={category} key={index}/>)}
+                                category={category} key={index} categoryChoiced={categoryChoiced}/>)}
             </Row>
             <div className="zoom-button transition">
             <Button onClick={chooseCategory} >Next</Button>

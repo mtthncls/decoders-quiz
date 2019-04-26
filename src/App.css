@@ -53,6 +53,7 @@ width: 44vh;
 /*Animations Button*/
 .zoom-button .btn{
   transition: transform .2s;
+  box-shadow: 0
 }
 .zoom-button:hover .btn{
   transform: scale(1.1); 
@@ -60,16 +61,25 @@ width: 44vh;
 .transition .btn{
   background-color: #011627;
   color: #FF9F1C;
-  font-size : 2vh;
+  font-size : 3vh;
   font-weight : bold;
   text-transform: uppercase;
+  width: 40vh;
+  margin-top: 2rem;
+  height: 5rem;
+  box-shadow: 5px 5px 2.5px #999;
+}
+.transition:hover .btn{
+  background-color: #FF9F1C;
+  color: #011627;
+  border: 1px solid #011627;
 }
 /*Categories Choice*/
 .category .btn {
   background-color: #FDFFFC;
   border: 2px solid #011627;
   color : #011627;
-  box-shadow: 0 9px #999;
+  box-shadow: 0 8px 7px #999;
   font-weight : bold;
   text-transform: uppercase;
 }
@@ -79,20 +89,24 @@ width: 44vh;
 }
 .category:active .btn{
   background-color: #FF9F1C; 
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
+  box-shadow: 0 4px #666;
+  transform: translateY(8px);
+} 
 .title{
   color: #011627;
   font-weight : bold;
   text-transform: uppercase;
   border-radius: 5px;
-  height: 8vh;
+  height: 6vh;
   text-align: left;
-  padding-top: 1.1rem;
 }
-.test{
+.card-support{
+  margin-top: 5rem;
+  padding-left: 3.5rem !important;
+  padding-right: 3.5rem !important;
+  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
   background-color: #FDFFFC;
   border-radius: 10px;
-  box-shadow: 5px 2.5px 2.5px #011627;
+  box-shadow: 1px 2.5px 5.5px 2.5px #011627;
 }
