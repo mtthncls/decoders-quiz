@@ -17,7 +17,7 @@ const HomePage = ({chooseUsername, usernameChange, nameRegistered}) => {
              <br></br>
             <Row>
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
-                    <Button type="submit" name="submit" color="success" onClick={chooseUsername}>PLAY</Button>
+                    <Button color="success" onClick={chooseUsername}>PLAY</Button>
                 </Col>
             </Row>
         </Container>             
