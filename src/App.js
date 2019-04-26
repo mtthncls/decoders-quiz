@@ -65,7 +65,7 @@ class App extends Component {
   displayLoading = () => {
     if (this.state.isQuestionLoading) {
       return (
-        <p className="loadText">loading...</p>
+        <p className="loadText"></p>
       );
     };
   };

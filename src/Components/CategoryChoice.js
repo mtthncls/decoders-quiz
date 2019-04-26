@@ -5,7 +5,7 @@ import '../App.css';
 const CategoryChoice = ({category, pickUpCategory}) => {
     return(
         <Col  md={6} lg={2}>
-            <div className="zoom-button">
+            <div className="zoom-button category">
                 <Button onClick={pickUpCategory}>{category}</Button>
             </div>
         </Col>

@@ -5,8 +5,8 @@ import './App.css';
 
 const Categories = ({categories, pickUpCategory, chooseCategory}) => {
     return ( 
-        <Container>
-            <header>
+        <Container className="test">
+            <header className="title">
                 <h1>Choose a theme</h1>
             </header>
             <Row>
@@ -14,7 +14,7 @@ const Categories = ({categories, pickUpCategory, chooseCategory}) => {
                 <CategoryChoice pickUpCategory={() => pickUpCategory(category)} 
                                 category={category} key={index}/>)}
             </Row>
-            <div className="zoom-button">
+            <div className="zoom-button transition">
             <Button onClick={chooseCategory} >Next</Button>
             </div>
         </Container>
