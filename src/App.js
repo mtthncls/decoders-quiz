@@ -63,7 +63,7 @@ class App extends Component {
 
   // method for display the loading message
   displayLoading = () => {
-    if (this.state.isQuestionLoading) {
+    if (this.state.isQuestionLoading && this.state.isQuizzLaunched) {
       return (
         <p className="loadText">loading...</p>
       );
@@ -250,6 +250,7 @@ class App extends Component {
   quizzcustomize = () => {
     this.setState({
       isCustomizePageDisplayed: false,
+      isQuizzLaunched: true,
       isQuestionDisplayed: true
     });
 
