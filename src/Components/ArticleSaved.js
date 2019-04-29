@@ -5,7 +5,7 @@ const ArticleSaved = ({articlesToRecap}) => {
     return ( 
         <article>
             <Container>
-                <Card className="mt-3" body inverse color="info">
+                <Card className="mt-3 card-support" body inverse color="secondary">
                     <Row>
                         <Col sm="12" lg="6">
                             <CardText>
@@ -15,7 +15,7 @@ const ArticleSaved = ({articlesToRecap}) => {
                         <Col sm="12" lg="6">
                             <h3>
                                 <CardText>
-                                    <a href={articlesToRecap.url}>{articlesToRecap.title}</a>
+                                    <a style={{color: "white"}} href={articlesToRecap.url}>{articlesToRecap.title}</a>
                                 </CardText>
                             </h3>
                         </Col>

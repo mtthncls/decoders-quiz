@@ -1,11 +1,16 @@
 import React from 'react';
 import ArticleSaved from './ArticleSaved';
+import { Button, Container } from 'reactstrap';
 import './ArticlesRecap.css'
+import '../App.css'
+
 const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions, tryButton }) => {
     return (
         <div>
-            <h1>Lorem ipsum Username {/* Replace Username by the user input at the beginning*/}</h1>
-            <p className="answersCounter"> You have <span className="correctAnswers">{correctAnswersCounter}</span> correct answers on <span className="correctAnswers">{questions.length}</span> questions</p>
+            <Container className="card-support mt-2">
+                <h1>Lorem ipsum Username {/* Replace Username by the user input at the beginning*/}</h1>
+                <p className="answersCounter"> You have <span className="correctAnswers">{correctAnswersCounter}</span> correct answers on <span className="correctAnswers">{questions.length}</span> questions</p>
+            </Container>
 
             {/* offer something to show if user don't keep any articles*/}
             {articlesToRecap.length === 0 
@@ -14,7 +19,9 @@ const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions, tryB
                 <ArticleSaved key={index} articlesToRecap={article} />)}
 
             {/* that button sends back to the "choose category" page of the app */}
-            <button onClick={tryButton}>Try again</button >
+            <div className="zoom-button transition">
+                <Button  onClick={tryButton}><span className="Tryagaintext">Try again</span></Button >
+            </div>
         </div>
     );
 }
