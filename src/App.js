@@ -7,6 +7,7 @@ import './App.css';
 import ArticlesRecap from './Components/ArticlesRecap';
 import CustomizeQuizz from './Components/CustomizeQuizz';
 import Categories from './Categories';
+import AlertArticleSaved from './AlertArticleSaved';
 
 
 class App extends Component {
@@ -38,11 +39,12 @@ class App extends Component {
       isArticleDisplayed: false,
       currentNewsArticle: {}, //ArticleSetChoice component
       preferredNewsArticles: [], //ArticleSetChoice component
-      isArticlesRecapDisplayed: false,
-      correctAnswersCounter: 0
-
+      isArticlesRecapDisplayed : false,
+      correctAnswersCounter: 0,
+      isAlertDisplayed : false
+      };
     };
-  };
+  
 
 
 
@@ -165,6 +167,12 @@ class App extends Component {
       currentArticleID: this.state.currentArticleID + 1,
       isArticleDisplayed: false,
     });
+      this.setState({isAlertDisplayed : true},()=>{
+      window.setTimeout(()=>{
+        this.setState({isAlertDisplayed : false})
+      },3000)
+    })
+  
     /*condition to display recap page*/
     if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1) {
       this.setState({ isQuestionDisplayed: false, isArticlesRecapDisplayed: true, isArticleDisplayed: false });
@@ -336,6 +344,7 @@ class App extends Component {
             numberOfQuestionsChoice={this.numberOfQuestionsChoice}
             difficulties={this.state.difficulties}
             DifficultiesChoice={this.difficultiesChoice} />}
+            {this.state.isAlertDisplayed && <AlertArticleSaved/>}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
         {this.state.isButtonDisabled &&
