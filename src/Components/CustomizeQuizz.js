@@ -8,9 +8,10 @@ import '../App.css';
 const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsChoice, difficulties, DifficultiesChoice}) => {
     return(
         <Container>
-            <header>
-                <h1 className="titlePage">Customize your quizz</h1>
+            <header className="card-support">
+                <h1 className="titlePage">Step 2/2: Number of questions & Difficulty</h1>
             </header>
+            <div className="card-support">
             <Row>
                 {numberOfQuestions.map((numberOfQuestion, index) => <NumberOfQuestionsButton numberOfQuestion={numberOfQuestion}
                                                                                               key={index}
@@ -23,6 +24,7 @@ const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsCho
             </Row>
             <div className="zoom-button">
             <Button onClick={quizzcustomize}>Next</Button>
+            </div>
             </div>  
         </Container>
     )

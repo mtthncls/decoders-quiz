@@ -6,7 +6,7 @@ const CategoryChoice = ({category, pickUpCategory, categoryChoice }) => {
     return(
         <Col  md={6} lg={2}>
             <div className="zoom-button category">
-                <Button className={categoryChoice()} onClick={pickUpCategory}>{category}</Button>
+                <Button onClick={pickUpCategory}>{category}</Button>
             </div>
         </Col>
     )
