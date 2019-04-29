@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, Row } from 'reactstrap';
+import { Button, Container, Row, Col } from 'reactstrap';
 import "./CustomizeQuizz.css";
 import NumberOfQuestionsButton from './NumberOfQuestionsButton'
 import DifficultyButton from './DifficultyButtons';
@@ -22,9 +22,13 @@ const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsCho
                                                                            key={index}
                                                                            DifficultiesChoice={DifficultiesChoice}/>)}
             </Row>
-            <div className="zoom-button transition">
-            <Button onClick={quizzcustomize}>Next</Button>
-            </div>
+            <Row>
+                <Col sm="12" md={{ size: 6, offset: 3 }}>
+                <div className="zoom-button transition">
+                    <Button onClick={quizzcustomize}>Next</Button>
+                </div>
+                </Col>
+            </Row>
             </div>  
         </Container>
     )

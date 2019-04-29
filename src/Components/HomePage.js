@@ -18,9 +18,11 @@ const HomePage = ({chooseUsername, usernameChange, nameRegistered}) => {
                 </label>
             </form>
              <br></br>
-            <Row className="zoom-button transition">
+            <Row>
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
+                <div className="zoom-button transition">
                     <Button type="submit" name="submit" onClick={chooseUsername}>PLAY</Button>
+                </div>
                 </Col>
             </Row>
             </div>

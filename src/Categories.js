@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, Row } from 'reactstrap';
+import { Button, Container, Row, Col } from 'reactstrap';
 import CategoryChoice from './Components/CategoryChoice';
 import './App.css';
 
@@ -16,9 +16,13 @@ const Categories = ({categories, pickUpCategory,categoryChoice, chooseCategory})
                 <CategoryChoice pickUpCategory={() => pickUpCategory(category)} 
                                 category={category} key={index} categoryChoice={categoryChoice}/>)}
             </Row>
-            <div className="zoom-button transition">
-            <Button onClick={chooseCategory}>Next</Button>
-            </div>
+            <Row>
+                <Col sm="12" md={{ size: 6, offset: 3 }}>
+                <div className="zoom-button transition">
+                    <Button onClick={chooseCategory}>Next</Button>
+                </div>
+                </Col>
+            </Row>
             </div>
         </Container>
     );

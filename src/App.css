@@ -52,8 +52,7 @@ width: 44vh;
 
 /*Animations Button*/
 .zoom-button .btn{
-  transition: transform .2s;
-  box-shadow: 0
+  transition: transform .2s; 
 }
 .zoom-button:hover .btn{
   transform: scale(1.1); 
@@ -64,10 +63,11 @@ width: 44vh;
   font-size : 3vh;
   font-weight : bold;
   text-transform: uppercase;
-  width: 40vh;
+  max-width: 40vh;
   margin-top: 2rem;
   height: 5rem;
   box-shadow: 5px 5px 2.5px #999;
+  min-height: 12vh !important;
 }
 .transition:hover .btn{
   background-color: #FF9F1C;
