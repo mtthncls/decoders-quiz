@@ -38,7 +38,8 @@ class App extends Component {
       currentNewsArticle: {}, //ArticleSetChoice component
       preferredNewsArticles: [], //ArticleSetChoice component
       isArticlesRecapDisplayed: false,
-      correctAnswersCounter: 0
+      correctAnswersCounter: 0,
+      percentageOfGoodAnswers : 0
     };
   };
 
@@ -165,6 +166,8 @@ class App extends Component {
     /*condition to display recap page*/
     if (this.state.currentQuestionID >= 9){
       this.setState({ isQuestionDisplayed : false, isArticlesRecapDisplayed: true, isArticleDisplayed : false });
+      this.setState({ percentageOfGoodAnswers: 
+                  ((this.state.correctAnswersCounter / this.state.numberOfQuestions) * 100) });
     }
   };
   /*go to the next question when click on No button*/
@@ -179,6 +182,9 @@ class App extends Component {
   /*condition to display recap page*/  
     if (this.state.currentQuestionID >= 9){
       this.setState({ isQuestionDisplayed : false, isArticlesRecapDisplayed: true, isArticleDisplayed : false });
+      this.setState({ percentageOfGoodAnswers: 
+                  ((this.state.correctAnswersCounter / this.state.numberOfQuestions) * 100) });
+
     }
   };
   
@@ -281,6 +287,22 @@ class App extends Component {
     this.setState({ chosenDifficulty: difficulty });
   }
 
+  customeMessage = () => {
+    if (this.state.percentageOfGoodAnswers < 30){
+      return(
+            <h3>Even Seb can do better than you !</h3>
+      )}
+    if (this.state.percentageOfGoodAnswers >= 30 && this.state.percentageOfGoodAnswers <= 70){
+        return(
+              <h3>Not so bad !</h3>
+        )}
+    if (this.state.percentageOfGoodAnswers > 70){
+      return(
+            <h3>You're amazing !</h3>
+      )}
+  }
+    
+
   // starting a new quiz after the recap page
   TryAgain = () => {
     this.setState({
@@ -306,7 +328,8 @@ class App extends Component {
       numberOfQuestions: 10,
       preferredNewsArticles: [],
       questions: [],
-      questionsCategory: 21
+      questionsCategory: 21,
+      percentageOfGoodAnswers : 0
     })
   };
   render() {
@@ -338,7 +361,8 @@ class App extends Component {
           <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} 
                        correctAnswersCounter={this.state.correctAnswersCounter}
                        questions={this.state.questions}
-                       tryButton={this.TryAgain}/>}
+                       tryButton={this.TryAgain}
+                       customeMessage={this.customeMessage}/>}
       </div>
     )
   };

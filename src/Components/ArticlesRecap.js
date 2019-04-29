@@ -3,13 +3,14 @@ import ArticleSaved from './ArticleSaved';
 import { Container } from 'reactstrap';
 import './ArticlesRecap.css'
 
-const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions, tryButton }) => {
+const ArticlesRecap = ({ articlesToRecap, questions, correctAnswersCounter, tryButton, customeMessage}) => {
     return (
         <div>
             <Container>
                 <h1>Lorem ipsum Username {/* Replace Username by the user input at the beginning*/}</h1>
-                <p className="answersCounter"> You have <span className="correctAnswers">{correctAnswersCounter}</span> correct answers on <span className="correctAnswers">{questions.length}</span> questions</p>
-
+                <p className="answersCounter"> You have <span className="correctAnswers">{correctAnswersCounter}</span> 
+                             correct answers on <span className="correctAnswers">{questions.length}</span> questions</p>
+                {customeMessage()}
                 {/* offer something to show if user don't keep any articles*/}
                 {articlesToRecap.length === 0 
                 ? <h1>No articles saved</h1>
