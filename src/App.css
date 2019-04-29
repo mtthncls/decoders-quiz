@@ -64,12 +64,10 @@ width: 44vh;
   font-size : 3vh;
   font-weight : bold;
   text-transform: uppercase;
-  width: 30vh;
+  width: 40vh;
   margin-top: 2rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 8px 7px #999;
-  padding: 0;
-  min-height: 12vh !important; 
+  height: 5rem;
+  box-shadow: 5px 5px 2.5px #999;
 }
 .transition:hover .btn{
   background-color: #FF9F1C;
@@ -89,9 +87,11 @@ width: 44vh;
   background-color: #FF9F1C;
   color:#011627;
 }
-.TOTO{
-  background-color: #FF9F1C !important;
-}
+.category:active .btn{
+  background-color: #FF9F1C; 
+  box-shadow: 0 4px #666;
+  transform: translateY(8px);
+} 
 .title{
   color: #011627;
   font-weight : bold;
@@ -99,10 +99,6 @@ width: 44vh;
   border-radius: 5px;
   height: 6vh;
   text-align: left;
-  margin-bottom: 1rem;
-}
-.title h1{
-  font-size: 2rem;
 }
 .card-support{
   margin-top: 5rem;
