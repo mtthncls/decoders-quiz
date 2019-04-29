@@ -1,3 +1,63 @@
+/* fonts*/
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+/* app general style*/
+.App {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  }
+/* Home page style*/
+.home-page-header{
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #011627;
+  border: solid 3px #FF9F1C;
+  border-radius: 0px;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #FF9F1C;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.home-page form{
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  margin-top: 5vh;
+}
+
+.home-page input{
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  border-left-color: red;
+  border-left-width: 5px;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.home-page Button{
+  max-width: 30vw;
+  background-color: #011627;
+  border: solid 3px #FF9F1C;
+  border-radius: 0px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #FF9F1C;
+}
+
+.home-page .suspense{
+  font-size: 2rem;
+}
+
+
+
+
 .appHeader {
   background-color: #492E8E;
   min-height: 30vh;
@@ -50,4 +110,8 @@ transition: all 0.2s ease-in;
 
 .imgSize{
 width: 44vh;
+}
+
+.spinner{
+  margin-top: 50vh;
 }

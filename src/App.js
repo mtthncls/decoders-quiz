@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Button, Spinner } from 'reactstrap';
 import Question from './Components/Question';
 import ArticleSetChoice from './Components/ArticleSetChoice';
 import HomePage from './Components/HomePage';
@@ -7,6 +7,7 @@ import './App.css';
 import ArticlesRecap from './Components/ArticlesRecap';
 import CustomizeQuizz from './Components/CustomizeQuizz';
 import Categories from './Categories';
+import { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from 'constants';
 
 
 class App extends Component {
@@ -24,14 +25,14 @@ class App extends Component {
       isQuestionAnswered: false, //Question component : has one button been clicked or not ?
       buttonClicked: "",   //Question component : which button has been clicked ?
       isButtonDisabled: false, //Question component : button clickable or not
-      categories: ["Animals", "Sport", "Books", "Films", "Music", "Video Games",
+      categories: ["Animals", "Sport", "Books", "Movies", "Music", "Video Games",
         "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
       numberOfQuestions: ["5", "10", "15"],
       choosenNumberOfQuestions: 0,
       difficulties: ["easy", "medium", "hard"],
       chosenDifficulty: "",
       currentArticleID: 0,
-      questionsCategory: 21,
+      questionsCategory: 0,
       isQuizzLaunched: false, //launch quizz when Play button is clicked and state switched to true
       isNewsDisplayed: false,
       isAnswerCorrect: false, //Question component : is the answer true or false ?
@@ -65,7 +66,9 @@ class App extends Component {
   displayLoading = () => {
     if (this.state.isQuestionLoading && this.state.isQuizzLaunched) {
       return (
-        <p className="loadText">loading...</p>
+        <div>
+          <Spinner className="spinner" style={{ width: '5rem', height: '5rem' }} />
+        </div>
       );
     };
   };
@@ -196,7 +199,7 @@ class App extends Component {
       case "Books":
         this.setState({ questionsCategory: 10 });
         break;
-      case "Films":
+      case "Movies":
         this.setState({ questionsCategory: 11 });
         break;
       case "Music":
@@ -228,12 +231,20 @@ class App extends Component {
   };
 
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
-  chooseUsername = (event) => {
-    if (this.state.nameRegistered !== "")
+  chooseUsernamePressEnter = (e) => {
+    e.preventDefault()
     this.setState({
       isHomePageDisplayed: false,
       isThemePageDisplayed: true
     });
+  }
+
+  chooseUsername = (event) => {
+    if (this.state.nameRegistered !== "")
+      this.setState({
+        isHomePageDisplayed: false,
+        isThemePageDisplayed: true
+      });
     event.preventDefault();
   };
 
@@ -242,18 +253,30 @@ class App extends Component {
   };
 
   chooseCategory = () => {
-    this.setState({
-      isThemePageDisplayed: false,
-      isCustomizePageDisplayed: true
-    });
+    this.state.questionsCategory === 0 ?
+      this.setState({
+        isThemePageDisplayed: true,
+        isCustomizePageDisplayed: false
+      })
+      : this.setState({
+        isThemePageDisplayed: false,
+        isCustomizePageDisplayed: true
+      });
   };
 
   quizzcustomize = () => {
-    this.setState({
-      isCustomizePageDisplayed: false,
-      isQuizzLaunched: true,
-      isQuestionDisplayed: true
-    });
+    (this.state.choosenNumberOfQuestions === "" || this.state.chosenDifficulty.length === 0)
+      ?
+      this.setState({
+        isCustomizePageDisplayed: true,
+        isQuizzLaunched: false,
+        isQuestionDisplayed: false
+      })
+      : this.setState({
+        isCustomizePageDisplayed: false,
+        isQuizzLaunched: true,
+        isQuestionDisplayed: true
+      });
 
     // method for API call
     fetch(`https://opentdb.com/api.php?amount=${this.state.choosenNumberOfQuestions}&category=
@@ -325,6 +348,7 @@ class App extends Component {
       <div className="App">
         {this.state.isHomePageDisplayed &&
           <HomePage chooseUsername={this.chooseUsername}
+            chooseUsernamePressEnter={this.chooseUsernamePressEnter}
             usernameChange={this.usernameChange}
             nameRegistered={this.state.nameRegistered} />}
         {this.state.isThemePageDisplayed &&
@@ -354,7 +378,7 @@ class App extends Component {
             questions={this.state.questions}
             tryButton={this.TryAgain}
             nameRegistered={this.state.nameRegistered}
-             />}
+          />}
       </div>
     )
   };
