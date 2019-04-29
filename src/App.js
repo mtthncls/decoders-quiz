@@ -41,7 +41,8 @@ class App extends Component {
       preferredNewsArticles: [], //ArticleSetChoice component
       isArticlesRecapDisplayed : false,
       correctAnswersCounter: 0,
-      isAlertDisplayed : false
+      isAlertDisplayed : false,
+      percentageOfGoodAnswers: 0
       };
     };
   
@@ -177,7 +178,9 @@ class App extends Component {
   
     /*condition to display recap page*/
     if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1) {
-      this.setState({ isQuestionDisplayed: false, isArticlesRecapDisplayed: true, isArticleDisplayed: false });
+      this.setState({ isQuestionDisplayed: false, isArticlesRecapDisplayed: true, isArticleDisplayed: false}); 
+      this.setState({percentageOfGoodAnswers: 
+                      ((this.state.correctAnswersCounter/parseInt(this.state.choosenNumberOfQuestions))*100)})
     }
   };
   /*go to the next question when click on No button*/
@@ -192,8 +195,11 @@ class App extends Component {
     /*condition to display recap page*/
     if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1) {
       this.setState({ isQuestionDisplayed: false, isArticlesRecapDisplayed: true, isArticleDisplayed: false });
+      this.setState({percentageOfGoodAnswers: 
+      ((this.state.correctAnswersCounter/parseInt(this.state.choosenNumberOfQuestions))*100)})
     }
   };
+
 
   pickUpCategory = (category) => {
     switch (category) {
@@ -319,6 +325,21 @@ class App extends Component {
     this.setState({ chosenDifficulty: difficulty });
   }
 
+  customMessage = () => {
+    if (this.state.percentageOfGoodAnswers < 30){
+      return(
+            <h3>I'm not proud of you {this.state.nameRegistered}, Even Seb can do it better!</h3>
+      )}
+    if (this.state.percentageOfGoodAnswers >= 30 && this.state.percentageOfGoodAnswers <= 70){
+        return(
+              <h3>Not so bad {this.state.nameRegistered}!</h3>
+        )}
+    if (this.state.percentageOfGoodAnswers > 70){
+      return(
+            <h3>Good job {this.state.nameRegistered}, you are amazing !</h3>
+      )}
+  }
+
   // starting a new quiz after the recap page
   TryAgain = () => {
     this.setState({
@@ -385,7 +406,7 @@ class App extends Component {
             correctAnswersCounter={this.state.correctAnswersCounter}
             questions={this.state.questions}
             tryButton={this.TryAgain}
-            nameRegistered={this.state.nameRegistered}
+            customMessage={this.customMessage}
           />}
       </div>
     )
