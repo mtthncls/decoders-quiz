@@ -121,9 +121,6 @@ width: 44vh;
   transform: translateY(8px);
 } 
 
-.TOTO{
-  background-color: #FF9F1C !important;
-}
 .title{
   color: #011627;
   font-weight : bold;
@@ -133,7 +130,7 @@ width: 44vh;
   text-align: left;
 }
 .card-support{
-  margin-top: 5rem;
+  margin-top: 2rem;
   padding-left: 3.5rem !important;
   padding-right: 3.5rem !important;
   padding-bottom: 1.5rem;
