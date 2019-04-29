@@ -9,7 +9,7 @@ const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsCho
     return(
         <Container>
             <header className="card-support">
-                <h1 className="titlePage">Step 2/2: Number of questions & Difficulty</h1>
+                <h1>Step 2/2: Number of questions & Difficulty</h1>
             </header>
             <div className="card-support">
             <Row>
@@ -22,7 +22,7 @@ const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsCho
                                                                            key={index}
                                                                            DifficultiesChoice={DifficultiesChoice}/>)}
             </Row>
-            <div className="zoom-button">
+            <div className="zoom-button transition">
             <Button onClick={quizzcustomize}>Next</Button>
             </div>
             </div>  
