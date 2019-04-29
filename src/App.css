@@ -28,6 +28,7 @@
 .App {
   text-align: center;
 }
+
 /* Description from News API */
 .newscontent {
 margin-top: 50px;
@@ -45,7 +46,6 @@ transition: all 0.8s ease;
 transform: scale(1.1,1.1);
 transition: all 0.2s ease-in;
 }
-
 .imgSize{
 width: 44vh;
 }
@@ -76,6 +76,28 @@ width: 44vh;
   color: #011627;
   border: 1px solid #011627;
 }
+/*Home Page*/
+.card-support h1{
+  text-transform: uppercase;
+  font-weight: bold;  
+}
+.card-support head{
+  background-color: #011627;
+} 
+
+.input-container{
+  border-radius: 10px;
+  margin-top:2rem;
+  width: 40vh;
+  height: 5vh;
+  border: 3px solid #FF9F1C;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color:#011627;
+}
+
+
 /*Categories Choice*/
 .category .btn {
   background-color: #FDFFFC;
@@ -84,11 +106,18 @@ width: 44vh;
   box-shadow: 0 8px 7px #999;
   font-weight : bold;
   text-transform: uppercase;
+  transition-duration: unset;
+  transition: transform 2s;
 }
 .category:hover .btn{
   background-color: #FF9F1C;
   color:#011627;
+  border: 6px solid #011627;  
 }
+.category:active .btn{
+  border: 2px solid #FF9F1C;
+}
+
 .TOTO{
   background-color: #FF9F1C !important;
 }

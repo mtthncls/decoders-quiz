@@ -5,10 +5,12 @@ import './App.css';
 
 const Categories = ({categories, pickUpCategory,categoryChoice, chooseCategory}) => {
     return ( 
-        <Container className="card-support">
-            <header className="title">
-                <h1>Step 1/2 : Please choose category...</h1>
+        <Container>
+            <header className="card-support">
+                <h1>Step 1/2 : Category</h1>
             </header>
+            <div className="card-support">
+            <h3>First, you have to choose your category...</h3>
             <Row>
                 {categories.map((category, index) => 
                 <CategoryChoice pickUpCategory={() => pickUpCategory(category)} 
@@ -16,6 +18,7 @@ const Categories = ({categories, pickUpCategory,categoryChoice, chooseCategory})
             </Row>
             <div className="zoom-button transition">
             <Button onClick={chooseCategory}>Next</Button>
+            </div>
             </div>
         </Container>
     );
