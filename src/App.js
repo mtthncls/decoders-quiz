@@ -164,7 +164,7 @@ class App extends Component {
       this.setState({isAlertDisplayed : true},()=>{
       window.setTimeout(()=>{
         this.setState({isAlertDisplayed : false})
-      },2000)
+      },3000)
     })
   }
   /*go to the next question when click on No button*/

@@ -1,12 +1,14 @@
 import React from 'react';
-import { Alert } from 'reactstrap';
+import { Alert, Container } from 'reactstrap';
 
 const AlertArticleSaved = () => {
     return ( 
         <div>
-            <Alert color="success">
-                Your articel has been saved succesfully !
-            </Alert>
+            <Container>
+                <Alert color="success">
+                    Your article has been saved succesfully !
+                </Alert>
+            </Container>
         </div>
      );
 }
