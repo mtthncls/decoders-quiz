@@ -6,7 +6,7 @@ import HomePage from './Components/HomePage';
 import './App.css';
 import ArticlesRecap from './Components/ArticlesRecap';
 import CustomizeQuizz from './Components/CustomizeQuizz';
-import Categories from './Categories';
+import Categories from './Components/Categories';
 
 
 class App extends Component {

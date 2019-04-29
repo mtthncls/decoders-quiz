@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Container, Row } from 'reactstrap';
-import CategoryChoice from './Components/CategoryChoice';
+import CategoryChoice from './CategoryChoice';
 
 const Categories = ({categories, pickUpCategory, chooseCategory}) => {
     return ( 
