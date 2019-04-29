@@ -7,7 +7,7 @@ const Categories = ({categories, pickUpCategory,categoryChoice, chooseCategory})
     return ( 
         <Container>
             <header className="card-support">
-                <h1>Step 1/2 : Category</h1>
+                <h1>Step 1/2 : Categories</h1>
             </header>
             <div className="card-support">
             <h3>First, you have to choose your category...</h3>
