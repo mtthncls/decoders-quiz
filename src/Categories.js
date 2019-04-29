@@ -15,7 +15,7 @@ const Categories = ({categories, pickUpCategory,categoryChoiced, chooseCategory}
                                 category={category} key={index} categoryChoiced={categoryChoiced}/>)}
             </Row>
             <div className="zoom-button transition">
-            <Button onClick={chooseCategory} >Next</Button>
+            <Button onClick={chooseCategory}>Next</Button>
             </div>
         </Container>
     );
