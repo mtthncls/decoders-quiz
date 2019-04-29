@@ -2,11 +2,11 @@ import React from 'react';
 import { Button,Col} from 'reactstrap';
 import '../App.css';
 
-const CategoryChoice = ({category, pickUpCategory, categoryChoiced }) => {
+const CategoryChoice = ({category, pickUpCategory, categoryChoice }) => {
     return(
         <Col  md={6} lg={2}>
             <div className="zoom-button category">
-                <Button className={categoryChoiced()} onClick={pickUpCategory}>{category}</Button>
+                <Button className={categoryChoice()} onClick={pickUpCategory}>{category}</Button>
             </div>
         </Col>
     )

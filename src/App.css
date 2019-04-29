@@ -99,6 +99,10 @@ width: 44vh;
   border-radius: 5px;
   height: 6vh;
   text-align: left;
+  margin-bottom: 1rem;
+}
+.title h1{
+  font-size: 2rem;
 }
 .card-support{
   margin-top: 5rem;

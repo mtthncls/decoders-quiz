@@ -40,9 +40,9 @@ class App extends Component {
       preferredNewsArticles: [], //ArticleSetChoice component
       isArticlesRecapDisplayed: false,
       correctAnswersCounter: 0,
-      categoryChoiced : false
+      categoryChoice : false
       };
-    };
+    }; 
   
 
 
@@ -96,16 +96,6 @@ class App extends Component {
     if (answer.correct) {
       this.setState({ correctAnswersCounter: this.state.correctAnswersCounter + 1 })
     };
-  };
-
-  //change color of clicked button according to the choice of category
-  categoryChoiced = () => {
-    if (this.state.categoryChoiced === true){
-      return "TOTO";
-    }
-    else{
-      return "";
-    }
   };
 
   //change color of clicked button according to correctness of the answer and the button clicked
@@ -235,7 +225,14 @@ class App extends Component {
         break;
       default:
     };
-    this.setState({categoryChoiced : true});
+    this.setState({categoryChoice : true});
+  };
+
+   //change color of clicked button according to the choice of category
+   categoryChoice = () => {
+    if (this.state.categoryChoice === true){
+      return "TOTO";
+    }
   };
 
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
@@ -333,7 +330,7 @@ this.setState({
         <Categories chooseCategory={this.chooseCategory} 
                     pickUpCategory={this.pickUpCategory} 
                     categories={this.state.categories}
-                    categoryChoiced={this.categoryChoiced}/>}                    
+                    categoryChoice={this.categoryChoice}/>}                    
         {this.state.isCustomizePageDisplayed && 
         <CustomizeQuizz quizzcustomize={this.quizzcustomize}
                         numberOfQuestions={this.state.numberOfQuestions}
