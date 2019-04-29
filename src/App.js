@@ -24,7 +24,7 @@ class App extends Component {
       isQuestionAnswered: false, //Question component : has one button been clicked or not ?
       buttonClicked: "",   //Question component : which button has been clicked ?
       isButtonDisabled: false, //Question component : button clickable or not
-      categories: ["Animals", "Sport", "Books", "Films", "Music", "Video Games",
+      categories: ["Animals", "Sport", "Books", "Movies", "Music", "Video Games",
         "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
       numberOfQuestions: ["5", "10", "15"],
       choosenNumberOfQuestions: 0,
@@ -196,7 +196,7 @@ class App extends Component {
       case "Books":
         this.setState({ questionsCategory: 10 });
         break;
-      case "Films":
+      case "Movies":
         this.setState({ questionsCategory: 11 });
         break;
       case "Music":
@@ -237,10 +237,11 @@ class App extends Component {
   }
 
   chooseUsername = (event) => {
-    this.setState({
-      isHomePageDisplayed: false,
-      isThemePageDisplayed: true
-    });
+    if (this.state.nameRegistered !== "")
+      this.setState({
+        isHomePageDisplayed: false,
+        isThemePageDisplayed: true
+      });
     event.preventDefault();
   };
 
