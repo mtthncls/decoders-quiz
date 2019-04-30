@@ -352,7 +352,7 @@ class App extends Component {
   };
 
   quizzcustomize = () => {
-    (this.state.choosenNumberOfQuestions === "" || this.state.chosenDifficulty.length === 0)
+    (this.state.choosenNumberOfQuestions === 0 || this.state.chosenDifficulty.length === 0)
       ?
       this.setState({
         isCustomizePageDisplayed: true,
@@ -447,22 +447,60 @@ class App extends Component {
       questionsCategory: {
         id: 0,
         catTitle: ""
-      }
+      },
+      isAlertDisplayed: false,
+      percentageOfGoodAnswers: 0
     })
   };
 
+  // starting a new quiz after the recap page
+  NewPlayerButton = () => {
+    this.setState({
+      buttonClicked: "",
+      categories: this.state.categories,
+      choosenNumberOfQuestions: 0,
+      chosenDifficulty: "",
+      correctAnswersCounter: 0,
+      currentArticleID: 0,
+      currentNewsArticle: {},
+      currentQuestionID: 0,
+      difficulties: this.state.difficulties,
+      isAnswerCorrect: false,
+      isArticleDisplayed: false,
+      isArticlesRecapDisplayed: false,
+      isButtonDisabled: false,
+      isCustomizePageDisplayed: false,
+      isHomePageDisplayed: true,
+      isNewsDisplayed: false,
+      isQuestionAnswered: false,
+      isQuestionDisplayed: false,
+      isQuestionLoading: true,
+      isQuizzLaunched: false,
+      isThemePageDisplayed: false,
+      nameRegistered: "",
+      numberOfQuestions: ["5", "10", "15"],
+      preferredNewsArticles: [],
+      questions: [],
+      questionsCategory: {
+        id: 0,
+        catTitle: ""
+      },
+      isAlertDisplayed: false,
+      percentageOfGoodAnswers: 0
+    })
+  };
   correctSpecialCharacters = (string) => {
     return string.replace(/&quot;|&#039;/g, "'")
-        .replace(/&rdquo;|&ldquo;/g, "\"")
-        .replace(/&eacute;/g, "é")
-        .replace(/&deg;/g, "°")
-        .replace(/&pipeline;/g, "Π")
-        .replace(/&amp;/g, "&")
-        .replace(/&hellip;/g, "...")
-        .replace(/&rsquo;/g, "'")
-        .replace(/&aacute;/g, "á")
-        .replace(/&uacute;/g, "ú")
-};
+      .replace(/&rdquo;|&ldquo;/g, "\"")
+      .replace(/&eacute;/g, "é")
+      .replace(/&deg;/g, "°")
+      .replace(/&pipeline;/g, "Π")
+      .replace(/&amp;/g, "&")
+      .replace(/&hellip;/g, "...")
+      .replace(/&rsquo;/g, "'")
+      .replace(/&aacute;/g, "á")
+      .replace(/&uacute;/g, "ú")
+  };
 
   render() {
     return (
@@ -504,7 +542,7 @@ class App extends Component {
           <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles}
             correctAnswersCounter={this.state.correctAnswersCounter}
             questions={this.state.questions}
-            tryButton={this.TryAgain} />}
+            tryButton={this.TryAgain} newPlayer={this.NewPlayerButton} />}
       </div>
     )
   };

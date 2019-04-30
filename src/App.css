@@ -211,7 +211,7 @@ transition: all 0.2s ease-in;
   overflow-wrap: break-word;
 }
 .category:hover .btn{
-  background-color: #f7b55b;
+  background-color: #f9c886;
   color:#011627;
   border: 6px solid #011627;  
 }
@@ -320,3 +320,16 @@ transition: all 0.2s ease-in;
   padding-left: 0px;
   padding-right: 0px;
 } 
+
+.new-player .btn
+{
+ Color: #011627;
+ background-color: #FDFFFC;
+  font-size : 3vh;
+  font-weight : bold;
+  text-transform: uppercase;
+ width: 25vh;
+  margin-top: 1rem;
+  min-height: 12vh !important;
+}
+
