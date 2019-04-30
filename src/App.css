@@ -31,9 +31,10 @@
 
 /* Description from News API */
 .newscontent {
-margin-top: 50px;
-}
+  display: flex;
+  justify-content: column;
 
+}
 /* Article button choices */
 
 .ButtonSize{
@@ -47,7 +48,7 @@ transform: scale(1.1,1.1);
 transition: all 0.2s ease-in;
 }
 .imgSize{
-width: 44vh;
+width: 30vh;
 }
 
 /*Animations Button*/
@@ -142,4 +143,18 @@ width: 44vh;
   background-color: #FDFFFC;
   border-radius: 10px;
   box-shadow: 1px 2.5px 5.5px 2.5px #011627;
+}
+
+/*ArticleChoice */
+.simple-button .btn{
+  background-color: #FDFFFC;
+  border: 2px solid #011627;
+  color : #011627;
+  box-shadow: 0 8px 7px #999;
+  font-weight : bold;
+}
+.simple-button:hover .btn{
+  background-color: #FDFFFC;
+  color:#011627;
+  border: 2px solid #011627;  
 }

@@ -1,16 +1,17 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 const Article = ({ currentArticle }) => {
     return (
-        <Container>
+        <div>
             <Row>
-                <Col><img src={currentArticle.urlToImage} className="imgSize" alt="news"/></Col>
+                <Col><img src={currentArticle.urlToImage} className="imgSize mt-4" alt="news"/></Col>
+                <Col><p className="newscontent mt-3">{currentArticle.description}</p></Col>
             </Row>
             <Row>
-                <Col><p className="newscontent">{currentArticle.description}</p></Col>
+                <Col><h2>Do you want read this news later ?</h2></Col>
             </Row>
-        </Container>
+        </div>
     );
 }
 
