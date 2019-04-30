@@ -76,7 +76,8 @@ width: 44vh;
 /*Home Page*/
 .card-support h1{
   text-transform: uppercase;
-  font-weight: bold;  
+  font-weight: bold;
+  font-size: 4vh;  
 }
 .card-support head{
   background-color: #011627;
@@ -85,7 +86,7 @@ width: 44vh;
 .input-container{
   border-radius: 10px;
   margin-top:2rem;
-  width: 40vh;
+  width: 30vh;
   height: 7vh;
   padding-left: 1rem;
   border: 3px solid #FF9F1C;

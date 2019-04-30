@@ -12,7 +12,7 @@ const HomePage = ({chooseUsername, usernameChange, nameRegistered}) => {
             <div className="card-support">
             <h3>Welcome to the quiz, please choose your username :</h3>
             <Row>
-                <Col sm="12" md={{ size: 4, offset: 4 }}>
+                <Col sm="12" md="12">
             <form>
                 <label htmlFor="Username">
                     <input className="input-container" placeholder="Username" name="Username" id="Username" 

@@ -9,12 +9,12 @@ const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsCho
     return(
         <Container>
             <header className="card-support">
-                <h1>Step 2/2: Number of questions & Difficulty</h1>
+                <h1>Step 2/2: Numbers of questions & Difficulties</h1>
             </header>
             <div className="card-support">
             <Row>
                 <Col sm="12">
-                    <h3>Number of questions</h3>
+                    <h3>Second, please select the number of questions you want to answer</h3>
                 </Col>
                 {numberOfQuestions.map((numberOfQuestion, index) => <Col sm="12" md="4"><NumberOfQuestionsButton numberOfQuestion={numberOfQuestion}
                                                                                               key={index}
@@ -23,7 +23,7 @@ const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsCho
             </Row>
             <Row>
                 <Col sm="12">
-                    <h3>Choose your difficulty</h3>
+                    <h3>and choose your difficulty</h3>
                 </Col>
                 {difficulties.map((difficulty, index) => <Col sm="12" md="4"><DifficultyButton difficulty={difficulty} 
                                                                            key={index}
