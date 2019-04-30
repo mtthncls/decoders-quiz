@@ -1,9 +1,11 @@
 import React from 'react';
 import ArticleSaved from './ArticleSaved';
+import { Container } from 'reactstrap';
 import './ArticlesRecap.css'
 const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions, tryButton, customeMessage }) => {
     return (
         <div>
+            <Container>
             <h1>Lorem ipsum Username {/* Replace Username by the user input at the beginning*/}</h1>
             <p className="answersCounter"> You have <span className="correctAnswers">{correctAnswersCounter}</span> correct answers on <span className="correctAnswers">{questions.length}</span> questions</p>
             {customeMessage()}
@@ -13,8 +15,9 @@ const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions, tryB
             : articlesToRecap.map((article, index) =>
                 <ArticleSaved key={index} articlesToRecap={article} />)}
 
-            {/* that button sends back to the "choose category" page of the app */}
-            <button onClick={tryButton}>Try again</button >
+                {/* that button sends back to the "choose category" page of the app */}
+                <button className={"tryAgain"} onClick={tryButton}><span className="Tryagaintext">Try again</span></button >
+            </Container>
         </div>
     );
 }

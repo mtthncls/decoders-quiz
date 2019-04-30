@@ -287,6 +287,22 @@ class App extends Component {
     this.setState({ chosenDifficulty: difficulty });
   }
 
+  customeMessage = () => {
+    if (this.state.percentageOfGoodAnswers < 30){
+      return(
+            <h3>Even Seb can do better than you !</h3>
+      )}
+    if (this.state.percentageOfGoodAnswers >= 30 && this.state.percentageOfGoodAnswers <= 70){
+        return(
+              <h3>Not so bad !</h3>
+        )}
+    if (this.state.percentageOfGoodAnswers > 70){
+      return(
+            <h3>You're amazing !</h3>
+      )}
+  }
+    
+
   // starting a new quiz after the recap page
   TryAgain = () => {
     this.setState({
@@ -312,7 +328,8 @@ class App extends Component {
       numberOfQuestions: 10,
       preferredNewsArticles: [],
       questions: [],
-      questionsCategory: 21
+      questionsCategory: 21,
+      percentageOfGoodAnswers : 0
     })
   };
   customeMessage = () => {
