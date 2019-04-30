@@ -74,6 +74,11 @@ width: 44vh;
   border: 1px solid #011627;
 }
 /*Home Page*/
+.homer-picture {
+  border-radius: 50%;
+  height: 5vh;
+}
+
 .card-support h1{
   text-transform: uppercase;
   font-weight: bold;
