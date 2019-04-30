@@ -32,7 +32,10 @@ class App extends Component {
       difficulties: ["easy", "medium", "hard"],
       chosenDifficulty: "",
       currentArticleID: 0,
-      questionsCategory: 0,
+      questionsCategory: {
+        id: 0,
+        catTitle: ""
+      },
       isQuizzLaunched: false, //launch quizz when Play button is clicked and state switched to true
       isNewsDisplayed: false,
       isAnswerCorrect: false, //Question component : is the answer true or false ?
@@ -207,42 +210,108 @@ class App extends Component {
 
 
   pickUpCategory = (category) => {
+    this.setState(prevState => ({
+      questionsCategory: {
+        ...prevState.questionsCategory,
+        catTitle: category
+      }
+    }))
     switch (category) {
       case "Sport":
-        this.setState({ questionsCategory: 21 });
+        this.setState(prevState => ({
+          questionsCategory: {
+            ...prevState.questionsCategory,
+            id: 21
+          }
+        }));
         break;
       case "Animals":
-        this.setState({ questionsCategory: 27 });
+        this.setState(prevState => ({
+          questionsCategory: {
+            ...prevState.questionsCategory,
+            id: 27
+          }
+        }));
         break;
       case "Books":
-        this.setState({ questionsCategory: 10 });
+        this.setState(prevState => ({
+          questionsCategory: {
+            ...prevState.questionsCategory,
+            id: 10
+          }
+        }));
         break;
       case "Movies":
-        this.setState({ questionsCategory: 11 });
+        this.setState(prevState => ({
+          questionsCategory: {
+            ...prevState.questionsCategory,
+            id: 11
+          }
+        }));
         break;
       case "Music":
-        this.setState({ questionsCategory: 12 });
+        this.setState(prevState => ({
+          questionsCategory: {
+            ...prevState.questionsCategory,
+            id: 12
+          }
+        }));
         break;
       case "Video Games":
-        this.setState({ questionsCategory: 15 });
+        this.setState(prevState => ({
+          questionsCategory: {
+            ...prevState.questionsCategory,
+            id: 15
+          }
+        }));
         break;
       case "Mythology":
-        this.setState({ questionsCategory: 20 });
+        this.setState(prevState => ({
+          questionsCategory: {
+            ...prevState.questionsCategory,
+            id: 20
+          }
+        }));
         break;
       case "Celebrities":
-        this.setState({ questionsCategory: 26 });
+        this.setState(prevState => ({
+          questionsCategory: {
+            ...prevState.questionsCategory,
+            id: 26
+          }
+        }));
         break;
       case "Television":
-        this.setState({ questionsCategory: 14 });
+        this.setState(prevState => ({
+          questionsCategory: {
+            ...prevState.questionsCategory,
+            id: 14
+          }
+        }));
         break;
       case "General Knowledge":
-        this.setState({ questionsCategory: 9 });
+        this.setState(prevState => ({
+          questionsCategory: {
+            ...prevState.questionsCategory,
+            id: 9
+          }
+        }));
         break;
       case "Geography":
-        this.setState({ questionsCategory: 22 });
+        this.setState(prevState => ({
+          questionsCategory: {
+            ...prevState.questionsCategory,
+            id: 22
+          }
+        }));
         break;
       case "History":
-        this.setState({ questionsCategory: 23 });
+        this.setState(prevState => ({
+          questionsCategory: {
+            ...prevState.questionsCategory,
+            id: 23
+          }
+        }));
         break;
       default:
     };
@@ -271,7 +340,7 @@ class App extends Component {
   };
 
   chooseCategory = () => {
-    this.state.questionsCategory === 0 ?
+    this.state.questionsCategory.id === 0 ?
       this.setState({
         isThemePageDisplayed: true,
         isCustomizePageDisplayed: false
@@ -298,7 +367,7 @@ class App extends Component {
 
     // method for API call
     fetch(`https://opentdb.com/api.php?amount=${this.state.choosenNumberOfQuestions}&category=
-         ${this.state.questionsCategory}&difficulty=${this.state.chosenDifficulty}&type=multiple`)
+         ${this.state.questionsCategory.id}&difficulty=${this.state.chosenDifficulty}&type=multiple`)
       .then(response => response.json())
       .then(data => {
         const apiQuestions = data.results
@@ -375,7 +444,10 @@ class App extends Component {
       numberOfQuestions: ["5", "10", "15"],
       preferredNewsArticles: [],
       questions: [],
-      questionsCategory: 21
+      questionsCategory: {
+        id: 0,
+        catTitle: ""
+      }
     })
   };
 
@@ -404,13 +476,15 @@ class App extends Component {
           <Categories chooseCategory={this.chooseCategory}
             pickUpCategory={this.pickUpCategory}
             categories={this.state.categories}
-            nameRegistered={this.state.nameRegistered} />}
+            nameRegistered={this.state.nameRegistered} catTitle={this.state.questionsCategory.catTitle} />}
         {this.state.isCustomizePageDisplayed &&
           <CustomizeQuizz quizzcustomize={this.quizzcustomize}
             numberOfQuestions={this.state.numberOfQuestions}
             numberOfQuestionsChoice={this.numberOfQuestionsChoice}
             difficulties={this.state.difficulties}
-            DifficultiesChoice={this.difficultiesChoice} />}
+            DifficultiesChoice={this.difficultiesChoice}
+            choosenDifficulty={this.state.chosenDifficulty}
+            choosenNumberOfQuestions={this.state.choosenNumberOfQuestions} />}
         {this.state.isAlertDisplayed && <AlertArticleSaved />}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}

@@ -3,7 +3,7 @@ import { Button, Container, Row, Col } from 'reactstrap';
 import CategoryChoice from './CategoryChoice';
 import '../App.css';
 
-const Categories = ({ categories, pickUpCategory, categoryChoice, chooseCategory, test }) => {
+const Categories = ({ categories, pickUpCategory, categoryChoice, chooseCategory, catTitle }) => {
     return (
         <Container>
             <header className="card-support">
@@ -15,7 +15,7 @@ const Categories = ({ categories, pickUpCategory, categoryChoice, chooseCategory
                     {categories.map((category, index) =>
                         <CategoryChoice pickUpCategory={() => pickUpCategory(category, index)}
                             category={category} key={index} categoryChoice={categoryChoice}
-                            specificButton={index} test={test} />)}
+                            specificButton={index} catTitle={catTitle} />)}
                 </Row>
                 <Row>
                     <Col sm="12" md={{ size: 6, offset: 3 }}>
