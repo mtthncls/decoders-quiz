@@ -38,7 +38,8 @@ class App extends Component {
       currentNewsArticle: {}, //ArticleSetChoice component
       preferredNewsArticles: [], //ArticleSetChoice component
       isArticlesRecapDisplayed: false,
-      correctAnswersCounter: 0
+      correctAnswersCounter: 0,
+      percentageOfGoodAnswers : 0
     };
   };
 
@@ -164,7 +165,9 @@ class App extends Component {
     });
     /*condition to display recap page*/
     if (this.state.currentQuestionID >= 9){
-      this.setState({ isQuestionDisplayed : false, isArticlesRecapDisplayed: true, isArticleDisplayed : false });
+     this.setState({ isQuestionDisplayed : false, isArticlesRecapDisplayed: true, isArticleDisplayed : false });
+     this.setState({ percentageOfGoodAnswers:
+                 ((this.state.correctAnswersCounter / this.state.numberOfQuestions) * 100) });
     }
   };
   /*go to the next question when click on No button*/
@@ -177,8 +180,11 @@ class App extends Component {
       isArticleDisplayed: false,
     });
   /*condition to display recap page*/  
-    if (this.state.currentQuestionID >= 9){
-      this.setState({ isQuestionDisplayed : false, isArticlesRecapDisplayed: true, isArticleDisplayed : false });
+   if (this.state.currentQuestionID >= 9){
+    this.setState({ isQuestionDisplayed : false, isArticlesRecapDisplayed: true, isArticleDisplayed : false });
+    this.setState({ percentageOfGoodAnswers:
+                ((this.state.correctAnswersCounter / this.state.numberOfQuestions) * 100) });
+
     }
   };
   
@@ -309,6 +315,21 @@ class App extends Component {
       questionsCategory: 21
     })
   };
+  customeMessage = () => {
+    if (this.state.percentageOfGoodAnswers < 30){
+      return(
+            <h3>Even Seb can do better than you !</h3>
+      )}
+    if (this.state.percentageOfGoodAnswers >= 30 && this.state.percentageOfGoodAnswers <= 70){
+        return(
+              <h3>Not so bad !</h3>
+        )}
+    if (this.state.percentageOfGoodAnswers > 70){
+      return(
+            <h3>You're amazing !</h3>
+      )}
+  }
+
   render() {
     return (
       <div className="App">
@@ -338,7 +359,8 @@ class App extends Component {
           <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles} 
                        correctAnswersCounter={this.state.correctAnswersCounter}
                        questions={this.state.questions}
-                       tryButton={this.TryAgain}/>}
+                       tryButton={this.TryAgain}
+                       customeMessage={this.customeMessage}/>}
       </div>
     )
   };

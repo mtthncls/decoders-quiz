@@ -1,12 +1,12 @@
 import React from 'react';
 import ArticleSaved from './ArticleSaved';
 import './ArticlesRecap.css'
-const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions, tryButton }) => {
+const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions, tryButton, customeMessage }) => {
     return (
         <div>
             <h1>Lorem ipsum Username {/* Replace Username by the user input at the beginning*/}</h1>
             <p className="answersCounter"> You have <span className="correctAnswers">{correctAnswersCounter}</span> correct answers on <span className="correctAnswers">{questions.length}</span> questions</p>
-
+            {customeMessage()}
             {/* offer something to show if user don't keep any articles*/}
             {articlesToRecap.length === 0 
             ? <h1>No articles saved</h1>
