@@ -1,4 +1,4 @@
-.appHeader {
+/* .appHeader {
   background-color: #492E8E;
   min-height: 30vh;
   font-size:1.3rem;
@@ -13,13 +13,15 @@
   border-radius: 10px;
   padding: 1em;
   margin-top: 1rem;
-}
+} */
 
-.questionHeader{
-  font-size: 1.8rem;
-  color: white;
-}
-
+.btn{
+  width: 100%;
+  min-height: 15vh;
+  max-height: 25vh;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+ }
 
 .loadText{
   margin-left: 30%;
@@ -29,16 +31,47 @@
   text-align: center;
 }
 
+/*anwser buttons css*/
+.button-answer .btn{
+  background-color: #FDFFFC;
+  border: 2px solid #011627;
+  color : #011627;
+  box-shadow: 0 8px 7px #999;
+  font-weight : bold;
+  text-transform: uppercase;
+  font-size: 3vh;
+}
+
 /* Description from News API */
 .newscontent {
-margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  }
+
+.container-news {
+  background-color: #FF9F1C;
+  border-radius: 10px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
+
+.imgSize{
+  width: 30vh;
+  border-radius: 10px;
+  border: 2px solid #011627;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
+  }
 
 /* Article button choices */
 
 .ButtonSize{
-height: 13vh;
-width: 58%;
+height: 10vh;
+width: 48%;
 transition: all 0.8s ease;
 }
 
@@ -46,15 +79,46 @@ transition: all 0.8s ease;
 transform: scale(1.1,1.1);
 transition: all 0.2s ease-in;
 }
-.imgSize{
-width: 44vh;
+
+.negative .btn{
+  background-color: #FDFFFC;
+  color: #011627;
+  border: 2px solid #011627;
+  font-size : 2vh;
+  font-weight : bold;
+  text-transform: uppercase;
+  width: 30vh;
+  margin-top: 2rem;
+  box-shadow: 5px 5px 2.5px #999;
+}
+.negative:hover .btn{
+  background-color: #FDFFFC;
+  color: #011627;
+  border: 2px solid #011627;
+}
+
+.positive .btn{
+  background-color: #011627;
+  color: #FF9F1C;
+  border: 2px solid #011627;
+  font-size : 3vh;
+  font-weight : bold;
+  text-transform: uppercase;
+  width: 30vh;
+  margin-top: 2rem;
+  box-shadow: 5px 5px 2.5px #999;
+}
+.positive:hover .btn{
+  background-color: #011627;
+  color: #FF9F1C;
+  border: 2px solid #011627;
 }
 
 /*Animations Button*/
 .zoom-button .btn{
   transition: transform .2s; 
 }
-.zoom-button:hover .btn{
+.zoom-button .btn:hover{
   transform: scale(1.1); 
 }
 .transition .btn{
@@ -68,7 +132,7 @@ width: 44vh;
   box-shadow: 5px 5px 2.5px #999;
   min-height: 12vh !important;
 }
-.transition:hover .btn{
+.transition .btn:hover{
   background-color: #FF9F1C;
   color: #011627;
   border: 1px solid #011627;
@@ -79,7 +143,7 @@ width: 44vh;
   height: 5vh;
 }
 
-.card-support h1{
+.card-support h1, .card-support h3{
   text-transform: uppercase;
   font-weight: bold;
   font-size: 4vh;  
@@ -191,4 +255,30 @@ width: 44vh;
 .card-support h3{
   padding-bottom: 1rem;
   padding-top: 1rem;
+}
+
+.zoom-button .TOTO{
+  background-color: orange;
+}
+/*Using card-support attributes + text align left in homepage for app description*/
+.app-description{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 3.5rem !important;
+  padding-right: 3.5rem !important;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  background-color: #FDFFFC;
+  border-radius: 10px;
+  box-shadow: 1px 2.5px 5.5px 2.5px #011627;
+  text-align: left;
+}
+
+.animated-rick{
+  width: 200px;
+  height: auto;
+}
+
+.spinner {
+  margin-top: 50vh;
 }
