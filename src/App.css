@@ -160,18 +160,18 @@ width: 44vh;
 }
 
 .newsPictures{
-  max-width: 36%;
+  max-width: 80%;
   max-height: 15rem;
   overflow: hidden;
   border: 2px solid #011627;
   color : #011627;
-  box-shadow: 0 8px 7px #011627;
   border-radius: 10px;
 }
 .newsText{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: left;
 }
 
 .readMeButton{
