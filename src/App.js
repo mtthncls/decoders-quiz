@@ -25,8 +25,8 @@ class App extends Component {
       isQuestionAnswered: false, //Question component : has one button been clicked or not ?
       buttonClicked: "",   //Question component : which button has been clicked ?
       isButtonDisabled: false, //Question component : button clickable or not
-      categories : ["Animals", "Sport", "Books", "Movies", "Music", "Video Games", 
-                    "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
+      categories: ["Animals", "Sport", "Books", "Movies", "Music", "Video Games",
+        "Mythology", "Celebrities", "General Knowledge", "Television", "Geography", "History"],
       numberOfQuestions: ["5", "10", "15"],
       choosenNumberOfQuestions: 0,
       difficulties: ["easy", "medium", "hard"],
@@ -41,11 +41,11 @@ class App extends Component {
       preferredNewsArticles: [], //ArticleSetChoice component
       isArticlesRecapDisplayed: false,
       correctAnswersCounter: 0,
-      categoryChoice : false,
-      isAlertDisplayed : false
-      };
-    }; 
-  
+      categoryChoice: false,
+      isAlertDisplayed: false
+    };
+  };
+
 
 
 
@@ -168,12 +168,12 @@ class App extends Component {
       currentArticleID: this.state.currentArticleID + 1,
       isArticleDisplayed: false,
     });
-      this.setState({isAlertDisplayed : true},()=>{
-      window.setTimeout(()=>{
-        this.setState({isAlertDisplayed : false})
-      },3000)
+    this.setState({ isAlertDisplayed: true }, () => {
+      window.setTimeout(() => {
+        this.setState({ isAlertDisplayed: false })
+      }, 3000)
     })
-  
+
     /*condition to display recap page*/
     if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1) {
       this.setState({ isQuestionDisplayed: false, isArticlesRecapDisplayed: true, isArticleDisplayed: false });
@@ -234,12 +234,12 @@ class App extends Component {
         break;
       default:
     };
-    this.setState({categoryChoice : true});
+    this.setState({ categoryChoice: true });
   };
 
-   //change color of clicked button according to the choice of category
-   categoryChoice = () => {
-    if (this.state.categoryChoice === true){
+  //change color of clicked button according to the choice of category
+  categoryChoice = () => {
+    if (this.state.categoryChoice === true) {
       return "TOTO";
     }
   };
@@ -347,18 +347,20 @@ class App extends Component {
           <Categories chooseCategory={this.chooseCategory}
             pickUpCategory={this.pickUpCategory}
             categories={this.state.categories}
-            categoryChoice={this.categoryChoice}/>}
+            categoryChoice={this.categoryChoice} />}
         {this.state.isCustomizePageDisplayed &&
           <CustomizeQuizz quizzcustomize={this.quizzcustomize}
             numberOfQuestions={this.state.numberOfQuestions}
             numberOfQuestionsChoice={this.numberOfQuestionsChoice}
             difficulties={this.state.difficulties}
             DifficultiesChoice={this.difficultiesChoice} />}
-            {this.state.isAlertDisplayed && <AlertArticleSaved/>}
+        {this.state.isAlertDisplayed && <AlertArticleSaved />}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
-        {this.state.isButtonDisabled &&
-          <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
+        <div className="zoom-button transition">
+          {this.state.isButtonDisabled &&
+            <Button onClick={this.triggerArticleChoiceDisplay}>Next</Button>}
+        </div>
         {!this.state.isQuestionDisplayed &&
           this.state.currentNewsArticle.length > 0 &&
           this.state.isArticleDisplayed &&
