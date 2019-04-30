@@ -117,6 +117,7 @@ transition: all 0.2s ease-in;
 /*Animations Button*/
 .zoom-button .btn{
   transition: transform .2s; 
+  font-size: 0.8rem
 }
 .zoom-button .btn:hover{
   transform: scale(1.1); 
@@ -177,9 +178,10 @@ transition: all 0.2s ease-in;
   transition-duration: unset;
   transition: transform 2s;
   min-height: 20vh !important;
+  overflow-wrap: break-word;
 }
 .category:hover .btn{
-  background-color: #FF9F1C;
+  background-color: #f7b55b;
   color:#011627;
   border: 6px solid #011627;  
 }
@@ -259,6 +261,7 @@ transition: all 0.2s ease-in;
 
 .zoom-button .TOTO{
   background-color: orange;
+  
 }
 /*Using card-support attributes + text align left in homepage for app description*/
 .app-description{
