@@ -1,4 +1,71 @@
-/* .appHeader {
+.btn{
+  width: 100%;
+  min-height: 15vh;
+  max-height: 25vh;
+  margin-top: 1rem;
+  margin-bottom: 0,5rem;
+}
+/* fonts*/
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+/* app general style*/
+.App {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  }
+/* Home page style*/
+.home-page-header{
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #011627;
+  border: solid 3px #FF9F1C;
+  border-radius: 0px;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #FF9F1C;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.home-page form{
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  margin-top: 5vh;
+}
+
+.home-page input{
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  border-left-color: red;
+  border-left-width: 5px;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.home-page Button{
+  max-width: 30vw;
+  background-color: #011627;
+  border: solid 3px #FF9F1C;
+  border-radius: 0px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #FF9F1C;
+}
+
+.home-page .suspense{
+  font-size: 2rem;
+}
+
+
+
+
+.appHeader {
   background-color: #492E8E;
   min-height: 30vh;
   font-size:1.3rem;
@@ -12,13 +79,6 @@
   font-weight: bold;
   border-radius: 10px;
   padding: 1em;
-  margin-top: 1rem;
-} */
-
-.btn{
-  width: 100%;
-  min-height: 15vh;
-  max-height: 25vh;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
  }
@@ -123,6 +183,7 @@ transition: all 0.2s ease-in;
 /*Animations Button*/
 .zoom-button .btn{
   transition: transform .2s; 
+  font-size: 0.8rem
 }
 .zoom-button .btn:hover{
   transform: scale(1.1); 
@@ -207,9 +268,10 @@ transition: all 0.2s ease-in;
   transition-duration: unset;
   transition: transform 2s;
   min-height: 20vh !important;
+  overflow-wrap: break-word;
 }
 .category:hover .btn{
-  background-color: #FF9F1C;
+  background-color: #f9c886;
   color:#011627;
   border: 6px solid #011627;  
 }
@@ -289,6 +351,7 @@ transition: all 0.2s ease-in;
 
 .zoom-button .category-chosen{
   background-color: orange;
+  
 }
 /*Using card-support attributes + text align left in homepage for app description*/
 .app-description{
@@ -317,3 +380,28 @@ transition: all 0.2s ease-in;
   padding-left: 0px;
   padding-right: 0px;
 } 
+
+.validation{
+  position: relative;
+  top:-70vh;
+}
+
+.opacityNews{
+  opacity: 0.5;
+}
+
+.opacityNews1{
+  opacity: 1;
+}
+.new-player .btn
+{
+ Color: #011627;
+ background-color: #FDFFFC;
+  font-size : 3vh;
+  font-weight : bold;
+  text-transform: uppercase;
+ width: 25vh;
+  margin-top: 1rem;
+  min-height: 12vh !important;
+}
+
