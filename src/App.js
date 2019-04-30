@@ -402,7 +402,11 @@ class App extends Component {
   customMessage = () => {
     if (this.state.percentageOfGoodAnswers < 30) {
       return (
+<<<<<<< HEAD
         <h3>I'm not proud of you {this.state.nameRegistered}, even Seb can do it better!</h3>
+=======
+        <h3>I'm not proud of you {this.state.nameRegistered}, you can do better!</h3>
+>>>>>>> 2eb9c89b16cbeb1e6ffb90d2961e4f11d3ba12d2
       )
     }
     if (this.state.percentageOfGoodAnswers >= 30 && this.state.percentageOfGoodAnswers <= 70) {
@@ -497,13 +501,15 @@ class App extends Component {
           this.state.isArticleDisplayed &&
           <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]}
             correctSpecialCharacters={this.correctSpecialCharacters}
+            catTitle={this.state.questionsCategory.catTitle}
             addCurrentArticle={this.memorizeArticle}
             nextQuestion={this.nextQuestion} />}
         {this.state.isArticlesRecapDisplayed &&
           <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles}
             correctAnswersCounter={this.state.correctAnswersCounter}
             questions={this.state.questions}
-            tryButton={this.TryAgain} />}
+            tryButton={this.TryAgain}
+            customMessage={this.customMessage} />}
       </div>
     )
   };
