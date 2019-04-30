@@ -50,15 +50,21 @@
   text-align: left;
   }
 
+.article-title {
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .container-news {
   background-color: #FF9F1C;
   border-radius: 10px;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .imgSize{
-  width: 30vh;
+  width: 25vh;
   border-radius: 10px;
   border: 2px solid #011627;
   position: absolute;
