@@ -467,7 +467,9 @@ class App extends Component {
             numberOfQuestions={this.state.numberOfQuestions}
             numberOfQuestionsChoice={this.numberOfQuestionsChoice}
             difficulties={this.state.difficulties}
-            DifficultiesChoice={this.difficultiesChoice} />}
+            DifficultiesChoice={this.difficultiesChoice}
+            choosenDifficulty={this.state.chosenDifficulty}
+            choosenNumberOfQuestions={this.state.choosenNumberOfQuestions} />}
         {this.state.isAlertDisplayed && <AlertArticleSaved />}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}

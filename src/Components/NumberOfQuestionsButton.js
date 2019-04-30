@@ -1,10 +1,11 @@
 import React from 'react';
 import { Col, Button } from 'reactstrap';
 
-const NumberOfQuestionsButton = ({numberOfQuestion, numberOfQuestionsChoice}) => {
+const NumberOfQuestionsButton = ({numberOfQuestion, numberOfQuestionsChoice, choosenNumberOfQuestions}) => {
     return ( 
         <Col className="zoom-button custom" >
-            <Button onClick={() => numberOfQuestionsChoice(numberOfQuestion)}>{numberOfQuestion}</Button>
+            <Button className={choosenNumberOfQuestions === numberOfQuestion ? "TOTO" : ""} 
+                    onClick={() => numberOfQuestionsChoice(numberOfQuestion)}>{numberOfQuestion}</Button>
         </Col>
      );
 }
