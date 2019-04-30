@@ -11,7 +11,7 @@ const Article = ({ currentArticle, correctSpecialCharacters }) => {
                     <p className="newscontent mt-3 mb-3">{correctSpecialCharacters(currentArticle.description)} </p></Col>
             </Row>
             <Row>
-                <Col><h2 className="mt-3">Do you want read this news later ?</h2></Col>
+                <Col><h2 className="mt-3">Do you want to read this news later ?</h2></Col>
             </Row>
         </div>
     );

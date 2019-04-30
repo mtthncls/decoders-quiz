@@ -4,11 +4,11 @@ import { Button, Container } from 'reactstrap';
 import './ArticlesRecap.css'
 import '../App.css'
 
-const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions, tryButton, newPlayer }) => {
+const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions, tryButton, newPlayer, customMessage }) => {
     return (
         <div>
             <Container className="card-support mt-3">
-                <h1>Lorem ipsum Username {/* Replace Username by the user input at the beginning*/}</h1>
+                <h1>{customMessage()} {/* Replace Username by the user input at the beginning*/}</h1>
                 <p className="answersCounter"> You have <span className="correctAnswers">{correctAnswersCounter}</span> correct answers on <span className="correctAnswers">{questions.length}</span> questions</p>
             </Container>
             <Container className="card-support mt-5">
