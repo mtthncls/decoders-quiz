@@ -4,7 +4,7 @@ import { Card, CardText, Container, Row, Col} from 'reactstrap';
 const ArticleSaved = ({articlesToRecap}) => {
     return ( 
         <article>
-            <Container className="mt-4">
+            <Container className="mt-3" style={{width : "60rem"}}>
                 <Card style={{backgroundColor: "#FF9F1C"}}className="mt-3 card-support" body inverse>
                     <Row>
                         <Col sm="12" lg="6">
@@ -14,7 +14,7 @@ const ArticleSaved = ({articlesToRecap}) => {
                         </Col>
                         <Col sm="12" lg="6" className="newsText">
                             <h3>
-                                <CardText style={{color: "black"}}>
+                                <CardText style={{color: "black", fontSize : "16px"}}>
                                     {articlesToRecap.title.toUpperCase()}
                                 </CardText>
                             </h3>
