@@ -317,3 +317,16 @@ transition: all 0.2s ease-in;
   padding-left: 0px;
   padding-right: 0px;
 } 
+
+.validation{
+  position: relative;
+  top:-70vh;
+}
+
+.opacityNews{
+  opacity: 0.5;
+}
+
+.opacityNews1{
+  opacity: 1;
+}
