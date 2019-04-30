@@ -275,3 +275,7 @@ transition: all 0.2s ease-in;
   width: 200px;
   height: auto;
 }
+
+.spinner {
+  margin-top: 50vh;
+}
