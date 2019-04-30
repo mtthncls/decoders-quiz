@@ -234,15 +234,9 @@ class App extends Component {
         break;
       default:
     };
-    this.setState({categoryChoice : true});
+    this.setState({categoryChoice : this.state.categoryChoice});
   };
 
-   //change color of clicked button according to the choice of category
-   categoryChoice = () => {
-    if (this.state.categoryChoice === true){
-      return "TOTO";
-    }
-  };
 
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
   chooseUsername = (event) => {
@@ -347,7 +341,8 @@ class App extends Component {
           <Categories chooseCategory={this.chooseCategory}
             pickUpCategory={this.pickUpCategory}
             categories={this.state.categories}
-            categoryChoice={this.categoryChoice}/>}
+            categoryChoice={this.categoryChoice}
+            test={this.state.categoryChoice}/>}
         {this.state.isCustomizePageDisplayed &&
           <CustomizeQuizz quizzcustomize={this.quizzcustomize}
             numberOfQuestions={this.state.numberOfQuestions}
