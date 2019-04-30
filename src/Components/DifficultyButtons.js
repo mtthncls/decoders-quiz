@@ -1,10 +1,10 @@
 import React from 'react';
 import { Col, Button } from 'reactstrap';
 
-const DifficultyButton = ({difficulty, DifficultiesChoice}) => {
+const DifficultyButton = ({difficulty, DifficultiesChoice, choosenDifficulty}) => {
     return ( 
         <Col className="zoom-button custom" >
-            <Button onClick={() => DifficultiesChoice(difficulty)}>{difficulty}</Button>
+            <Button className={choosenDifficulty === difficulty ? "TOTO" : ""} onClick={() => DifficultiesChoice(difficulty)}>{difficulty}</Button>
         </Col>
      );
 }

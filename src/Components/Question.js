@@ -5,19 +5,7 @@ import "./Question.css";
 
 //Template object for global question data from API
 
-
-const correctSpecialCharacters = (string) => {
-    return string.replace(/&quot;|&#039;/g, "'")
-        .replace(/&rdquo;|&ldquo;/g, "\"")
-        .replace(/&eacute;/g, "é")
-        .replace(/&deg;/g, "°")
-        .replace(/&pipeline;/g, "Π")
-        .replace(/&amp;/g, "&")
-        .replace(/&hellip;/g, "...")
-        .replace(/&rsquo;/g, "'")
-};
-
-const Question = ({ currentQuestionID, question, setAnswerStatus, defineButtonColor, isButtonDisabled }) => {
+const Question = ({ currentQuestionID, question, setAnswerStatus, defineButtonColor, isButtonDisabled, correctSpecialCharacters }) => {
     return (
         <Container>
             <header className="card-support head">

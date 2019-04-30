@@ -3,7 +3,7 @@ import { Card, CardText, Container, Row, Col} from 'reactstrap';
 
 const ArticleSaved = ({articlesToRecap}) => {
     return ( 
-        <article>
+        <article className="newsContainer">
             <Container className="mt-3">
                 <Card style={{backgroundColor: "#FF9F1C"}}className="mt-3 card-support" body inverse>
                     <Row>

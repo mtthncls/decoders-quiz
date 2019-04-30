@@ -11,12 +11,12 @@ const HomePage = ({chooseUsername, usernameChange, nameRegistered}) => {
             </header>
             <div className="app-description">
             <Row>
-            <Col sm="12" md="6"><div><h4>"Welcome to the Quiz ! You will have a multiple choice of themes, 
+            <Col sm="12" md="8"><div className="lyrics"><h4>"Welcome to the Quiz ! You will have a multiple choice of themes, 
                     each providing a series of questions, all with a choice between 4 possibles answers, 
                     select the one you think is correct by clicking it ! 
                     Stay informed by reading the latest news of the chosen theme. Have fun !" Rick.
                 </h4></div></Col>
-            <Col sm="12" md="6"><img className= "animated-rick" src="https://media.giphy.com/media/9JwUhPDEGmhbWgCMEZ/giphy.gif" heigth="10vh" alt="homer"/></Col>
+            <Col sm="12" md={{ size: 3, offset: 1 }}><img className= "animated-rick" src="https://media.giphy.com/media/9JwUhPDEGmhbWgCMEZ/giphy.gif" heigth="10vh" alt="homer"/></Col>
             </Row>
             </div>
             <div className="card-support">
@@ -25,7 +25,7 @@ const HomePage = ({chooseUsername, usernameChange, nameRegistered}) => {
                 <Col sm="12" md="12">
             <form>
                 <label htmlFor="Username">
-                    <input  style={{width: "300px", height: "80px", fontSize: "auto"}} className="input-container" placeholder="Username" name="Username" id="Username" 
+                    <input className="input-container" placeholder="Username" name="Username" id="Username" 
                            onChange={usernameChange} value={nameRegistered}/>
                 </label>
             </form>

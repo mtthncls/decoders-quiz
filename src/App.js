@@ -84,6 +84,7 @@ class App extends Component {
       return (
         <div>
           <Question question={this.state.questions[this.state.currentQuestionID]}
+            correctSpecialCharacters={this.correctSpecialCharacters}
             isButtonDisabled={this.state.isButtonDisabled}
             setAnswerStatus={this.setAnswerStatus}
             defineButtonColor={this.defineButtonColor}
@@ -449,6 +450,20 @@ class App extends Component {
       }
     })
   };
+
+  correctSpecialCharacters = (string) => {
+    return string.replace(/&quot;|&#039;/g, "'")
+        .replace(/&rdquo;|&ldquo;/g, "\"")
+        .replace(/&eacute;/g, "é")
+        .replace(/&deg;/g, "°")
+        .replace(/&pipeline;/g, "Π")
+        .replace(/&amp;/g, "&")
+        .replace(/&hellip;/g, "...")
+        .replace(/&rsquo;/g, "'")
+        .replace(/&aacute;/g, "á")
+        .replace(/&uacute;/g, "ú")
+};
+
   render() {
     return (
       <div className="App">
@@ -467,7 +482,9 @@ class App extends Component {
             numberOfQuestions={this.state.numberOfQuestions}
             numberOfQuestionsChoice={this.numberOfQuestionsChoice}
             difficulties={this.state.difficulties}
-            DifficultiesChoice={this.difficultiesChoice} />}
+            DifficultiesChoice={this.difficultiesChoice}
+            choosenDifficulty={this.state.chosenDifficulty}
+            choosenNumberOfQuestions={this.state.choosenNumberOfQuestions} />}
         {this.state.isAlertDisplayed && <AlertArticleSaved />}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
@@ -479,6 +496,7 @@ class App extends Component {
           this.state.currentNewsArticle.length > 0 &&
           this.state.isArticleDisplayed &&
           <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]}
+            correctSpecialCharacters={this.correctSpecialCharacters}
             addCurrentArticle={this.memorizeArticle}
             nextQuestion={this.nextQuestion} />}
         {this.state.isArticlesRecapDisplayed &&
