@@ -162,3 +162,17 @@ width: 44vh;
   padding-bottom: 1rem;
   padding-top: 1rem;
 }
+
+/*Using card-support attributes + text align left in homepage for app description*/
+.app-description{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 3.5rem !important;
+  padding-right: 3.5rem !important;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  background-color: #FDFFFC;
+  border-radius: 10px;
+  box-shadow: 1px 2.5px 5.5px 2.5px #011627;
+  text-align: left;
+}
