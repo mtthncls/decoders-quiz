@@ -402,7 +402,7 @@ class App extends Component {
   customMessage = () => {
     if (this.state.percentageOfGoodAnswers < 30) {
       return (
-        <h3>I'm not proud of you {this.state.nameRegistered}, Even Seb can do it better!</h3>
+        <h3>I'm not proud of you {this.state.nameRegistered}, you can do better!</h3>
       )
     }
     if (this.state.percentageOfGoodAnswers >= 30 && this.state.percentageOfGoodAnswers <= 70) {
@@ -504,7 +504,8 @@ class App extends Component {
           <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles}
             correctAnswersCounter={this.state.correctAnswersCounter}
             questions={this.state.questions}
-            tryButton={this.TryAgain} />}
+            tryButton={this.TryAgain}
+            customMessage={this.customMessage} />}
       </div>
     )
   };
