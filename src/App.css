@@ -138,9 +138,33 @@ transition: all 0.2s ease-in;
   border: 1px solid #011627;
 }
 /*Home Page*/
-.homer-picture {
-  border-radius: 50%;
-  height: 5vh;
+.lyrics{
+  border: 2px solid #FF9F1C;
+  background-color: #FDFFFC;
+  border-radius: 40px;
+  padding: 1.5rem 2rem;
+}
+@media (min-width: 768px){
+.lyrics:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 30px solid transparent;
+  border-left-color: #FF9F1C;
+	border-right: 0;
+	border-bottom: 0;
+	margin-top: -10px;
+	margin-right: -15px;
+  }
+}
+
+.lyrics h4{
+  font-size: 2vh;
+  text-align: left;
+  padding-top: 0.8rem;
 }
 
 .card-support h1, .card-support h3{
