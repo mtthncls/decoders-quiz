@@ -32,14 +32,15 @@
 /* Description from News API */
 .newscontent {
   display: flex;
-  justify-content: column;
+  flex-direction: column;
+  justify-content: center;
+  }
 
-}
 /* Article button choices */
 
 .ButtonSize{
-height: 13vh;
-width: 58%;
+height: 10vh;
+width: 48%;
 transition: all 0.8s ease;
 }
 
@@ -49,6 +50,40 @@ transition: all 0.2s ease-in;
 }
 .imgSize{
 width: 30vh;
+}
+
+.negative .btn{
+  background-color: #FDFFFC;
+  color: #011627;
+  border: 2px solid #011627;
+  font-size : 2vh;
+  font-weight : bold;
+  text-transform: uppercase;
+  width: 30vh;
+  margin-top: 2rem;
+  box-shadow: 5px 5px 2.5px #999;
+}
+.negative:hover .btn{
+  background-color: #FDFFFC;
+  color: #011627;
+  border: 2px solid #011627;
+}
+
+.positive .btn{
+  background-color: #011627;
+  color: #FF9F1C;
+  border: 2px solid #011627;
+  font-size : 3vh;
+  font-weight : bold;
+  text-transform: uppercase;
+  width: 30vh;
+  margin-top: 2rem;
+  box-shadow: 5px 5px 2.5px #999;
+}
+.positive:hover .btn{
+  background-color: #011627;
+  color: #FF9F1C;
+  border: 2px solid #011627;
 }
 
 /*Animations Button*/
@@ -139,18 +174,4 @@ width: 30vh;
   background-color: #FDFFFC;
   border-radius: 10px;
   box-shadow: 1px 2.5px 5.5px 2.5px #011627;
-}
-
-/*ArticleChoice */
-.simple-button .btn{
-  background-color: #FDFFFC;
-  border: 2px solid #011627;
-  color : #011627;
-  box-shadow: 0 8px 7px #999;
-  font-weight : bold;
-}
-.simple-button:hover .btn{
-  background-color: #FDFFFC;
-  color:#011627;
-  border: 2px solid #011627;  
 }
