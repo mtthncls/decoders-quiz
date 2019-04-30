@@ -312,3 +312,8 @@ transition: all 0.2s ease-in;
 .spinner {
   margin-top: 50vh;
 }
+
+.newsContainer .container{
+  padding-left: 0px;
+  padding-right: 0px;
+} 
