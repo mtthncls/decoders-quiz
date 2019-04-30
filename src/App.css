@@ -52,8 +52,7 @@ width: 44vh;
 
 /*Animations Button*/
 .zoom-button .btn{
-  transition: transform .2s;
-  box-shadow: 0
+  transition: transform .2s; 
 }
 .zoom-button:hover .btn{
   transform: scale(1.1); 
@@ -64,10 +63,10 @@ width: 44vh;
   font-size : 3vh;
   font-weight : bold;
   text-transform: uppercase;
-  width: 40vh;
+  max-width: 40vh;
   margin-top: 2rem;
-  height: 5rem;
   box-shadow: 5px 5px 2.5px #999;
+  min-height: 12vh !important;
 }
 .transition:hover .btn{
   background-color: #FF9F1C;
@@ -77,7 +76,8 @@ width: 44vh;
 /*Home Page*/
 .card-support h1{
   text-transform: uppercase;
-  font-weight: bold;  
+  font-weight: bold;
+  font-size: 4vh;  
 }
 .card-support head{
   background-color: #011627;
@@ -86,8 +86,9 @@ width: 44vh;
 .input-container{
   border-radius: 10px;
   margin-top:2rem;
-  width: 40vh;
-  height: 5vh;
+  width: 30vh;
+  height: 7vh;
+  padding-left: 1rem;
   border: 3px solid #FF9F1C;
   font-size: 18px;
   text-transform: uppercase;
@@ -106,6 +107,7 @@ width: 44vh;
   text-transform: uppercase;
   transition-duration: unset;
   transition: transform 2s;
+  min-height: 20vh !important;
 }
 .category:hover .btn{
   background-color: #FF9F1C;
@@ -119,7 +121,23 @@ width: 44vh;
   background-color: #FF9F1C; 
   box-shadow: 0 4px #666;
   transform: translateY(8px);
-} 
+}
+.custom .btn{
+  background-color: #FDFFFC;
+  border: 2px solid #011627;
+  color : #011627;
+  box-shadow: 0 8px 7px #999;
+  font-weight : bold;
+  text-transform: uppercase;
+  transition-duration: unset;
+  transition: transform 2s;
+  min-height: 15vh !important;
+}
+.custom:hover .btn{
+  background-color: #FF9F1C;
+  color:#011627;
+  border: 6px solid #011627;  
+}
 
 .title{
   color: #011627;
@@ -130,11 +148,12 @@ width: 44vh;
   text-align: left;
 }
 .card-support{
-  margin-top: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding-left: 3.5rem !important;
   padding-right: 3.5rem !important;
-  padding-bottom: 1.5rem;
-  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
   background-color: #FDFFFC;
   border-radius: 10px;
   box-shadow: 1px 2.5px 5.5px 2.5px #011627;
@@ -163,4 +182,8 @@ width: 44vh;
   height: 3rem;
   width: 7rem;
   color: white;
+}
+.card-support h3{
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
