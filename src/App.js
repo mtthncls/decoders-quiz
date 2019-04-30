@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Button, Spinner } from 'reactstrap';
 import Question from './Components/Question';
 import ArticleSetChoice from './Components/ArticleSetChoice';
 import HomePage from './Components/HomePage';
 import './App.css';
 import ArticlesRecap from './Components/ArticlesRecap';
 import CustomizeQuizz from './Components/CustomizeQuizz';
-import Categories from './Categories';
-import AlertArticleSaved from './AlertArticleSaved';
+import Categories from './Components/Categories';
+import AlertArticleSaved from './Components/AlertArticleSaved';
 
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
     super()
     this.state = {
       isHomePageDisplayed: true, //display the home page 
-      nameRegistered: "", //stock username after he wrote it in the input area and he clicked on Play button
+      nameRegistered: "", //stock username after user wrote it in the input area then clicked on Play button
       isThemePageDisplayed: false, //display the choose theme page 
       isCustomizePageDisplayed: false, //display the custom page
       isQuestionDisplayed: false,
@@ -32,7 +32,7 @@ class App extends Component {
       difficulties: ["easy", "medium", "hard"],
       chosenDifficulty: "",
       currentArticleID: 0,
-      questionsCategory: 21,
+      questionsCategory: 0,
       isQuizzLaunched: false, //launch quizz when Play button is clicked and state switched to true
       isNewsDisplayed: false,
       isAnswerCorrect: false, //Question component : is the answer true or false ?
@@ -41,8 +41,8 @@ class App extends Component {
       preferredNewsArticles: [], //ArticleSetChoice component
       isArticlesRecapDisplayed: false,
       correctAnswersCounter: 0,
-      categoryChoice: false,
-      isAlertDisplayed: false
+      isAlertDisplayed: false,
+      percentageOfGoodAnswers: 0
     };
   };
 
@@ -68,7 +68,9 @@ class App extends Component {
   displayLoading = () => {
     if (this.state.isQuestionLoading && this.state.isQuizzLaunched) {
       return (
-        <p className="loadText"></p>
+        <div>
+          <Spinner className="spinner" style={{ width: '5rem', height: '5rem' }} />
+        </div>
       );
     };
   };
@@ -177,6 +179,10 @@ class App extends Component {
     /*condition to display recap page*/
     if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1) {
       this.setState({ isQuestionDisplayed: false, isArticlesRecapDisplayed: true, isArticleDisplayed: false });
+      this.setState({
+        percentageOfGoodAnswers:
+          ((this.state.correctAnswersCounter / parseInt(this.state.choosenNumberOfQuestions)) * 100)
+      })
     }
   };
   /*go to the next question when click on No button*/
@@ -191,8 +197,13 @@ class App extends Component {
     /*condition to display recap page*/
     if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1) {
       this.setState({ isQuestionDisplayed: false, isArticlesRecapDisplayed: true, isArticleDisplayed: false });
+      this.setState({
+        percentageOfGoodAnswers:
+          ((this.state.correctAnswersCounter / parseInt(this.state.choosenNumberOfQuestions)) * 100)
+      })
     }
   };
+
 
   pickUpCategory = (category) => {
     switch (category) {
@@ -234,22 +245,23 @@ class App extends Component {
         break;
       default:
     };
-    this.setState({ categoryChoice: true });
-  };
-
-  //change color of clicked button according to the choice of category
-  categoryChoice = () => {
-    if (this.state.categoryChoice === true) {
-      return "TOTO";
-    }
   };
 
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
-  chooseUsername = (event) => {
+  chooseUsernamePressEnter = (e) => {
+    e.preventDefault()
     this.setState({
       isHomePageDisplayed: false,
       isThemePageDisplayed: true
     });
+  }
+
+  chooseUsername = (event) => {
+    if (this.state.nameRegistered !== "")
+      this.setState({
+        isHomePageDisplayed: false,
+        isThemePageDisplayed: true
+      });
     event.preventDefault();
   };
 
@@ -258,18 +270,30 @@ class App extends Component {
   };
 
   chooseCategory = () => {
-    this.setState({
-      isThemePageDisplayed: false,
-      isCustomizePageDisplayed: true
-    });
+    this.state.questionsCategory === 0 ?
+      this.setState({
+        isThemePageDisplayed: true,
+        isCustomizePageDisplayed: false
+      })
+      : this.setState({
+        isThemePageDisplayed: false,
+        isCustomizePageDisplayed: true
+      });
   };
 
   quizzcustomize = () => {
-    this.setState({
-      isCustomizePageDisplayed: false,
-      isQuizzLaunched: true,
-      isQuestionDisplayed: true
-    });
+    (this.state.choosenNumberOfQuestions === "" || this.state.chosenDifficulty.length === 0)
+      ?
+      this.setState({
+        isCustomizePageDisplayed: true,
+        isQuizzLaunched: false,
+        isQuestionDisplayed: false
+      })
+      : this.setState({
+        isCustomizePageDisplayed: false,
+        isQuizzLaunched: true,
+        isQuestionDisplayed: true
+      });
 
     // method for API call
     fetch(`https://opentdb.com/api.php?amount=${this.state.choosenNumberOfQuestions}&category=
@@ -305,6 +329,23 @@ class App extends Component {
     this.setState({ chosenDifficulty: difficulty });
   }
 
+  customMessage = () => {
+    if (this.state.percentageOfGoodAnswers < 30) {
+      return (
+        <h3>I'm not proud of you {this.state.nameRegistered}, Even Seb can do it better!</h3>
+      )
+    }
+    if (this.state.percentageOfGoodAnswers >= 30 && this.state.percentageOfGoodAnswers <= 70) {
+      return (
+        <h3>Not so bad {this.state.nameRegistered}!</h3>
+      )
+    }
+    if (this.state.percentageOfGoodAnswers > 70) {
+      return (
+        <h3>Good job {this.state.nameRegistered}, you are amazing !</h3>
+      )
+    }
+  }
   // starting a new quiz after the recap page
   TryAgain = () => {
     this.setState({
@@ -341,13 +382,14 @@ class App extends Component {
       <div className="App">
         {this.state.isHomePageDisplayed &&
           <HomePage chooseUsername={this.chooseUsername}
+            chooseUsernamePressEnter={this.chooseUsernamePressEnter}
             usernameChange={this.usernameChange}
             nameRegistered={this.state.nameRegistered} />}
         {this.state.isThemePageDisplayed &&
           <Categories chooseCategory={this.chooseCategory}
             pickUpCategory={this.pickUpCategory}
             categories={this.state.categories}
-            categoryChoice={this.categoryChoice} />}
+            nameRegistered={this.state.nameRegistered} />}
         {this.state.isCustomizePageDisplayed &&
           <CustomizeQuizz quizzcustomize={this.quizzcustomize}
             numberOfQuestions={this.state.numberOfQuestions}

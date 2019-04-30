@@ -22,7 +22,7 @@ const Question = ({ currentQuestionID, question, setAnswerStatus, defineButtonCo
         <Container>
             <header className="card-support head">
                 <p>Question #{currentQuestionID + 1} in</p>
-                <p >{question.category}</p>
+                <h2>{question.category}</h2>
                 <h3 >{correctSpecialCharacters(question.question)}</h3>
             </header>
             <main className="card-support">
