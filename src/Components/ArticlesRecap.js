@@ -7,7 +7,7 @@ import '../App.css'
 const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions, tryButton }) => {
     return (
         <div>
-            <Container className="card-support mt-2">
+            <Container className="card-support mt-5">
                 <h1>Lorem ipsum Username {/* Replace Username by the user input at the beginning*/}</h1>
                 <p className="answersCounter"> You have <span className="correctAnswers">{correctAnswersCounter}</span> correct answers on <span className="correctAnswers">{questions.length}</span> questions</p>
             </Container>
