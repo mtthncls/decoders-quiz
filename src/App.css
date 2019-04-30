@@ -34,6 +34,24 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: left;
+  }
+
+.container-news {
+  background-color: #FF9F1C;
+  border-radius: 10px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.imgSize{
+  width: 30vh;
+  border-radius: 10px;
+  border: 2px solid #011627;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
   }
 
 /* Article button choices */
@@ -47,9 +65,6 @@ transition: all 0.8s ease;
 .ButtonSize:hover{
 transform: scale(1.1,1.1);
 transition: all 0.2s ease-in;
-}
-.imgSize{
-width: 30vh;
 }
 
 .negative .btn{
@@ -88,8 +103,7 @@ width: 30vh;
 
 /*Animations Button*/
 .zoom-button .btn{
-  transition: transform .2s;
-  box-shadow: 0
+  transition: transform .2s; 
 }
 .zoom-button:hover .btn{
   transform: scale(1.1); 
@@ -100,10 +114,10 @@ width: 30vh;
   font-size : 3vh;
   font-weight : bold;
   text-transform: uppercase;
-  width: 40vh;
+  max-width: 40vh;
   margin-top: 2rem;
-  height: 5rem;
   box-shadow: 5px 5px 2.5px #999;
+  min-height: 12vh !important;
 }
 .transition:hover .btn{
   background-color: #FF9F1C;
@@ -113,7 +127,8 @@ width: 30vh;
 /*Home Page*/
 .card-support h1{
   text-transform: uppercase;
-  font-weight: bold;  
+  font-weight: bold;
+  font-size: 4vh;  
 }
 .card-support head{
   background-color: #011627;
@@ -122,8 +137,9 @@ width: 30vh;
 .input-container{
   border-radius: 10px;
   margin-top:2rem;
-  width: 40vh;
-  height: 5vh;
+  width: 30vh;
+  height: 7vh;
+  padding-left: 1rem;
   border: 3px solid #FF9F1C;
   font-size: 18px;
   text-transform: uppercase;
@@ -142,6 +158,7 @@ width: 30vh;
   text-transform: uppercase;
   transition-duration: unset;
   transition: transform 2s;
+  min-height: 20vh !important;
 }
 .category:hover .btn{
   background-color: #FF9F1C;
@@ -155,7 +172,23 @@ width: 30vh;
   background-color: #FF9F1C; 
   box-shadow: 0 4px #666;
   transform: translateY(8px);
-} 
+}
+.custom .btn{
+  background-color: #FDFFFC;
+  border: 2px solid #011627;
+  color : #011627;
+  box-shadow: 0 8px 7px #999;
+  font-weight : bold;
+  text-transform: uppercase;
+  transition-duration: unset;
+  transition: transform 2s;
+  min-height: 15vh !important;
+}
+.custom:hover .btn{
+  background-color: #FF9F1C;
+  color:#011627;
+  border: 6px solid #011627;  
+}
 
 .title{
   color: #011627;
@@ -166,12 +199,42 @@ width: 30vh;
   text-align: left;
 }
 .card-support{
-  margin-top: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding-left: 3.5rem !important;
   padding-right: 3.5rem !important;
-  padding-bottom: 1.5rem;
-  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
   background-color: #FDFFFC;
   border-radius: 10px;
   box-shadow: 1px 2.5px 5.5px 2.5px #011627;
+}
+
+.newsPictures{
+  max-width: 36%;
+  max-height: 15rem;
+  overflow: hidden;
+  border: 2px solid #011627;
+  color : #011627;
+  box-shadow: 0 8px 7px #011627;
+  border-radius: 10px;
+}
+.newsText{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.readMeButton{
+  border: 2px solid #FF9F1C;
+  color: white;
+  background-color: #011627;
+  border-radius: 5px;
+  height: 3rem;
+  width: 7rem;
+  color: white;
+}
+.card-support h3{
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
