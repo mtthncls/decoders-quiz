@@ -9,7 +9,7 @@ const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsCho
     return(
         <Container>
             <header className="card-support">
-                <h1>Step 2/2: Numbers of questions & Difficulties</h1>
+                <h1>Step 2/2: Number of questions & Difficulties</h1>
             </header>
             <div className="card-support">
             <Row>

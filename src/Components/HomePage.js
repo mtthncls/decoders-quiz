@@ -12,7 +12,7 @@ const HomePage = ({chooseUsername, usernameChange, nameRegistered}) => {
             <div className="app-description">
             <Row>
             <Col sm="12" md="8"><div className="lyrics"><h4>"Welcome to the Quiz ! You will have a multiple choice of themes, 
-                    each providing a series of questions, all with a choice between 4 possibles answers, 
+                    each providing a series of questions, all with a choice between 4 possible answers, 
                     select the one you think is correct by clicking it ! 
                     Stay informed by reading the latest news of the chosen theme. Have fun !" Rick.
                 </h4></div></Col>
