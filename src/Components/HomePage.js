@@ -9,21 +9,20 @@ const HomePage = ({chooseUsername, usernameChange, nameRegistered}) => {
             <header className="card-support head">
                 <h1>Decoder's Quiz</h1>
             </header>
-            <div className="card-support presentation">
+            <div className="app-description">
             <Row>
-            <Col sm="12" md="6"><div className="lyrics"><h4>"Welcome to the Quiz ! You will have a multiple choice of themes, 
+            <Col sm="12" md="8"><div className="lyrics"><h4>"Welcome to the Quiz ! You will have a multiple choice of themes, 
                     each providing a series of questions, all with a choice between 4 possibles answers, 
                     select the one you think is correct by clicking it ! 
-                    Stay informed by reading the latest news of the chosen theme. Have fun !"
+                    Stay informed by reading the latest news of the chosen theme. Have fun !" Rick.
                 </h4></div></Col>
-            <Col sm="12" md="6"><img src="https://zupimages.net/up/19/18/rwwz.jpg" alt="homer"/></Col>
+            <Col sm="12" md={{ size: 3, offset: 1 }}><img className= "animated-rick" src="https://media.giphy.com/media/9JwUhPDEGmhbWgCMEZ/giphy.gif" heigth="10vh" alt="homer"/></Col>
             </Row>
             </div>
             <div className="card-support">
             <h3>Please choose your username :</h3>
             <Row>
                 <Col sm="12" md="12">
-            <h3>Choose your username :</h3>
             <form>
                 <label htmlFor="Username">
                     <input className="input-container" placeholder="Username" name="Username" id="Username" 
