@@ -13,14 +13,14 @@ const HomePage = ({chooseUsername, usernameChange, nameRegistered}) => {
             <h3>Welcome to the quiz, please choose your username :</h3>
             <form>
                 <label htmlFor="Username">
-                    <input className="input-container" placeholder="Username" name="Username" id="Username" 
+                    <input className="input-container" placeholder=" Username" name="Username" id="Username" 
                            onChange={usernameChange} value={nameRegistered}/>
                 </label>
             </form>
              <br></br>
             <Row className="zoom-button transition">
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
-                    <Button type="submit" name="submit" color="success" onClick={chooseUsername}>PLAY</Button>
+                    <Button type="submit" name="submit" onClick={chooseUsername}>PLAY</Button>
                 </Col>
             </Row>
             </div>

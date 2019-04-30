@@ -3,7 +3,7 @@ import { Col, Button } from 'reactstrap';
 
 const NumberOfQuestionsButton = ({numberOfQuestion, numberOfQuestionsChoice}) => {
     return ( 
-        <Col>
+        <Col className="zoom-button category" >
             <Button onClick={() => numberOfQuestionsChoice(numberOfQuestion)}>{numberOfQuestion}</Button>
         </Col>
      );
