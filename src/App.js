@@ -402,11 +402,7 @@ class App extends Component {
   customMessage = () => {
     if (this.state.percentageOfGoodAnswers < 30) {
       return (
-<<<<<<< HEAD
-        <h3>I'm not proud of you {this.state.nameRegistered}, even Seb can do it better!</h3>
-=======
         <h3>I'm not proud of you {this.state.nameRegistered}, you can do better!</h3>
->>>>>>> 2eb9c89b16cbeb1e6ffb90d2961e4f11d3ba12d2
       )
     }
     if (this.state.percentageOfGoodAnswers >= 30 && this.state.percentageOfGoodAnswers <= 70) {
