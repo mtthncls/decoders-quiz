@@ -78,7 +78,18 @@ width: 44vh;
   border-radius: 50%;
   height: 5vh;
 }
-
+.lyrics{
+  margin-top: 1rem;
+  border: 2px solid #FF9F1C;
+  border-radius: 20px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.lyrics h4{
+  font-size: 2vh;
+  text-align: left;
+  padding-top: 0.8rem;
+}
 .card-support h1{
   text-transform: uppercase;
   font-weight: bold;
