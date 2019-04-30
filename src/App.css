@@ -254,7 +254,7 @@ transition: all 0.2s ease-in;
 
 .newsPictures{
   max-width: 80%;
-  max-height: 15rem;
+  height: 6rem;
   overflow: hidden;
   border: 2px solid #011627;
   color : #011627;

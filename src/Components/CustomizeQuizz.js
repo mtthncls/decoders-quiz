@@ -5,7 +5,7 @@ import NumberOfQuestionsButton from './NumberOfQuestionsButton'
 import DifficultyButton from './DifficultyButtons';
 import '../App.css';
 
-const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsChoice, difficulties, DifficultiesChoice}) => {
+const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsChoice, difficulties, DifficultiesChoice, choosenNumberOfQuestions, choosenDifficulty}) => {
     return(
         <Container>
             <header className="card-support">
@@ -18,7 +18,8 @@ const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsCho
                 </Col>
                 {numberOfQuestions.map((numberOfQuestion, index) => <Col sm="12" md="4"><NumberOfQuestionsButton numberOfQuestion={numberOfQuestion}
                                                                                               key={index}
-                                                                                              numberOfQuestionsChoice={numberOfQuestionsChoice} /></Col>)}
+                                                                                              numberOfQuestionsChoice={numberOfQuestionsChoice} 
+                                                                                              choosenNumberOfQuestions={choosenNumberOfQuestions}/></Col>)}
                 
             </Row>
             <Row>
@@ -27,7 +28,8 @@ const CustomizeQuizz = ({quizzcustomize, numberOfQuestions, numberOfQuestionsCho
                 </Col>
                 {difficulties.map((difficulty, index) => <Col sm="12" md="4"><DifficultyButton difficulty={difficulty} 
                                                                            key={index}
-                                                                           DifficultiesChoice={DifficultiesChoice}/></Col>)}
+                                                                           DifficultiesChoice={DifficultiesChoice}
+                                                                           choosenDifficulty={choosenDifficulty}/></Col>)}
             </Row>
             <Row>
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
