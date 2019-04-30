@@ -497,6 +497,7 @@ class App extends Component {
           this.state.isArticleDisplayed &&
           <ArticleSetChoice currentArticle={this.state.currentNewsArticle[this.state.currentArticleID]}
             correctSpecialCharacters={this.correctSpecialCharacters}
+            catTitle={this.state.questionsCategory.catTitle}
             addCurrentArticle={this.memorizeArticle}
             nextQuestion={this.nextQuestion} />}
         {this.state.isArticlesRecapDisplayed &&
