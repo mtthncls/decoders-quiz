@@ -13,4 +13,3 @@ const CategoryChoice = ({ category, pickUpCategory, catTitle }) => {
 }
 
 export default CategoryChoice;
-
