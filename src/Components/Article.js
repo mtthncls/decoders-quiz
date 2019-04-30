@@ -1,21 +1,35 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Card, CardText } from 'reactstrap';
 
 const Article = ({ currentArticle, correctSpecialCharacters }) => {
     return (
         <div>
-            <Row className="container-news mb-1">
-                <Col><img src={currentArticle.urlToImage} className="imgSize" alt="news"/></Col>
-                <Col>
-                    <h2 className="article-title">{correctSpecialCharacters(currentArticle.title)}</h2>
-                    <p className="newscontent mt-3 mb-3">{correctSpecialCharacters(currentArticle.description)} </p></Col>
-            </Row>
+            <Card style={{backgroundColor: "#FF9F1C"}}className="mt-3">
+                    <Row>
+                        <Col sm="12" lg="3">
+                            <CardText className="m-3" >
+                                <img className="newsPictures" src={currentArticle.urlToImage} alt="news-picture"></img>
+                            </CardText>
+                        </Col>
+                        <Col sm="12" lg="8" className="newsText">
+                            <h3>
+                                <CardText style={{color: "black", fontSize : "16px"}}>
+                                    {correctSpecialCharacters(currentArticle.title)}
+                                </CardText>
+                            </h3>
+                            <div>
+                                <p>{correctSpecialCharacters(currentArticle.description)}</p>
+                            </div>
+                        </Col>
+                    </Row>
+                </Card>
             <Row>
-                <Col><h2 className="mt-3">Do you want to read this news later ?</h2></Col>
+                <Col><h2 className="button-title mt-3">Do you want to read this news later ?</h2></Col>
             </Row>
         </div>
     );
 }
 
 export default Article;
+
 

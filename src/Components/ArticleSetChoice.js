@@ -7,7 +7,9 @@ const ArticleSetChoice = ({ currentArticle, addCurrentArticle, nextQuestion, cor
     return (
         <article>
             <Container>
-            <h1 className="card-support mt-3">Become an expert in {catTitle}</h1>
+                <header className="card-support head mt-3">
+                    <h1>Become an expert in {catTitle}</h1>
+                </header>
             {/* News must display data gets from News API */}
             <div className="card-support">
             <Article currentArticle={currentArticle} correctSpecialCharacters={correctSpecialCharacters} />

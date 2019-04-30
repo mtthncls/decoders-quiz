@@ -447,7 +447,8 @@ class App extends Component {
       questionsCategory: {
         id: 0,
         catTitle: ""
-      }
+      },
+      percentageOfGoodAnswers: 0
     })
   };
 
@@ -462,6 +463,10 @@ class App extends Component {
         .replace(/&rsquo;/g, "'")
         .replace(/&aacute;/g, "á")
         .replace(/&uacute;/g, "ú")
+        .replace(/&shy;/g, '-')
+        .replace(/&Auml;/g, 'Ä')
+        .replace(/&Ouml;/g, 'Ö')
+        .replace(/&Aring;/g, 'Å')
 };
 
   render() {

@@ -9,7 +9,7 @@ const ArticleSaved = ({articlesToRecap}) => {
                     <Row>
                         <Col sm="12" lg="3">
                             <CardText className="m-3" >
-                                <img className="newsPictures" src={articlesToRecap.urlToImage} alt="Article"></img>
+                                <img className="newsPictures-recap" src={articlesToRecap.urlToImage} alt="Article"></img>
                             </CardText>
                         </Col>
                         <Col sm="12" lg="8" className="newsText">

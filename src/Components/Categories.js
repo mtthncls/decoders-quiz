@@ -10,7 +10,7 @@ const Categories = ({ categories, pickUpCategory, categoryChoice, chooseCategory
                 <h1>Step 1/2 : Categories</h1>
             </header>
             <div className="card-support">
-                <h3>First, you have to choose your category...</h3>
+                <h3>First, you have to choose one category...</h3>
                 <Row>
                     {categories.map((category, index) =>
                         <CategoryChoice pickUpCategory={() => pickUpCategory(category, index)}
