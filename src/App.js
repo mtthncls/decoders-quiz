@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Spinner } from 'reactstrap';
+import { Button, Spinner, Row, Col } from 'reactstrap';
 import Question from './Components/Question';
 import ArticleSetChoice from './Components/ArticleSetChoice';
 import HomePage from './Components/HomePage';
@@ -402,17 +402,26 @@ class App extends Component {
   customMessage = () => {
     if (this.state.percentageOfGoodAnswers < 30) {
       return (
-        <h3>I'm not proud of you {this.state.nameRegistered}, you can do better!</h3>
+        <Row>
+        <Col sm="12" md="6"><img src={'https://thumbs.gfycat.com/AcceptableJoyfulInganue-size_restricted.gif'} height="300rem" width="250rem" alt="bad"/></Col>
+        <Col sm="12" md="6"><h3 className="mt-4">I'm not proud of you {this.state.nameRegistered}, you can do better!</h3></Col>
+        </Row>
       )
     }
     if (this.state.percentageOfGoodAnswers >= 30 && this.state.percentageOfGoodAnswers <= 70) {
       return (
-        <h3>Not so bad {this.state.nameRegistered}!</h3>
+        <Row>
+        <Col sm="12" md="6"><img src={'https://thumbs.gfycat.com/GiganticIdealisticAffenpinscher-small.gif'} height="200rem" width="300rem" alt="medium"/></Col>
+        <Col sm="12" md="6"><h3 className="mt-4">Not so bad {this.state.nameRegistered}!</h3></Col>
+        </Row>
       )
     }
     if (this.state.percentageOfGoodAnswers > 70) {
       return (
-        <h3>Good job {this.state.nameRegistered}, you are amazing !</h3>
+        <Row>
+        <Col sm="12" md="6"><img src={'https://media.tenor.com/images/17233f6fbdb4e0488f92c8ebd1218cda/tenor.gif'} height="300rem" width="150rem" alt="nice"/></Col>
+        <Col sm="12" md="6"><h3 className="mt-5">Good job {this.state.nameRegistered}, you are amazing !</h3></Col>
+        </Row>  
       )
     }
   }
