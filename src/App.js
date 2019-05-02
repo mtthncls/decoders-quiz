@@ -46,7 +46,8 @@ class App extends Component {
       correctAnswersCounter: 0,
       isAlertDisplayed: false,
       percentageOfGoodAnswers: 0,
-      isArticleSaved : false
+      isArticleSaved : false,
+      isArticleButtonDisabled : false
     };
   };
 
@@ -170,9 +171,10 @@ class App extends Component {
       };
     });
 
-    this.setState({ 
+    this.setState({
       isAlertDisplayed: true,
       isArticleSaved : true,
+      isArticleButtonDisabled : true
     });
 
     if (this.state.currentQuestionID < this.state.choosenNumberOfQuestions - 1) {
@@ -181,26 +183,30 @@ class App extends Component {
       currentQuestionID: this.state.currentQuestionID + 1,
       currentArticleID: this.state.currentArticleID + 1,
       isArticleDisplayed: false, isAlertDisplayed: false,
+      isArticleButtonDisabled : false
     }), 3000);
   }
 
     /*condition to display recap page*/
     if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1) {
-      window.setTimeout(()=> this.setState({ isAlertDisplayed: false, isQuestionDisplayed: false, 
-                      isArticlesRecapDisplayed: true, isArticleDisplayed: false}), 3000);
+      window.setTimeout(() => this.setState({
+        isAlertDisplayed: false, isQuestionDisplayed: false,
+        isArticlesRecapDisplayed: true, isArticleDisplayed: false
+      }), 3000);
       this.setState({
         percentageOfGoodAnswers:
           ((this.state.correctAnswersCounter / parseInt(this.state.choosenNumberOfQuestions)) * 100)
       })
-       
+
     }
   };
   /*go to the next question when click on No button*/
   nextQuestion = () => {
-    
-    this.setState({ 
+
+    this.setState({
       isAlertDisplayed: true,
       isArticleSaved : false,
+      isArticleButtonDisabled : true
     });
 
     if (this.state.currentQuestionID < this.state.choosenNumberOfQuestions - 1) {
@@ -209,20 +215,23 @@ class App extends Component {
         currentQuestionID: this.state.currentQuestionID + 1,
         currentArticleID: this.state.currentArticleID + 1,
         isArticleDisplayed: false, isAlertDisplayed: false,
+        isArticleButtonDisabled : false
       }), 3000);
     }
-  
-      /*condition to display recap page*/
-      if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1) {
-        window.setTimeout(()=> this.setState({ isAlertDisplayed: false, isQuestionDisplayed: false, 
-                        isArticlesRecapDisplayed: true, isArticleDisplayed: false}), 3000);
-        this.setState({
-          percentageOfGoodAnswers:
-            ((this.state.correctAnswersCounter / parseInt(this.state.choosenNumberOfQuestions)) * 100)
-        })
-         
-      }
-}
+
+    /*condition to display recap page*/
+    if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1) {
+      window.setTimeout(() => this.setState({
+        isAlertDisplayed: false, isQuestionDisplayed: false,
+        isArticlesRecapDisplayed: true, isArticleDisplayed: false
+      }), 3000);
+      this.setState({
+        percentageOfGoodAnswers:
+          ((this.state.correctAnswersCounter / parseInt(this.state.choosenNumberOfQuestions)) * 100)
+      })
+
+    }
+  }
 
 
   pickUpCategory = (category) => {
@@ -336,10 +345,11 @@ class App extends Component {
   //This method allow to display "Play" button at the beginning of the quizz, onClick = switch the state fromfalse to true (si isquizzlaunched:true, display question : true, article true 
   chooseUsernamePressEnter = (e) => {
     e.preventDefault()
-    this.setState({
-      isHomePageDisplayed: false,
-      isThemePageDisplayed: true
-    });
+    if (this.state.nameRegistered !== "")
+      this.setState({
+        isHomePageDisplayed: false,
+        isThemePageDisplayed: true
+      });
   }
 
   chooseUsername = (event) => {
@@ -420,7 +430,7 @@ class App extends Component {
       return (
         <Row>
         <Col sm="12" md="6"><img src={'https://thumbs.gfycat.com/AcceptableJoyfulInganue-size_restricted.gif'} height="300rem" width="250rem" alt="bad"/></Col>
-        <Col sm="12" md="6"><h3 className="mt-4">I'm not proud of you {this.state.nameRegistered}, you can do better!</h3></Col>
+        <Col sm="12" md="6"><h3 className="text-score mt-4">I'm not proud of you {this.state.nameRegistered}, you can do better!</h3></Col>
         </Row>
       )
     }
@@ -428,7 +438,7 @@ class App extends Component {
       return (
         <Row>
         <Col sm="12" md="6"><img src={'https://thumbs.gfycat.com/GiganticIdealisticAffenpinscher-small.gif'} height="200rem" width="300rem" alt="medium"/></Col>
-        <Col sm="12" md="6"><h3 className="mt-4">Not so bad {this.state.nameRegistered}!</h3></Col>
+        <Col sm="12" md="6"><h3 className="text-score mt-4">Not so bad {this.state.nameRegistered}!</h3></Col>
         </Row>
       )
     }
@@ -436,7 +446,7 @@ class App extends Component {
       return (
         <Row>
         <Col sm="12" md="6"><img src={'https://media.tenor.com/images/17233f6fbdb4e0488f92c8ebd1218cda/tenor.gif'} height="300rem" width="150rem" alt="nice"/></Col>
-        <Col sm="12" md="6"><h3 className="mt-5">Good job {this.state.nameRegistered}, you are amazing !</h3></Col>
+        <Col sm="12" md="6"><h3 className="text-score mt-5">Good job {this.state.nameRegistered}, you are amazing !</h3></Col>
         </Row>  
       )
     }
@@ -516,16 +526,20 @@ class App extends Component {
   };
   correctSpecialCharacters = (string) => {
     return string.replace(/&quot;|&#039;/g, "'")
-      .replace(/&rdquo;|&ldquo;/g, "\"")
-      .replace(/&eacute;/g, "é")
-      .replace(/&deg;/g, "°")
-      .replace(/&pipeline;/g, "Π")
-      .replace(/&amp;/g, "&")
-      .replace(/&hellip;/g, "...")
-      .replace(/&rsquo;/g, "'")
-      .replace(/&aacute;/g, "á")
-      .replace(/&uacute;/g, "ú")
-  };
+        .replace(/&rdquo;|&ldquo;/g, "\"")
+        .replace(/&eacute;/g, "é")
+        .replace(/&deg;/g, "°")
+        .replace(/&pipeline;/g, "Π")
+        .replace(/&amp;/g, "&")
+        .replace(/&hellip;/g, "...")
+        .replace(/&rsquo;/g, "'")
+        .replace(/&aacute;/g, "á")
+        .replace(/&uacute;/g, "ú")
+        .replace(/&shy;/g, '-')
+        .replace(/&Auml;/g, 'Ä')
+        .replace(/&Ouml;/g, 'Ö')
+        .replace(/&Aring;/g, 'Å')
+        };
 
   render() {
     return (
@@ -562,7 +576,8 @@ class App extends Component {
             catTitle={this.state.questionsCategory.catTitle}
             addCurrentArticle={this.memorizeArticle}
             nextQuestion={this.nextQuestion} 
-            isAlertDisplayed={this.state.isAlertDisplayed}/>}
+            isAlertDisplayed={this.state.isAlertDisplayed}
+            isArticleButtonDisabled={this.state.isArticleButtonDisabled}/>}
         {this.state.isAlertDisplayed && <AlertArticleSaved isArticleSaved={this.state.isArticleSaved} />}
         {this.state.isArticlesRecapDisplayed &&
           <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles}

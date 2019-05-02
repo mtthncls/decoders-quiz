@@ -1,6 +1,6 @@
 import React from 'react';
 import ArticleSaved from './ArticleSaved';
-import { Button, Container } from 'reactstrap';
+import { Button, Container, Row, Col } from 'reactstrap';
 import './ArticlesRecap.css'
 import '../App.css'
 
@@ -9,7 +9,7 @@ const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions, tryB
         <div>
             <Container className="card-support mt-3">
                 <h1>{customMessage()} {/* Replace Username by the user input at the beginning*/}</h1>
-                <p className="answersCounter"> You have <span className="correctAnswers">{correctAnswersCounter}</span> correct answers on <span className="correctAnswers">{questions.length}</span> questions</p>
+                <p className="answersCounter"> You have <span className="correctAnswers">{correctAnswersCounter}</span> correct answer(s) on <span className="correctAnswers">{questions.length}</span> questions</p>
             </Container>
             <Container className="card-support mt-5">
                 <h1>Here's your reading list : </h1>
@@ -21,11 +21,16 @@ const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions, tryB
                     <ArticleSaved key={index} articlesToRecap={article} />)}
 
             {/* that button sends back to the "choose category" page of the app */}
-            <div className="zoom-button transition">
-                <Button onClick={tryButton}><span>Try again</span></Button >
+            <Row>
+            <Col sm="12" md="6"><div className="zoom-button transition">
+            <Button onClick={tryButton}><span>Try again</span></Button > 
             </div>
-            <div className="new-player"> <Button className="toto" onClick={newPlayer}><span>New Player</span></Button >
+            </Col>
+            <Col sm="12" md="6">
+            <div className="new-player"> <Col><Button onClick={newPlayer}><span>New Player</span></Button ></Col>
             </div>
+            </Col>
+            </Row>
         </div>
     );
 }

@@ -3,7 +3,8 @@ import {Container} from 'reactstrap';
 import Article from './Article';
 import ArticleChoice from './ArticleChoice';
 
-const ArticleSetChoice = ({ currentArticle, addCurrentArticle, nextQuestion, correctSpecialCharacters, catTitle, isAlertDisplayed }) => {
+const ArticleSetChoice = ({ currentArticle, addCurrentArticle, nextQuestion, correctSpecialCharacters, 
+                            catTitle, isAlertDisplayed, isArticleButtonDisabled }) => {
     return (
         <article className={isAlertDisplayed ? "opacityNews" : "opacityNews1"}>
             <Container>
@@ -12,7 +13,8 @@ const ArticleSetChoice = ({ currentArticle, addCurrentArticle, nextQuestion, cor
             <div className="card-support">
             <Article currentArticle={currentArticle} correctSpecialCharacters={correctSpecialCharacters} />
             {/* Props transfers the method to ride up child information up to here */}
-            <ArticleChoice addCurrentArticle={addCurrentArticle} nextQuestion={nextQuestion}/>
+            <ArticleChoice isArticleButtonDisabled={isArticleButtonDisabled} 
+                           addCurrentArticle={addCurrentArticle} nextQuestion={nextQuestion}/>
             </div>
             </Container>
         </article>

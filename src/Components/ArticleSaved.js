@@ -19,7 +19,7 @@ const ArticleSaved = ({articlesToRecap}) => {
                                 </CardText>
                             </h3>
                             <div>
-                                <button className="mt-2 readMeButton"><a style={{color : "white"}} href={articlesToRecap.url}> Read Me > </a></button>
+                                <button className="mt-2 readMeButton"><a style={{color : "white"}} href={articlesToRecap.url} target="_blank" rel="noopener noreferrer"> Read Me > </a></button>
                             </div>
                         </Col>
                     </Row>
