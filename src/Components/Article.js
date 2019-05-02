@@ -6,7 +6,7 @@ import { Row, Col, Card, CardText } from 'reactstrap';const Article = ({ current
                    <Row>
                        <Col sm="12" lg="3">
                            <CardText className="m-3" >
-                               <img className="newsPictures" src={currentArticle.urlToImage} alt="news-pic"></img>
+                               <img className="newsPictures" src={currentArticle.urlToImage} alt="Current News"></img>
                            </CardText>
                        </Col>
                        <Col sm="12" lg="8" className="newsText">

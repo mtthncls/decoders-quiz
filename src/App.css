@@ -335,20 +335,16 @@ transition: all 0.2s ease-in;
   max-width: 90%;
   height: 8rem;
   overflow: hidden;
-  border: 2px solid #011627
- ;
-  color : #011627
- ;
+  border: 2px solid #011627;
+  color : #011627;
   border-radius: 10px;
  }
  .newsPictures-recap{
   max-width: 80%;
   height: 6rem;
   overflow: hidden;
-  border: 2px solid #011627
- ;
-  color : #011627
- ;
+  border: 2px solid #011627;
+  color : #011627;
   border-radius: 10px;
  }
  .newsText{
