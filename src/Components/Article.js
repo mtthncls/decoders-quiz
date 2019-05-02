@@ -1,16 +1,19 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
-const Article = ({ currentArticle }) => {
+const Article = ({ currentArticle, correctSpecialCharacters }) => {
     return (
-        <Container>
-            <Row>
+        <div>
+            <Row className="container-news mb-1">
                 <Col><img src={currentArticle.urlToImage} className="imgSize" alt="news"/></Col>
+                <Col>
+                    <h2 className="article-title">{correctSpecialCharacters(currentArticle.title)}</h2>
+                    <p className="newscontent mt-3 mb-3">{correctSpecialCharacters(currentArticle.description)} </p></Col>
             </Row>
             <Row>
-                <Col><p className="newscontent">{currentArticle.description}</p></Col>
+                <Col><h2 className="mt-3">Do you want to read this news later ?</h2></Col>
             </Row>
-        </Container>
+        </div>
     );
 }
 
