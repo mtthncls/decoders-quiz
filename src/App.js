@@ -516,16 +516,20 @@ class App extends Component {
   };
   correctSpecialCharacters = (string) => {
     return string.replace(/&quot;|&#039;/g, "'")
-      .replace(/&rdquo;|&ldquo;/g, "\"")
-      .replace(/&eacute;/g, "é")
-      .replace(/&deg;/g, "°")
-      .replace(/&pipeline;/g, "Π")
-      .replace(/&amp;/g, "&")
-      .replace(/&hellip;/g, "...")
-      .replace(/&rsquo;/g, "'")
-      .replace(/&aacute;/g, "á")
-      .replace(/&uacute;/g, "ú")
-  };
+        .replace(/&rdquo;|&ldquo;/g, "\"")
+        .replace(/&eacute;/g, "é")
+        .replace(/&deg;/g, "°")
+        .replace(/&pipeline;/g, "Π")
+        .replace(/&amp;/g, "&")
+        .replace(/&hellip;/g, "...")
+        .replace(/&rsquo;/g, "'")
+        .replace(/&aacute;/g, "á")
+        .replace(/&uacute;/g, "ú")
+        .replace(/&shy;/g, '-')
+        .replace(/&Auml;/g, 'Ä')
+        .replace(/&Ouml;/g, 'Ö')
+        .replace(/&Aring;/g, 'Å')
+        };
 
   render() {
     return (
