@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
-import "./Question.css";
 
 //Template object for global question data from API
 

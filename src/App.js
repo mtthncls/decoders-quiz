@@ -45,7 +45,8 @@ class App extends Component {
       isArticlesRecapDisplayed: false,
       correctAnswersCounter: 0,
       isAlertDisplayed: false,
-      percentageOfGoodAnswers: 0
+      percentageOfGoodAnswers: 0,
+      isArticleSaved : false
     };
   };
 
@@ -168,45 +169,60 @@ class App extends Component {
           : [...prevState.preferredNewsArticles, this.state.currentNewsArticle[this.state.currentArticleID]]
       };
     });
-    this.setState({
+
+    this.setState({ 
+      isAlertDisplayed: true,
+      isArticleSaved : true,
+    });
+
+    if (this.state.currentQuestionID < this.state.choosenNumberOfQuestions - 1) {
+    window.setTimeout(() => this.setState({
       isQuestionAnswered: false, isQuestionDisplayed: true,
       currentQuestionID: this.state.currentQuestionID + 1,
       currentArticleID: this.state.currentArticleID + 1,
-      isArticleDisplayed: false,
-    });
-    this.setState({ isAlertDisplayed: true }, () => {
-      window.setTimeout(() => {
-        this.setState({ isAlertDisplayed: false })
-      }, 3000)
-    })
+      isArticleDisplayed: false, isAlertDisplayed: false,
+    }), 3000);
+  }
 
     /*condition to display recap page*/
     if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1) {
-      this.setState({ isQuestionDisplayed: false, isArticlesRecapDisplayed: true, isArticleDisplayed: false });
+      window.setTimeout(()=> this.setState({ isAlertDisplayed: false, isQuestionDisplayed: false, 
+                      isArticlesRecapDisplayed: true, isArticleDisplayed: false}), 3000);
       this.setState({
         percentageOfGoodAnswers:
           ((this.state.correctAnswersCounter / parseInt(this.state.choosenNumberOfQuestions)) * 100)
       })
+       
     }
   };
   /*go to the next question when click on No button*/
   nextQuestion = () => {
-    this.setState({
-      isQuestionAnswered: false,
-      isQuestionDisplayed: true,
-      currentQuestionID: this.state.currentQuestionID + 1,
-      currentArticleID: this.state.currentArticleID + 1,
-      isArticleDisplayed: false,
+    
+    this.setState({ 
+      isAlertDisplayed: true,
+      isArticleSaved : false,
     });
-    /*condition to display recap page*/
-    if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1) {
-      this.setState({ isQuestionDisplayed: false, isArticlesRecapDisplayed: true, isArticleDisplayed: false });
-      this.setState({
-        percentageOfGoodAnswers:
-          ((this.state.correctAnswersCounter / parseInt(this.state.choosenNumberOfQuestions)) * 100)
-      })
+
+    if (this.state.currentQuestionID < this.state.choosenNumberOfQuestions - 1) {
+      window.setTimeout(() => this.setState({
+        isQuestionAnswered: false, isQuestionDisplayed: true,
+        currentQuestionID: this.state.currentQuestionID + 1,
+        currentArticleID: this.state.currentArticleID + 1,
+        isArticleDisplayed: false, isAlertDisplayed: false,
+      }), 3000);
     }
-  };
+  
+      /*condition to display recap page*/
+      if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1) {
+        window.setTimeout(()=> this.setState({ isAlertDisplayed: false, isQuestionDisplayed: false, 
+                        isArticlesRecapDisplayed: true, isArticleDisplayed: false}), 3000);
+        this.setState({
+          percentageOfGoodAnswers:
+            ((this.state.correctAnswersCounter / parseInt(this.state.choosenNumberOfQuestions)) * 100)
+        })
+         
+      }
+}
 
 
   pickUpCategory = (category) => {
@@ -352,7 +368,7 @@ class App extends Component {
   };
 
   quizzcustomize = () => {
-    (this.state.choosenNumberOfQuestions === "" || this.state.chosenDifficulty.length === 0)
+    (this.state.choosenNumberOfQuestions === 0 || this.state.chosenDifficulty.length === 0)
       ?
       this.setState({
         isCustomizePageDisplayed: true,
@@ -448,10 +464,47 @@ class App extends Component {
         id: 0,
         catTitle: ""
       },
+      isAlertDisplayed: false,
       percentageOfGoodAnswers: 0
     })
   };
 
+  // starting a new quiz after the recap page
+  NewPlayerButton = () => {
+    this.setState({
+      buttonClicked: "",
+      categories: this.state.categories,
+      choosenNumberOfQuestions: 0,
+      chosenDifficulty: "",
+      correctAnswersCounter: 0,
+      currentArticleID: 0,
+      currentNewsArticle: {},
+      currentQuestionID: 0,
+      difficulties: this.state.difficulties,
+      isAnswerCorrect: false,
+      isArticleDisplayed: false,
+      isArticlesRecapDisplayed: false,
+      isButtonDisabled: false,
+      isCustomizePageDisplayed: false,
+      isHomePageDisplayed: true,
+      isNewsDisplayed: false,
+      isQuestionAnswered: false,
+      isQuestionDisplayed: false,
+      isQuestionLoading: true,
+      isQuizzLaunched: false,
+      isThemePageDisplayed: false,
+      nameRegistered: "",
+      numberOfQuestions: ["5", "10", "15"],
+      preferredNewsArticles: [],
+      questions: [],
+      questionsCategory: {
+        id: 0,
+        catTitle: ""
+      },
+      isAlertDisplayed: false,
+      percentageOfGoodAnswers: 0
+    })
+  };
   correctSpecialCharacters = (string) => {
     return string.replace(/&quot;|&#039;/g, "'")
         .replace(/&rdquo;|&ldquo;/g, "\"")
@@ -467,7 +520,7 @@ class App extends Component {
         .replace(/&Auml;/g, 'Ä')
         .replace(/&Ouml;/g, 'Ö')
         .replace(/&Aring;/g, 'Å')
-};
+        };
 
   render() {
     return (
@@ -490,7 +543,6 @@ class App extends Component {
             DifficultiesChoice={this.difficultiesChoice}
             choosenDifficulty={this.state.chosenDifficulty}
             choosenNumberOfQuestions={this.state.choosenNumberOfQuestions} />}
-        {this.state.isAlertDisplayed && <AlertArticleSaved />}
         {this.displayLoading()}
         {this.state.isQuestionDisplayed && this.displayQuestions()}
         <div className="zoom-button transition">
@@ -504,12 +556,14 @@ class App extends Component {
             correctSpecialCharacters={this.correctSpecialCharacters}
             catTitle={this.state.questionsCategory.catTitle}
             addCurrentArticle={this.memorizeArticle}
-            nextQuestion={this.nextQuestion} />}
+            nextQuestion={this.nextQuestion} 
+            isAlertDisplayed={this.state.isAlertDisplayed}/>}
+        {this.state.isAlertDisplayed && <AlertArticleSaved isArticleSaved={this.state.isArticleSaved} />}
         {this.state.isArticlesRecapDisplayed &&
           <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles}
             correctAnswersCounter={this.state.correctAnswersCounter}
             questions={this.state.questions}
-            tryButton={this.TryAgain}
+            tryButton={this.TryAgain} newPlayer={this.NewPlayerButton}
             customMessage={this.customMessage} />}
       </div>
     )

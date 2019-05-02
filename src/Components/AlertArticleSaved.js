@@ -1,13 +1,15 @@
 import React from 'react';
-import { Alert, Container } from 'reactstrap';
+import { Container } from 'reactstrap';
 
-const AlertArticleSaved = () => {
+const AlertArticleSaved = ({isArticleSaved}) => {
     return ( 
-        <div>
-            <Container>
-                <Alert color="success">
-                    Your article has been saved succesfully !
-                </Alert>
+        <div >
+            <Container >
+                <img className="validation" alt="validation" 
+                    src={isArticleSaved 
+                        ? "https://media1.tenor.com/images/84a1cbe0c104df77f82dcb512de1f06d/tenor.gif"
+                        : "https://media.giphy.com/media/afqT2ykIlYcVi/giphy.gif"}>
+                </img>
             </Container>
         </div>
      );

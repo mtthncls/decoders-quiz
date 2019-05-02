@@ -3,9 +3,9 @@ import {Container} from 'reactstrap';
 import Article from './Article';
 import ArticleChoice from './ArticleChoice';
 
-const ArticleSetChoice = ({ currentArticle, addCurrentArticle, nextQuestion, correctSpecialCharacters, catTitle }) => {
+const ArticleSetChoice = ({ currentArticle, addCurrentArticle, nextQuestion, correctSpecialCharacters, catTitle, isAlertDisplayed }) => {
     return (
-        <article>
+        <article className={isAlertDisplayed ? "opacityNews" : "opacityNews1"}>
             <Container>
                 <header className="card-support head mt-3">
                     <h1>Become an expert in {catTitle}</h1>
