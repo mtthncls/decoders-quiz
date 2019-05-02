@@ -46,7 +46,8 @@ class App extends Component {
       correctAnswersCounter: 0,
       isAlertDisplayed: false,
       percentageOfGoodAnswers: 0,
-      isArticleSaved : false
+      isArticleSaved : false,
+      isArticleButtonDisabled : false
     };
   };
 
@@ -173,6 +174,7 @@ class App extends Component {
     this.setState({ 
       isAlertDisplayed: true,
       isArticleSaved : true,
+      isArticleButtonDisabled : true
     });
 
     if (this.state.currentQuestionID < this.state.choosenNumberOfQuestions - 1) {
@@ -181,6 +183,7 @@ class App extends Component {
       currentQuestionID: this.state.currentQuestionID + 1,
       currentArticleID: this.state.currentArticleID + 1,
       isArticleDisplayed: false, isAlertDisplayed: false,
+      isArticleButtonDisabled : false
     }), 3000);
   }
 
@@ -201,6 +204,7 @@ class App extends Component {
     this.setState({ 
       isAlertDisplayed: true,
       isArticleSaved : false,
+      isArticleButtonDisabled : true
     });
 
     if (this.state.currentQuestionID < this.state.choosenNumberOfQuestions - 1) {
@@ -209,6 +213,7 @@ class App extends Component {
         currentQuestionID: this.state.currentQuestionID + 1,
         currentArticleID: this.state.currentArticleID + 1,
         isArticleDisplayed: false, isAlertDisplayed: false,
+        isArticleButtonDisabled : false
       }), 3000);
     }
   
@@ -562,7 +567,8 @@ class App extends Component {
             catTitle={this.state.questionsCategory.catTitle}
             addCurrentArticle={this.memorizeArticle}
             nextQuestion={this.nextQuestion} 
-            isAlertDisplayed={this.state.isAlertDisplayed}/>}
+            isAlertDisplayed={this.state.isAlertDisplayed}
+            isArticleButtonDisabled={this.state.isArticleButtonDisabled}/>}
         {this.state.isAlertDisplayed && <AlertArticleSaved isArticleSaved={this.state.isArticleSaved} />}
         {this.state.isArticlesRecapDisplayed &&
           <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles}
