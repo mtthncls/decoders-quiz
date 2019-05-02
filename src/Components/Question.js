@@ -8,7 +8,7 @@ const Question = ({ currentQuestionID, question, setAnswerStatus, defineButtonCo
     return (
         <Container>
             <header className="card-support head">
-                <p>Question #{currentQuestionID + 1} in</p>
+                <p className="question-number">Question #{currentQuestionID + 1}</p>
                 <h2>{question.category}</h2>
                 <h3 >{correctSpecialCharacters(question.question)}</h3>
             </header>

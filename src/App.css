@@ -7,11 +7,18 @@
 }
 /* fonts*/
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One%7CBungee+Inline%7CCabin+Sketch%7CFaster+One%7CFredoka+One%7CGloria+Hallelujah%7CLondrina+Solid%7CModak%7CPress+Start+2P%7CRaleway+Dots%7CVT323%7CWallpoet');
+
+.quiz-title {
+  font-family: 'VT323', monospace;
+  color: #FF9F1C;
+  font-size: 3rem !important;
+}
 /* app general style*/
 .App {
   text-align: center;
   font-family: 'Roboto', sans-serif;
-  }
+}
 /* Home page style*/
 .home-page-header{
   height: 20vh;
@@ -100,6 +107,10 @@
   font-weight : bold;
   text-transform: uppercase;
   font-size: 3vh;
+}
+.question-number{
+  font-weight: bold !important;
+  font-size: 1.5rem;
 }
 
 /* Description from News API */
@@ -429,4 +440,6 @@ transition: all 0.2s ease-in;
   min-height: 12vh !important;
   margin-bottom: 1rem;
 } 
-
+.text-score{
+  font-size: 2.5rem !important;
+}

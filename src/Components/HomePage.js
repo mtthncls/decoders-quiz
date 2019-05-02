@@ -7,7 +7,7 @@ const HomePage = ({chooseUsername, usernameChange, nameRegistered}) => {
     return(        
         <Container>
             <header className="card-support head">
-                <h1>Decoder's Quiz</h1>
+                <h1 className="quiz-title">Decoder's Quiz</h1>
             </header>
             <div className="app-description">
             <Row>

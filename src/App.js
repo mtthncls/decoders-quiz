@@ -420,7 +420,7 @@ class App extends Component {
       return (
         <Row>
         <Col sm="12" md="6"><img src={'https://thumbs.gfycat.com/AcceptableJoyfulInganue-size_restricted.gif'} height="300rem" width="250rem" alt="bad"/></Col>
-        <Col sm="12" md="6"><h3 className="mt-4">I'm not proud of you {this.state.nameRegistered}, you can do better!</h3></Col>
+        <Col sm="12" md="6"><h3 className="text-score mt-4">I'm not proud of you {this.state.nameRegistered}, you can do better!</h3></Col>
         </Row>
       )
     }
@@ -428,7 +428,7 @@ class App extends Component {
       return (
         <Row>
         <Col sm="12" md="6"><img src={'https://thumbs.gfycat.com/GiganticIdealisticAffenpinscher-small.gif'} height="200rem" width="300rem" alt="medium"/></Col>
-        <Col sm="12" md="6"><h3 className="mt-4">Not so bad {this.state.nameRegistered}!</h3></Col>
+        <Col sm="12" md="6"><h3 className="text-score mt-4">Not so bad {this.state.nameRegistered}!</h3></Col>
         </Row>
       )
     }
@@ -436,7 +436,7 @@ class App extends Component {
       return (
         <Row>
         <Col sm="12" md="6"><img src={'https://media.tenor.com/images/17233f6fbdb4e0488f92c8ebd1218cda/tenor.gif'} height="300rem" width="150rem" alt="nice"/></Col>
-        <Col sm="12" md="6"><h3 className="mt-5">Good job {this.state.nameRegistered}, you are amazing !</h3></Col>
+        <Col sm="12" md="6"><h3 className="text-score mt-5">Good job {this.state.nameRegistered}, you are amazing !</h3></Col>
         </Row>  
       )
     }

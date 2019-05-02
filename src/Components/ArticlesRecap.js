@@ -9,7 +9,7 @@ const ArticlesRecap = ({ articlesToRecap, correctAnswersCounter, questions, tryB
         <div>
             <Container className="card-support mt-3">
                 <h1>{customMessage()} {/* Replace Username by the user input at the beginning*/}</h1>
-                <p className="answersCounter"> You have <span className="correctAnswers">{correctAnswersCounter}</span> correct answers on <span className="correctAnswers">{questions.length}</span> questions</p>
+                <p className="answersCounter"> You have <span className="correctAnswers">{correctAnswersCounter}</span> correct answer(s) on <span className="correctAnswers">{questions.length}</span> questions</p>
             </Container>
             <Container className="card-support mt-5">
                 <h1>Here's your reading list : </h1>
