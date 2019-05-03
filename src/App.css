@@ -99,7 +99,7 @@
 }
 
 /*anwser buttons css*/
-.button-answer .btn{
+.button-answer button{
   background-color: #FDFFFC;
   border: 2px solid #011627;
   color : #011627;
