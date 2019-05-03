@@ -46,8 +46,8 @@ class App extends Component {
       correctAnswersCounter: 0,
       isAlertDisplayed: false,
       percentageOfGoodAnswers: 0,
-      isArticleSaved : false,
-      isArticleButtonDisabled : false
+      isArticleSaved: false,
+      isArticleButtonDisabled: false
     };
   };
 
@@ -173,19 +173,19 @@ class App extends Component {
 
     this.setState({
       isAlertDisplayed: true,
-      isArticleSaved : true,
-      isArticleButtonDisabled : true
+      isArticleSaved: true,
+      isArticleButtonDisabled: true
     });
 
     if (this.state.currentQuestionID < this.state.choosenNumberOfQuestions - 1) {
-    window.setTimeout(() => this.setState({
-      isQuestionAnswered: false, isQuestionDisplayed: true,
-      currentQuestionID: this.state.currentQuestionID + 1,
-      currentArticleID: this.state.currentArticleID + 1,
-      isArticleDisplayed: false, isAlertDisplayed: false,
-      isArticleButtonDisabled : false
-    }), 3000);
-  }
+      window.setTimeout(() => this.setState({
+        isQuestionAnswered: false, isQuestionDisplayed: true,
+        currentQuestionID: this.state.currentQuestionID + 1,
+        currentArticleID: this.state.currentArticleID + 1,
+        isArticleDisplayed: false, isAlertDisplayed: false,
+        isArticleButtonDisabled: false
+      }), 3000);
+    }
 
     /*condition to display recap page*/
     if (this.state.currentQuestionID >= this.state.choosenNumberOfQuestions - 1) {
@@ -205,8 +205,8 @@ class App extends Component {
 
     this.setState({
       isAlertDisplayed: true,
-      isArticleSaved : false,
-      isArticleButtonDisabled : true
+      isArticleSaved: false,
+      isArticleButtonDisabled: true
     });
 
     if (this.state.currentQuestionID < this.state.choosenNumberOfQuestions - 1) {
@@ -215,7 +215,7 @@ class App extends Component {
         currentQuestionID: this.state.currentQuestionID + 1,
         currentArticleID: this.state.currentArticleID + 1,
         isArticleDisplayed: false, isAlertDisplayed: false,
-        isArticleButtonDisabled : false
+        isArticleButtonDisabled: false
       }), 3000);
     }
 
@@ -429,25 +429,25 @@ class App extends Component {
     if (this.state.percentageOfGoodAnswers < 30) {
       return (
         <Row>
-        <Col sm="12" md="6"><img src={'https://thumbs.gfycat.com/AcceptableJoyfulInganue-size_restricted.gif'} height="300rem" width="250rem" alt="bad"/></Col>
-        <Col sm="12" md="6"><h3 className="text-score mt-4">I'm not proud of you {this.state.nameRegistered}, you can do better!</h3></Col>
+          <Col sm="12" md="6"><img src={'https://thumbs.gfycat.com/AcceptableJoyfulInganue-size_restricted.gif'} height="300rem" width="250rem" alt="bad" /></Col>
+          <Col sm="12" md="6"><h3 className="text-score mt-4">I'm not proud of you {this.state.nameRegistered}, you can do better!</h3></Col>
         </Row>
       )
     }
     if (this.state.percentageOfGoodAnswers >= 30 && this.state.percentageOfGoodAnswers <= 70) {
       return (
         <Row>
-        <Col sm="12" md="6"><img src={'https://thumbs.gfycat.com/GiganticIdealisticAffenpinscher-small.gif'} height="200rem" width="300rem" alt="medium"/></Col>
-        <Col sm="12" md="6"><h3 className="text-score mt-4">Not so bad {this.state.nameRegistered}!</h3></Col>
+          <Col sm="12" md="6"><img src={'https://thumbs.gfycat.com/GiganticIdealisticAffenpinscher-small.gif'} height="200rem" width="300rem" alt="medium" /></Col>
+          <Col sm="12" md="6"><h3 className="text-score mt-4">Not so bad {this.state.nameRegistered}!</h3></Col>
         </Row>
       )
     }
     if (this.state.percentageOfGoodAnswers > 70) {
       return (
         <Row>
-        <Col sm="12" md="6"><img src={'https://media.tenor.com/images/17233f6fbdb4e0488f92c8ebd1218cda/tenor.gif'} height="300rem" width="150rem" alt="nice"/></Col>
-        <Col sm="12" md="6"><h3 className="text-score mt-5">Good job {this.state.nameRegistered}, you are amazing !</h3></Col>
-        </Row>  
+          <Col sm="12" md="6"><img src={'https://media.tenor.com/images/17233f6fbdb4e0488f92c8ebd1218cda/tenor.gif'} height="300rem" width="150rem" alt="nice" /></Col>
+          <Col sm="12" md="6"><h3 className="text-score mt-5">Good job {this.state.nameRegistered}, you are amazing !</h3></Col>
+        </Row>
       )
     }
   }
@@ -484,7 +484,8 @@ class App extends Component {
         catTitle: ""
       },
       isAlertDisplayed: false,
-      percentageOfGoodAnswers: 0
+      percentageOfGoodAnswers: 0,
+      isArticleButtonDisabled: false
     })
   };
 
@@ -521,25 +522,26 @@ class App extends Component {
         catTitle: ""
       },
       isAlertDisplayed: false,
-      percentageOfGoodAnswers: 0
+      percentageOfGoodAnswers: 0,
+      isArticleButtonDisabled: false
     })
   };
   correctSpecialCharacters = (string) => {
     return string.replace(/&quot;|&#039;/g, "'")
-        .replace(/&rdquo;|&ldquo;/g, "\"")
-        .replace(/&eacute;/g, "é")
-        .replace(/&deg;/g, "°")
-        .replace(/&pipeline;/g, "Π")
-        .replace(/&amp;/g, "&")
-        .replace(/&hellip;/g, "...")
-        .replace(/&rsquo;/g, "'")
-        .replace(/&aacute;/g, "á")
-        .replace(/&uacute;/g, "ú")
-        .replace(/&shy;/g, '-')
-        .replace(/&Auml;/g, 'Ä')
-        .replace(/&Ouml;/g, 'Ö')
-        .replace(/&Aring;/g, 'Å')
-        };
+      .replace(/&rdquo;|&ldquo;/g, "\"")
+      .replace(/&eacute;/g, "é")
+      .replace(/&deg;/g, "°")
+      .replace(/&pipeline;/g, "Π")
+      .replace(/&amp;/g, "&")
+      .replace(/&hellip;/g, "...")
+      .replace(/&rsquo;/g, "'")
+      .replace(/&aacute;/g, "á")
+      .replace(/&uacute;/g, "ú")
+      .replace(/&shy;/g, '-')
+      .replace(/&Auml;/g, 'Ä')
+      .replace(/&Ouml;/g, 'Ö')
+      .replace(/&Aring;/g, 'Å')
+  };
 
   render() {
     return (
@@ -575,9 +577,9 @@ class App extends Component {
             correctSpecialCharacters={this.correctSpecialCharacters}
             catTitle={this.state.questionsCategory.catTitle}
             addCurrentArticle={this.memorizeArticle}
-            nextQuestion={this.nextQuestion} 
+            nextQuestion={this.nextQuestion}
             isAlertDisplayed={this.state.isAlertDisplayed}
-            isArticleButtonDisabled={this.state.isArticleButtonDisabled}/>}
+            isArticleButtonDisabled={this.state.isArticleButtonDisabled} />}
         {this.state.isAlertDisplayed && <AlertArticleSaved isArticleSaved={this.state.isArticleSaved} />}
         {this.state.isArticlesRecapDisplayed &&
           <ArticlesRecap articlesToRecap={this.state.preferredNewsArticles}
